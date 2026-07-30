@@ -48,6 +48,7 @@ jobs:
         run: |
           test -f dist/index.html
           test -f dist/404.html
+          test -f dist/Hanyu_Yang_CV_Public.pdf
           if find dist -type l -print -quit | grep -q .; then
             echo "::error::dist must not contain symbolic links"
             exit 1

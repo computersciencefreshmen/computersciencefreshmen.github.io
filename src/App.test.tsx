@@ -47,7 +47,10 @@ describe("portfolio", () => {
 
     for (const link of externalLinks) {
       expect(link).toHaveAttribute("rel", "noreferrer");
-      expect(link).toHaveAttribute("href", expect.stringMatching(/^https:\/\//));
+      expect(link).toHaveAttribute(
+        "href",
+        expect.stringMatching(/^(https:\/\/|\/Hanyu_Yang_CV_Public\.pdf$)/),
+      );
     }
   });
 });

@@ -1,7 +1,8 @@
 import { About } from "./components/About";
 import { Contact } from "./components/Contact";
+import { CvArchive } from "./components/CvArchive";
+import { Experience } from "./components/Experience";
 import { Hero } from "./components/Hero";
-import { Journey } from "./components/Journey";
 import { ProjectGrid } from "./components/ProjectGrid";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
@@ -19,9 +20,10 @@ function App() {
       <main id="main-content">
         <div id="top" />
         <Hero locale={locale} />
+        <Experience locale={locale} />
         <ProjectGrid locale={locale} />
         <About locale={locale} />
-        <Journey locale={locale} />
+        <CvArchive locale={locale} />
         <Contact locale={locale} />
       </main>
       <SiteFooter locale={locale} />

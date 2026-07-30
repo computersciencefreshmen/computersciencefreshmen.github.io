@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { copy, identity } from "../data/portfolio";
+import { identity } from "../data/portfolio";
 import type { Locale } from "../types";
 import { CloseIcon, MenuIcon } from "./Icons";
 
@@ -8,9 +8,32 @@ interface SiteHeaderProps {
   onToggleLocale: () => void;
 }
 
+const navigation = {
+  en: {
+    experience: "Experience",
+    work: "Selected work",
+    cv: "Full CV",
+    contact: "Contact",
+    languageLabel: "切换到中文",
+    navigationLabel: "Primary navigation",
+    openMenu: "Open navigation",
+    closeMenu: "Close navigation",
+  },
+  zh: {
+    experience: "重点经历",
+    work: "精选项目",
+    cv: "完整 CV",
+    contact: "联系我",
+    languageLabel: "Switch to English",
+    navigationLabel: "主要导航",
+    openMenu: "打开导航",
+    closeMenu: "关闭导航",
+  },
+} as const;
+
 export function SiteHeader({ locale, onToggleLocale }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const content = copy[locale];
+  const content = navigation[locale];
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -28,7 +51,7 @@ export function SiteHeader({ locale, onToggleLocale }: SiteHeaderProps) {
       <button
         className="menu-button"
         type="button"
-        aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+        aria-label={menuOpen ? content.closeMenu : content.openMenu}
         aria-expanded={menuOpen}
         aria-controls="primary-navigation"
         onClick={() => setMenuOpen((current) => !current)}
@@ -39,19 +62,19 @@ export function SiteHeader({ locale, onToggleLocale }: SiteHeaderProps) {
       <nav
         id="primary-navigation"
         className={`site-nav ${menuOpen ? "is-open" : ""}`}
-        aria-label="Primary navigation"
+        aria-label={content.navigationLabel}
       >
+        <a href="#experience" onClick={closeMenu}>
+          {content.experience}
+        </a>
         <a href="#work" onClick={closeMenu}>
-          {content.nav.work}
+          {content.work}
         </a>
-        <a href="#about" onClick={closeMenu}>
-          {content.nav.about}
-        </a>
-        <a href="#journey" onClick={closeMenu}>
-          {content.nav.journey}
+        <a href="#cv" onClick={closeMenu}>
+          {content.cv}
         </a>
         <a href="#contact" onClick={closeMenu}>
-          {content.nav.contact}
+          {content.contact}
         </a>
       </nav>
 

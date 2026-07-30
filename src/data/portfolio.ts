@@ -25,7 +25,7 @@ export const copy = {
     heroTitleAccent: "real-world questions",
     heroTitleTail: "into useful digital systems.",
     heroBody:
-      "I’m Hanyu (Henry) Yang, an undergraduate and independent builder working where software, data, business, and international experiences meet.",
+      "I’m Hanyu (Henry) Yang, a software engineering graduate and incoming HKU postgraduate working where software, data, business, and international experiences meet.",
     exploreWork: "Explore selected work",
     connect: "Start a conversation",
     portraitAlt: "Portrait of Hanyu Yang",
@@ -37,8 +37,8 @@ export const copy = {
     proofLabel: "A quick read",
     proof: [
       ["05", "selected builds"],
-      ["03", "live products"],
-      ["02", "working languages"],
+      ["04", "live products"],
+      ["02", "site languages"],
       ["∞", "curiosity"],
     ],
     workKicker: "01 / Selected work",
@@ -109,11 +109,11 @@ export const copy = {
     heroTitleAccent: "真实世界问题",
     heroTitleTail: "转化为有用的数字系统。",
     heroBody:
-      "我是杨瀚宇（Henry），一名本科生与独立开发者，持续探索软件、数据、商业与国际化体验的交汇处。",
+      "我是杨涵宇（Henry），一名软件工程毕业生与港大准研究生，持续探索软件、数据、商业与国际化体验的交汇处。",
     exploreWork: "查看精选项目",
     connect: "开始交流",
-    portraitAlt: "杨瀚宇的个人照片",
-    portraitCaption: "杨瀚宇 “Henry”",
+    portraitAlt: "杨涵宇的个人照片",
+    portraitCaption: "杨涵宇 “Henry”",
     plateLabel: "个人研究手记 · 2026",
     signalOne: "交付",
     signalTwo: "学习",
@@ -121,8 +121,8 @@ export const copy = {
     proofLabel: "快速了解",
     proof: [
       ["05", "个精选项目"],
-      ["03", "个在线产品"],
-      ["02", "种工作语言"],
+      ["04", "个在线产品"],
+      ["02", "种网站语言"],
       ["∞", "保持好奇"],
     ],
     workKicker: "01 / 精选项目",
@@ -177,7 +177,7 @@ export const copy = {
     contactCta: "在 LinkedIn 联系",
     githubCta: "查看我的构建轨迹",
     footerNote: "以思考与用心完成设计和开发。",
-    copyright: "杨瀚宇。保留所有权利。",
+    copyright: "杨涵宇。保留所有权利。",
   },
 } as const;
 
@@ -308,7 +308,7 @@ export const journey: JourneyItem[] = [
     },
   },
   {
-    period: "Present",
+    period: "Mar. - Jul. 2026",
     title: {
       en: "Financial services experience",
       zh: "金融服务实践",

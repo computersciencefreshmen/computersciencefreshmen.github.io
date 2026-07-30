@@ -3,5 +3,6 @@
 *.jpg binary
 *.jpeg binary
 *.webp binary
+*.pdf binary
 *.woff binary
 *.woff2 binary

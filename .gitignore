@@ -3,6 +3,9 @@ dist
 .vite
 coverage
 artifacts
+output
+__pycache__/
+*.pyc
 *.local
 *.log
 .DS_Store
