@@ -1,0 +1,23 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      frontend:
+        patterns:
+          - "react*"
+          - "vite*"
+          - "@vitejs/*"
+      quality:
+        patterns:
+          - "eslint*"
+          - "typescript*"
+          - "vitest*"
+          - "@testing-library/*"
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
