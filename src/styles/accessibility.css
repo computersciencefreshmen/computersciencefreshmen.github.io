@@ -1,0 +1,163 @@
+/*
+ * Accessibility and interaction guarantees for the active bright theme.
+ * Kept separate so contrast, focus, motion, and touch-target rules stay easy
+ * to audit independently from the visual composition.
+ */
+
+:root {
+  --signal-text: #b7000e;
+}
+
+.skip-link {
+  color: #ffffff;
+  background: var(--signal);
+}
+
+.menu-button,
+.language-toggle {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.wordmark {
+  min-height: 44px;
+}
+
+.hero h1 em {
+  text-decoration: none;
+}
+
+.availability__dot {
+  animation: none;
+}
+
+.portrait-card:hover {
+  box-shadow: 16px 16px 0 var(--blue);
+}
+
+.button:hover svg {
+  transform: none;
+}
+
+.section--experience .section-kicker,
+.section--about .section-kicker,
+.section--contact .section-kicker,
+.principle > span {
+  color: var(--signal-text);
+}
+
+.section--experience .section-kicker,
+.section--about .section-kicker,
+.section--contact .section-kicker,
+.hsbc-casefile__metadata dt,
+.hsbc-flow__label,
+.hsbc-casefile__legend p,
+.hsbc-casefile__footer > div > p,
+.hsbc-flow__index small,
+.hsbc-casefile__footer > a small,
+.cv-heading__aside > a small,
+.contact__coordinates {
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.hsbc-flow__index small {
+  max-width: 132px;
+}
+
+.hsbc-casefile__footer > a small,
+.cv-heading__aside > a small,
+.contact-link--primary small,
+.contact-link--primary:hover small {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.contact__coordinates {
+  color: var(--ink-soft);
+}
+
+.hsbc-casefile__footer > a:focus-visible,
+.cv-heading__aside > a:focus-visible,
+.contact-link--primary:focus-visible {
+  outline: 0;
+  box-shadow: inset 0 0 0 3px #ffffff;
+}
+
+.hsbc-flow ol,
+.hsbc-contributions,
+.achievement-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-visual__chrome > span {
+  box-shadow: none;
+}
+
+.project-card__links a,
+.site-footer__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.project-card__links a {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.site-footer__links a {
+  padding: 10px 6px;
+}
+
+.skill-card > p,
+.achievement-list span,
+.achievement-list p,
+.contact-link span,
+.site-footer__mark {
+  font-family: var(--body);
+  font-style: normal;
+}
+
+.reveal {
+  opacity: 1;
+}
+
+.reveal:focus-within {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .site-nav {
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      max-height 280ms ease,
+      opacity 200ms ease,
+      padding 280ms ease,
+      visibility 0s linear 280ms;
+  }
+
+  .site-nav.is-open {
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+}
+
+@media (max-width: 720px) {
+  .portrait-card:hover {
+    box-shadow: 12px 12px 0 var(--blue);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-delay: 0s !important;
+  }
+}

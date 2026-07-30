@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <meta name="theme-color" content="#0a1512" />
+    <meta name="theme-color" content="#fbfcfa" />
     <title>404 — Hanyu Yang</title>
     <style>
       * { box-sizing: border-box; }
@@ -13,60 +13,75 @@
         margin: 0;
         display: grid;
         place-items: center;
-        padding: 28px;
-        color: #fffdf7;
+        padding: 32px;
+        color: #141817;
         background:
-          linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
-          #0a1512;
-        background-size: 44px 44px;
-        font-family: "Segoe UI", sans-serif;
+          linear-gradient(90deg, #fbfcfa 0 74%, #c9e3ef 74% 100%);
+        font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
       }
       main {
-        width: min(860px, 100%);
-        border-top: 1px solid rgba(255,255,255,.2);
-        border-bottom: 1px solid rgba(255,255,255,.2);
-        padding: clamp(50px, 10vw, 100px) 0;
+        width: min(900px, 100%);
+        padding: clamp(54px, 9vw, 96px) 0;
+        border-top: 1px solid rgba(20, 24, 23, .18);
+        border-bottom: 1px solid rgba(20, 24, 23, .18);
       }
       .code {
-        margin: 0 0 18px;
-        color: #b5ff7d;
+        margin: 0 0 22px;
+        color: #b7000e;
         font-family: Consolas, monospace;
         font-size: 12px;
-        letter-spacing: .16em;
+        letter-spacing: .14em;
       }
       h1 {
-        max-width: 760px;
+        max-width: 780px;
         margin: 0;
-        font-family: Georgia, serif;
-        font-size: clamp(62px, 12vw, 140px);
-        font-weight: 400;
-        line-height: .85;
+        font-size: clamp(58px, 10vw, 120px);
+        font-weight: 550;
+        line-height: .94;
         letter-spacing: -.065em;
       }
-      h1 em { color: #b5ff7d; }
+      h1 em {
+        color: #db0011;
+        font-style: normal;
+      }
       p {
-        max-width: 560px;
-        margin: 32px 0;
-        color: #adbbb5;
+        max-width: 570px;
+        margin: 30px 0;
+        color: #4d5954;
         font-size: 17px;
         line-height: 1.7;
       }
       a {
         display: inline-flex;
-        padding: 15px 20px;
-        color: #0a1512;
-        background: #b5ff7d;
+        align-items: center;
+        min-height: 50px;
+        padding: 0 20px;
+        color: #fff;
+        background: #141817;
+        border: 1px solid #141817;
         font-size: 13px;
         font-weight: 700;
         text-decoration: none;
       }
-      a:hover { transform: translateY(-2px); }
+      a:hover {
+        background: #db0011;
+        border-color: #db0011;
+      }
+      a:focus-visible {
+        outline: 3px solid #db0011;
+        outline-offset: 4px;
+      }
+      @media (max-width: 640px) {
+        body {
+          padding: 22px;
+          background: #fbfcfa;
+        }
+      }
     </style>
   </head>
   <body>
     <main>
-      <p class="code">ERROR / 404 · FIELD NOTE NOT FOUND</p>
+      <p class="code">ERROR / 404 · PAGE NOT FOUND</p>
       <h1>Wrong turn,<br /><em>good curiosity.</em></h1>
       <p>
         This page does not exist, but the useful work is one step away.

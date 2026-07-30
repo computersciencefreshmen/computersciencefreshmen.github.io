@@ -2,7 +2,6 @@ import { hsbcExperience, publicCvUrl } from "../data/cv";
 import type { Locale, LocalizedText } from "../types";
 import { ArrowUpRight } from "./Icons";
 import { Reveal } from "./Reveal";
-import "../styles/cv.css";
 
 interface ExperienceProps {
   locale: Locale;
@@ -113,9 +112,14 @@ export function Experience({ locale }: ExperienceProps) {
 
       <Reveal className="hsbc-casefile">
         <div className="hsbc-casefile__masthead">
-          <div className="hsbc-wordmark" aria-label={hsbcExperience.organization[locale]}>
-            <span className="hsbc-wordmark__signal" aria-hidden="true" />
-            <strong>{hsbcExperience.organization[locale]}</strong>
+          <div className="hsbc-wordmark">
+            <img
+              className="hsbc-wordmark__logo"
+              src="/hsbc-logo.png"
+              alt={locale === "zh" ? "汇丰银行 HSBC" : "HSBC"}
+              width="500"
+              height="500"
+            />
           </div>
 
           <dl className="hsbc-casefile__metadata">

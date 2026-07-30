@@ -4,8 +4,8 @@
   "description": "Portfolio of Hanyu (Henry) Yang.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a1512",
-  "theme_color": "#0a1512",
+  "background_color": "#fbfcfa",
+  "theme_color": "#fbfcfa",
   "icons": [
     {
       "src": "/favicon.svg",

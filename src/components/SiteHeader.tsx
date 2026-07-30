@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { identity } from "../data/portfolio";
 import type { Locale } from "../types";
 import { CloseIcon, MenuIcon } from "./Icons";
@@ -34,8 +34,25 @@ const navigation = {
 export function SiteHeader({ locale, onToggleLocale }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const content = navigation[locale];
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   const closeMenu = () => setMenuOpen(false);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      return;
+    }
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
 
   return (
     <header className="site-header">
@@ -50,6 +67,7 @@ export function SiteHeader({ locale, onToggleLocale }: SiteHeaderProps) {
 
       <button
         className="menu-button"
+        ref={menuButtonRef}
         type="button"
         aria-label={menuOpen ? content.closeMenu : content.openMenu}
         aria-expanded={menuOpen}
@@ -81,7 +99,10 @@ export function SiteHeader({ locale, onToggleLocale }: SiteHeaderProps) {
       <button
         className="language-toggle"
         type="button"
-        onClick={onToggleLocale}
+        onClick={() => {
+          onToggleLocale();
+          closeMenu();
+        }}
         aria-label={content.languageLabel}
       >
         <span className={locale === "en" ? "is-active" : ""}>EN</span>

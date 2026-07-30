@@ -4,6 +4,9 @@ import "@fontsource-variable/newsreader/wght.css";
 import "@fontsource-variable/manrope/wght.css";
 import "@fontsource/dm-mono/400.css";
 import "./styles/global.css";
+import "./styles/cv.css";
+import "./styles/bright.css";
+import "./styles/accessibility.css";
 import App from "./App";
 
 createRoot(document.getElementById("root")!).render(

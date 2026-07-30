@@ -17,7 +17,12 @@ describe("complete CV experience", () => {
     expect(
       screen.getByRole("heading", { name: /customer data, made actionable/i }),
     ).toBeInTheDocument();
-    expect(screen.getAllByText("HSBC").length).toBeGreaterThan(0);
+    const hsbcLogo = screen.getByRole("img", { name: "HSBC" });
+    expect(hsbcLogo).toHaveAttribute("src", "/hsbc-logo.png");
+    expect(
+      document.querySelectorAll('img[src="/hsbc-logo.png"]'),
+    ).toHaveLength(1);
+
     expect(
       screen.getByText(/CRM Data Analyst Intern · Wealth and Personal Banking/i),
     ).toBeInTheDocument();
@@ -65,7 +70,9 @@ describe("complete CV experience", () => {
     expect(
       screen.getByRole("heading", { name: /让客户数据.*转化为行动/ }),
     ).toBeInTheDocument();
-    expect(screen.getAllByText("汇丰银行").length).toBeGreaterThan(0);
+    expect(
+      screen.getByRole("img", { name: "汇丰银行 HSBC" }),
+    ).toHaveAttribute("src", "/hsbc-logo.png");
     expect(
       screen.getByRole("heading", { name: /个人主页背后的完整经历/ }),
     ).toBeInTheDocument();

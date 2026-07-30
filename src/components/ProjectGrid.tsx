@@ -83,6 +83,7 @@ export function ProjectGrid({ locale }: ProjectGridProps) {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noreferrer"
+                      aria-label={`${content.viewLive}: ${project.title}`}
                     >
                       {content.viewLive}
                       <ArrowUpRight />
@@ -92,6 +93,7 @@ export function ProjectGrid({ locale }: ProjectGridProps) {
                     href={project.repositoryUrl}
                     target="_blank"
                     rel="noreferrer"
+                    aria-label={`${content.viewCode}: ${project.title}`}
                   >
                     {content.viewCode}
                     <ArrowUpRight />

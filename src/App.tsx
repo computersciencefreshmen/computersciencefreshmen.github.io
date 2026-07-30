@@ -14,10 +14,10 @@ function App() {
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to content
+        {locale === "zh" ? "跳到主要内容" : "Skip to content"}
       </a>
       <SiteHeader locale={locale} onToggleLocale={toggleLocale} />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <div id="top" />
         <Hero locale={locale} />
         <Experience locale={locale} />

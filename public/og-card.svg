@@ -1,25 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
-  <defs>
-    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
-      <path d="M44 0H0V44" fill="none" stroke="#f4f1e8" stroke-opacity=".07"/>
-    </pattern>
-    <radialGradient id="glow" cx="80%" cy="20%" r="65%">
-      <stop offset="0" stop-color="#70edbe" stop-opacity=".22"/>
-      <stop offset="1" stop-color="#0a1512" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="1200" height="630" fill="#0a1512"/>
-  <rect width="1200" height="630" fill="url(#grid)"/>
-  <rect width="1200" height="630" fill="url(#glow)"/>
-  <circle cx="1010" cy="102" r="225" fill="none" stroke="#b5ff7d" stroke-opacity=".22"/>
-  <circle cx="1010" cy="102" r="174" fill="none" stroke="#f4f1e8" stroke-opacity=".08" stroke-dasharray="8 11"/>
-  <rect x="68" y="65" width="70" height="70" rx="35" fill="#b5ff7d"/>
-  <text x="102" y="111" text-anchor="middle" fill="#0a1512" font-family="Georgia, serif" font-style="italic" font-size="34" font-weight="700" letter-spacing="-4">HY</text>
-  <text x="68" y="195" fill="#70edbe" font-family="monospace" font-size="15" letter-spacing="3">PRODUCT BUILDER · DATA THINKER · GLOBAL LEARNER</text>
-  <text x="63" y="320" fill="#fffdf7" font-family="Georgia, serif" font-size="94" letter-spacing="-5">Hanyu Yang</text>
-  <text x="68" y="400" fill="#b5ff7d" font-family="Georgia, serif" font-style="italic" font-size="52">Building useful systems</text>
-  <text x="68" y="460" fill="#f4f1e8" font-family="Georgia, serif" font-style="italic" font-size="52">from messy real-world information.</text>
-  <line x1="68" y1="535" x2="1132" y2="535" stroke="#f4f1e8" stroke-opacity=".2"/>
-  <text x="68" y="574" fill="#a5b2ad" font-family="monospace" font-size="14" letter-spacing="2">COMPUTERSCIENCEFRESHMEN.GITHUB.IO</text>
-  <text x="1132" y="574" text-anchor="end" fill="#a5b2ad" font-family="monospace" font-size="14" letter-spacing="2">GUANGZHOU · 2026</text>
+  <rect width="1200" height="630" fill="#fbfcfa"/>
+  <rect x="892" width="308" height="630" fill="#c9e3ef"/>
+  <rect x="785" y="112" width="310" height="360" fill="#dce7df"/>
+  <rect x="68" y="65" width="64" height="64" fill="#db0011"/>
+  <text x="100" y="107" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="-2">HY</text>
+  <text x="68" y="190" fill="#b7000e" font-family="monospace" font-size="14" letter-spacing="2.5">SOFTWARE · DATA · PRODUCT</text>
+  <text x="64" y="320" fill="#141817" font-family="Arial, sans-serif" font-size="92" font-weight="600" letter-spacing="-6">Hanyu Yang</text>
+  <text x="68" y="395" fill="#26302c" font-family="Arial, sans-serif" font-size="39" font-weight="500" letter-spacing="-1.5">Building useful systems from</text>
+  <text x="68" y="446" fill="#db0011" font-family="Arial, sans-serif" font-size="39" font-weight="600" letter-spacing="-1.5">messy real-world information.</text>
+  <line x1="68" y1="531" x2="1132" y2="531" stroke="#141817" stroke-opacity=".18"/>
+  <text x="68" y="574" fill="#5d6863" font-family="monospace" font-size="13" letter-spacing="1.7">COMPUTERSCIENCEFRESHMEN.GITHUB.IO</text>
+  <text x="1132" y="574" text-anchor="end" fill="#5d6863" font-family="monospace" font-size="13" letter-spacing="1.7">GUANGZHOU · 2026</text>
 </svg>

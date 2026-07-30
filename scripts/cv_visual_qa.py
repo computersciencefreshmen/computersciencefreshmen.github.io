@@ -78,6 +78,14 @@ def exercise_viewport(page: Page, label: str) -> None:
     if not experience_heading.is_visible():
         raise AssertionError(f"{label}: HSBC flagship heading is not visible")
 
+    hsbc_logo = page.get_by_role("img", name="HSBC", exact=True)
+    if hsbc_logo.count() != 1:
+        raise AssertionError(f"{label}: HSBC logo is missing or duplicated")
+    if not hsbc_logo.evaluate(
+        "(image) => image.complete && image.naturalWidth > 0"
+    ):
+        raise AssertionError(f"{label}: HSBC logo did not load")
+
     if page.get_by_text(
         "CRM Data Analyst Intern · Wealth and Personal Banking"
     ).count() != 1:
@@ -126,8 +134,8 @@ def exercise_viewport(page: Page, label: str) -> None:
     ).is_visible():
         page.locator("#experience").scroll_into_view_if_needed()
         page.wait_for_timeout(300)
-    if page.get_by_text("汇丰银行").count() < 1:
-        raise AssertionError(f"{label}: Chinese HSBC content did not render")
+    if page.get_by_role("img", name="汇丰银行 HSBC", exact=True).count() != 1:
+        raise AssertionError(f"{label}: Chinese HSBC logo name did not render")
 
     assert_no_horizontal_overflow(page, f"{label}-zh")
     if errors:

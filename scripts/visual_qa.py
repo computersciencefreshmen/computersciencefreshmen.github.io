@@ -66,7 +66,10 @@ def run() -> None:
             ("03", "#about", "about-desktop"),
             ("04", "#contact", "contact-desktop"),
         ]:
-            desktop.locator(selector).screenshot(
+            section = desktop.locator(selector)
+            section.scroll_into_view_if_needed()
+            desktop.wait_for_timeout(650)
+            desktop.screenshot(
                 path=OUTPUT_DIR / f"{order}-{label}.png"
             )
         desktop_context.close()
@@ -85,17 +88,36 @@ def run() -> None:
         mobile.get_by_role("button", name="Open navigation", exact=True).click()
 
         navigation = mobile.get_by_role("navigation", name="Primary navigation")
-        if "is-open" not in (navigation.get_attribute("class") or ""):
+        navigation_element = mobile.locator("#primary-navigation")
+        if "is-open" not in (navigation_element.get_attribute("class") or ""):
             raise AssertionError("Mobile menu did not enter its open state")
         mobile.screenshot(path=OUTPUT_DIR / "05-mobile-menu.png")
 
+        mobile.keyboard.press("Escape")
+        mobile.wait_for_timeout(320)
+        if "is-open" in (navigation_element.get_attribute("class") or ""):
+            raise AssertionError("Escape did not close the mobile menu")
+        closed_menu_state = navigation_element.evaluate(
+            """(element) => ({
+              visibility: getComputedStyle(element).visibility,
+              pointerEvents: getComputedStyle(element).pointerEvents,
+            })"""
+        )
+        if closed_menu_state != {"visibility": "hidden", "pointerEvents": "none"}:
+            raise AssertionError(f"Closed menu remains interactive: {closed_menu_state}")
+
+        mobile.get_by_role("button", name="Open navigation", exact=True).click()
         navigation.get_by_role("link", name="Selected work", exact=True).click()
         mobile.wait_for_timeout(250)
         assert_no_overflow(mobile, "mobile")
 
         mobile.get_by_role("button", name="切换到中文", exact=True).click()
+        mobile.get_by_role("button", name="打开导航", exact=True).click()
         mobile.get_by_role("link", name="精选项目", exact=True).wait_for()
-        mobile.locator(".hero").screenshot(path=OUTPUT_DIR / "06-hero-mobile-zh.png")
+        mobile.keyboard.press("Escape")
+        mobile.locator("#top").scroll_into_view_if_needed()
+        mobile.wait_for_timeout(320)
+        mobile.screenshot(path=OUTPUT_DIR / "06-hero-mobile-zh.png")
 
         mobile_result = {
             "status": mobile_response.status if mobile_response else None,
