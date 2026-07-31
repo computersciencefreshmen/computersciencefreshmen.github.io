@@ -231,7 +231,7 @@ main {
   font-family: var(--body);
   font-size: clamp(56px, 6.3vw, 92px);
   font-weight: 520;
-  line-height: 0.98;
+  line-height: 1.1;
   letter-spacing: -0.065em;
 }
 
@@ -240,8 +240,8 @@ main {
   font-family: inherit;
   font-style: normal;
   font-weight: inherit;
-  padding: 0 0.11em 0.04em;
-  background: var(--violet);
+  padding: 0 0.08em;
+  background: linear-gradient(transparent 16%, var(--violet) 16% 88%, transparent 88%);
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
@@ -1323,7 +1323,7 @@ main {
 
   .hero h1 {
     font-size: clamp(48px, 14.5vw, 68px);
-    line-height: 0.98;
+    line-height: 1.08;
   }
 
   .hero__body {
