@@ -1,11 +1,11 @@
 /*
- * Accessibility and interaction guarantees for the active bright theme.
+ * Accessibility and interaction guarantees for the active quiet theme.
  * Kept separate so contrast, focus, motion, and touch-target rules stay easy
  * to audit independently from the visual composition.
  */
 
 :root {
-  --signal-text: #b7000e;
+  --signal-text: var(--accent-strong);
 }
 
 .skip-link {
@@ -32,7 +32,7 @@
 }
 
 .portrait-card:hover {
-  box-shadow: 16px 16px 0 var(--blue);
+  box-shadow: 14px 14px 0 var(--sage);
 }
 
 .button:hover svg {
@@ -150,7 +150,7 @@
 
 @media (max-width: 720px) {
   .portrait-card:hover {
-    box-shadow: 12px 12px 0 var(--blue);
+    box-shadow: 10px 10px 0 var(--sage);
   }
 }
 

@@ -4,14 +4,32 @@
   "description": "Portfolio of Hanyu (Henry) Yang.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#fbfcfa",
-  "theme_color": "#fbfcfa",
+  "background_color": "#f5f4f0",
+  "theme_color": "#f5f4f0",
   "icons": [
     {
-      "src": "/favicon.svg",
+      "src": "/hy-mark-v2.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"
+    },
+    {
+      "src": "/icon-192-v2.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512-v2.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512-v2.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }

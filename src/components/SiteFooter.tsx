@@ -1,5 +1,6 @@
 import { copy, links } from "../data/portfolio";
 import type { Locale } from "../types";
+import { BrandMark } from "./BrandMark";
 
 interface SiteFooterProps {
   locale: Locale;
@@ -11,7 +12,7 @@ export function SiteFooter({ locale }: SiteFooterProps) {
   return (
     <footer className="site-footer">
       <p>
-        <span className="site-footer__mark">HY</span>
+        <BrandMark className="site-footer__brand-mark" />
         {content.footerNote}
       </p>
       <div className="site-footer__links">

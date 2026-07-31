@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <meta name="theme-color" content="#fbfcfa" />
+    <meta name="theme-color" content="#f5f4f0" />
     <title>404 — Hanyu Yang</title>
     <style>
       * { box-sizing: border-box; }
@@ -14,20 +14,25 @@
         display: grid;
         place-items: center;
         padding: 32px;
-        color: #141817;
+        color: #262a28;
         background:
-          linear-gradient(90deg, #fbfcfa 0 74%, #c9e3ef 74% 100%);
+          linear-gradient(90deg, #f5f4f0 0 76%, #e4e1e8 76% 100%);
         font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
       }
       main {
         width: min(900px, 100%);
         padding: clamp(54px, 9vw, 96px) 0;
-        border-top: 1px solid rgba(20, 24, 23, .18);
-        border-bottom: 1px solid rgba(20, 24, 23, .18);
+        border-top: 1px solid rgba(38, 42, 40, .18);
+        border-bottom: 1px solid rgba(38, 42, 40, .18);
+      }
+      .mark {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 48px;
       }
       .code {
         margin: 0 0 22px;
-        color: #b7000e;
+        color: #3f5048;
         font-family: Consolas, monospace;
         font-size: 12px;
         letter-spacing: .14em;
@@ -41,13 +46,17 @@
         letter-spacing: -.065em;
       }
       h1 em {
-        color: #db0011;
+        color: #262a28;
         font-style: normal;
+        padding: 0 .08em .04em;
+        background: #e4e1e8;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
       }
       p {
         max-width: 570px;
         margin: 30px 0;
-        color: #4d5954;
+        color: #59615c;
         font-size: 17px;
         line-height: 1.7;
       }
@@ -57,30 +66,31 @@
         min-height: 50px;
         padding: 0 20px;
         color: #fff;
-        background: #141817;
-        border: 1px solid #141817;
+        background: #262a28;
+        border: 1px solid #262a28;
         font-size: 13px;
         font-weight: 700;
         text-decoration: none;
       }
       a:hover {
-        background: #db0011;
-        border-color: #db0011;
+        background: #3f5048;
+        border-color: #3f5048;
       }
       a:focus-visible {
-        outline: 3px solid #db0011;
+        outline: 3px solid #3f5048;
         outline-offset: 4px;
       }
       @media (max-width: 640px) {
         body {
           padding: 22px;
-          background: #fbfcfa;
+          background: #f5f4f0;
         }
       }
     </style>
   </head>
   <body>
     <main>
+      <img class="mark" src="/hy-mark-v2.svg" alt="" aria-hidden="true" />
       <p class="code">ERROR / 404 · PAGE NOT FOUND</p>
       <h1>Wrong turn,<br /><em>good curiosity.</em></h1>
       <p>

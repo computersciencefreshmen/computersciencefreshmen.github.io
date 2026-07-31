@@ -64,9 +64,6 @@ export function Hero({ locale }: HeroProps) {
             PLATE / 001
           </div>
           <div className="portrait-card__image">
-            <span className="portrait-card__initials" aria-hidden="true">
-              HY
-            </span>
             <img
               src="/profile.png"
               alt={content.portraitAlt}

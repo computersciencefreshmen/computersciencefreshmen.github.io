@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { identity } from "../data/portfolio";
 import type { Locale } from "../types";
+import { BrandMark } from "./BrandMark";
 import { CloseIcon, MenuIcon } from "./Icons";
 
 interface SiteHeaderProps {
@@ -57,12 +58,8 @@ export function SiteHeader({ locale, onToggleLocale }: SiteHeaderProps) {
   return (
     <header className="site-header">
       <a className="wordmark" href="#top" aria-label={`${identity.name} — home`}>
-        <span className="wordmark__monogram">HY</span>
-        <span className="wordmark__name">
-          Hanyu
-          <br />
-          Yang
-        </span>
+        <BrandMark className="wordmark__symbol" />
+        <span className="wordmark__name">Hanyu Yang</span>
       </a>
 
       <button

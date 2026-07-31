@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="og-title og-description">
+  <title id="og-title">Hanyu Yang — Product Builder</title>
+  <desc id="og-description">Software, data, and product portfolio in a quiet editorial style.</desc>
+  <rect width="1200" height="630" fill="#f5f4f0"/>
+  <rect x="930" width="270" height="630" fill="#dee5e7"/>
+  <rect x="805" y="92" width="300" height="400" fill="#d8ded6"/>
+  <g transform="translate(64 54) scale(1.5)">
+    <rect width="64" height="64" rx="16" fill="#d9d4e2"/>
+    <path fill="#29332f" d="M8 16h8v12h8V16h8v32h-8V36h-8v12H8V16Z"/>
+    <path fill="#5f5868" d="M32 16h8l4 8 4-8h8l-8 16v16h-8V32L32 16Z"/>
+  </g>
+  <text x="64" y="211" fill="#3f5048" font-family="Consolas, monospace" font-size="14" letter-spacing="2.5">SOFTWARE · DATA · PRODUCT</text>
+  <text x="60" y="335" fill="#262a28" font-family="Segoe UI, Arial, sans-serif" font-size="91" font-weight="600" letter-spacing="-6">Hanyu Yang</text>
+  <text x="64" y="408" fill="#414943" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="500" letter-spacing="-1.5">Building useful systems from</text>
+  <rect x="58" y="427" width="638" height="55" fill="#e4e1e8"/>
+  <text x="64" y="469" fill="#262a28" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="600" letter-spacing="-1.5">messy real-world information.</text>
+  <line x1="64" y1="536" x2="1136" y2="536" stroke="#262a28" stroke-opacity=".16"/>
+  <text x="64" y="579" fill="#59615c" font-family="Consolas, monospace" font-size="13" letter-spacing="1.7">COMPUTERSCIENCEFRESHMEN.GITHUB.IO</text>
+  <text x="1136" y="579" text-anchor="end" fill="#59615c" font-family="Consolas, monospace" font-size="13" letter-spacing="1.7">GUANGZHOU · 2026</text>
+</svg>

@@ -1,27 +1,34 @@
 /*
- * Active visual layer — Bright Editorial, July 2026.
+ * Active visual layer — Quiet Editorial, July 2026.
  *
  * The component and content architecture stays stable while this file provides
- * the current art direction: generous white space, direct typography, quiet
- * sage/sky surfaces, and HSBC red as the only high-energy accent.
+ * the current art direction: warm white space, ink typography, muted lilac,
+ * sage and fog-blue surfaces. HSBC red is isolated to the official logo asset.
  */
 
 :root {
   color-scheme: light;
-  --ink: #141817;
-  --ink-soft: #26302c;
-  --paper: #fbfcfa;
-  --paper-deep: #edf2ed;
-  --signal: #db0011;
-  --mint: #b9cec0;
-  --blue: #c9e3ef;
-  --amber: #f2e3bd;
-  --rose: #f3d9dc;
-  --violet: #ded9ec;
+  --ink: #262a28;
+  --ink-soft: #414943;
+  --paper: #f5f4f0;
+  --paper-deep: #ecebe5;
+  --surface: #faf9f6;
   --white: #ffffff;
-  --text-muted: #5d6863;
-  --border-dark: rgba(20, 24, 23, 0.15);
-  --border-light: rgba(20, 24, 23, 0.15);
+  --text-muted: #59615c;
+  --accent: #536159;
+  --accent-strong: #3f5048;
+  --signal: var(--accent-strong);
+  --sage: #d8ded6;
+  --sage-soft: #edf0ec;
+  --mint: var(--sage);
+  --blue: #dee5e7;
+  --amber: #e6e0d6;
+  --rose: #e6dedf;
+  --violet: #e4e1e8;
+  --hsbc-red: #db0011;
+  --hsbc-red-text: #b7000e;
+  --border-dark: rgba(38, 42, 40, 0.15);
+  --border-light: rgba(38, 42, 40, 0.1);
   --container: min(1320px, calc(100vw - 64px));
 }
 
@@ -66,8 +73,8 @@ main {
   min-height: 76px;
   padding: 10px 32px;
   color: var(--ink);
-  background: rgba(251, 252, 250, 0.92);
-  border-color: rgba(20, 24, 23, 0.12);
+  background: rgba(245, 244, 240, 0.94);
+  border-color: var(--border-light);
   box-shadow: none;
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
@@ -75,6 +82,17 @@ main {
 
 .wordmark {
   gap: 11px;
+}
+
+.brand-mark {
+  display: block;
+  flex: none;
+}
+
+.wordmark__symbol {
+  width: 40px;
+  height: 40px;
+  transition: transform 180ms ease;
 }
 
 .wordmark__monogram {
@@ -95,12 +113,16 @@ main {
   transform: none;
 }
 
+.wordmark:hover .wordmark__symbol {
+  transform: translateY(-1px);
+}
+
 .wordmark__name {
   color: var(--ink);
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 650;
-  line-height: 1.15;
-  letter-spacing: 0.15em;
+  line-height: 1;
+  letter-spacing: 0.07em;
 }
 
 .site-nav {
@@ -150,14 +172,13 @@ main {
   padding-bottom: 70px;
   color: var(--ink);
   background:
-    linear-gradient(90deg, transparent 0 72%, rgba(201, 227, 239, 0.52) 72% 100%),
+    linear-gradient(90deg, transparent 0 74%, var(--violet) 74% 100%),
     var(--paper);
 }
 
 .hero::before,
 .hero__atmosphere,
 .portrait-card__index,
-.portrait-card__initials,
 .portrait-card__scanline,
 .portrait-card__mark,
 .hero__plate-label {
@@ -215,10 +236,14 @@ main {
 }
 
 .hero h1 em {
-  color: var(--signal);
+  color: var(--ink);
   font-family: inherit;
   font-style: normal;
   font-weight: inherit;
+  padding: 0 0.11em 0.04em;
+  background: var(--violet);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .hero__body {
@@ -285,7 +310,7 @@ main {
   background: var(--white);
   border: 1px solid rgba(20, 24, 23, 0.14);
   border-radius: 0;
-  box-shadow: 16px 16px 0 var(--blue);
+  box-shadow: 14px 14px 0 var(--sage);
   transform: none;
 }
 
@@ -295,7 +320,7 @@ main {
 
 .portrait-card__image {
   aspect-ratio: 4 / 4.65;
-  background: #e9eff0;
+  background: var(--blue);
 }
 
 .portrait-card__image::after {
@@ -307,7 +332,7 @@ main {
   height: 100%;
   object-fit: cover;
   object-position: center 24%;
-  filter: none;
+  filter: saturate(0.86) contrast(0.98);
 }
 
 .portrait-card figcaption {
@@ -407,7 +432,7 @@ main {
 
 .section--experience {
   color: var(--ink);
-  background: #e9f0ea;
+  background: var(--sage-soft);
   background-image: none;
 }
 
@@ -653,7 +678,7 @@ main {
 
 .hsbc-casefile__footer > a:hover {
   color: var(--white);
-  background: #b7000e;
+  background: var(--ink);
 }
 
 .hsbc-casefile__footer > a small {
@@ -739,7 +764,7 @@ main {
 }
 
 .project-visual__chrome {
-  color: rgba(20, 24, 23, 0.62);
+  color: var(--text-muted);
   border-color: rgba(20, 24, 23, 0.14);
 }
 
@@ -770,7 +795,7 @@ main {
 }
 
 .project-visual__canvas strong {
-  color: rgba(20, 24, 23, 0.58);
+  color: var(--text-muted);
 }
 
 .project-card__content {
@@ -834,7 +859,7 @@ main {
 
 .section--about {
   color: var(--ink);
-  background: #dce7df;
+  background: var(--sage);
 }
 
 .section--about::after {
@@ -877,7 +902,7 @@ main {
   height: 32px;
   color: var(--signal);
   background: transparent;
-  border: 1px solid rgba(219, 0, 17, 0.42);
+  border: 1px solid rgba(63, 80, 72, 0.38);
   border-radius: 0;
   transform: none;
 }
@@ -913,7 +938,7 @@ main {
 
 .section--cv {
   color: var(--ink);
-  background: #f6f7f4;
+  background: var(--surface);
   background-image: none;
 }
 
@@ -1038,7 +1063,7 @@ main {
 
 .section--contact {
   color: var(--ink);
-  background: var(--blue);
+  background: var(--violet);
   background-image: none;
 }
 
@@ -1118,10 +1143,15 @@ main {
   color: var(--text-muted);
 }
 
-.site-footer__mark {
-  color: var(--white);
-  background: var(--signal);
-  border-radius: 0;
+.site-footer p:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.site-footer__brand-mark {
+  width: 24px;
+  height: 24px;
 }
 
 .site-footer__links a:hover {
@@ -1144,7 +1174,7 @@ main {
 @media (max-width: 1100px) {
   .hero {
     background:
-      linear-gradient(90deg, transparent 0 75%, rgba(201, 227, 239, 0.52) 75% 100%),
+      linear-gradient(90deg, transparent 0 76%, var(--violet) 76% 100%),
       var(--paper);
   }
 
@@ -1186,7 +1216,7 @@ main {
   .site-nav {
     top: 70px;
     color: var(--ink);
-    background: rgba(251, 252, 250, 0.98);
+    background: rgba(245, 244, 240, 0.98);
     border-color: rgba(20, 24, 23, 0.14);
   }
 
@@ -1212,7 +1242,7 @@ main {
 
   .portrait-card {
     margin: auto;
-    box-shadow: 14px 14px 0 var(--blue);
+    box-shadow: 12px 12px 0 var(--sage);
   }
 
   .hero__proof {
@@ -1448,6 +1478,11 @@ main {
   .site-header {
     padding-right: 14px;
     padding-left: 14px;
+  }
+
+  .wordmark__symbol {
+    width: 36px;
+    height: 36px;
   }
 
   .wordmark__name {

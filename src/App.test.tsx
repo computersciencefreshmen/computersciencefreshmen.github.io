@@ -7,9 +7,18 @@ describe("portfolio", () => {
   it("presents the primary identity, navigation, and all selected projects", () => {
     render(<App />);
 
-    expect(
-      screen.getByRole("link", { name: /Hanyu Yang — home/i }),
-    ).toBeInTheDocument();
+    const homeLink = screen.getByRole("link", {
+      name: /Hanyu Yang — home/i,
+    });
+    const brandMark = homeLink.querySelector("img.brand-mark");
+
+    expect(homeLink).toBeInTheDocument();
+    expect(brandMark).toHaveAttribute("src", "/hy-mark-v2.svg");
+    expect(brandMark).toHaveAttribute("alt", "");
+    expect(brandMark).toHaveAttribute("aria-hidden", "true");
+    expect(document.querySelectorAll('img[src="/hy-mark-v2.svg"]')).toHaveLength(
+      2,
+    );
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
       /real-world questions/i,
     );
