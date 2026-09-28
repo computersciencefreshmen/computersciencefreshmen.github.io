@@ -1,24 +1,37 @@
 import { useEffect, useState } from "react";
 import type { Locale } from "../types";
+import { locales, normalizeLocale } from "../i18n";
 
 const STORAGE_KEY = "hanyu-portfolio-locale";
 
 function getInitialLocale(): Locale {
+  const requested = normalizeLocale(new URLSearchParams(window.location.search).get("lang"));
+  if (requested) return requested;
   try {
-    const storedLocale = window.localStorage.getItem(STORAGE_KEY);
-    if (storedLocale === "en" || storedLocale === "zh") return storedLocale;
+    const storedLocale = normalizeLocale(window.localStorage.getItem(STORAGE_KEY));
+    if (storedLocale) return storedLocale;
   } catch {
     // A blocked storage read should still allow the browser-language fallback.
   }
 
-  return window.navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
+  return [...(window.navigator.languages ?? []), window.navigator.language]
+    .map(normalizeLocale).find(Boolean) ?? "en";
 }
 
 export function useLocale() {
   const [locale, setLocale] = useState<Locale>(getInitialLocale);
 
   useEffect(() => {
-    document.documentElement.lang = locale === "zh" ? "zh-CN" : "en";
+    const restoreLanguage = () => {
+      const requested = normalizeLocale(new URLSearchParams(window.location.search).get("lang"));
+      if (requested) setLocale(requested);
+    };
+    window.addEventListener("popstate", restoreLanguage);
+    return () => window.removeEventListener("popstate", restoreLanguage);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = locales.find(item => item.code === locale)!.tag;
     try {
       window.localStorage.setItem(STORAGE_KEY, locale);
     } catch {
@@ -26,9 +39,12 @@ export function useLocale() {
     }
   }, [locale]);
 
-  const toggleLocale = () => {
-    setLocale((current) => (current === "en" ? "zh" : "en"));
+  const changeLocale = (next: Locale) => {
+    setLocale(next);
+    const url = new URL(window.location.href);
+    url.searchParams.set("lang", next);
+    window.history.replaceState(window.history.state, "", url);
   };
 
-  return { locale, toggleLocale };
+  return { locale, changeLocale };
 }

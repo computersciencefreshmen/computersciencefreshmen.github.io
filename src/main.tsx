@@ -1,8 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "@fontsource-variable/newsreader/wght.css";
-import "@fontsource-variable/manrope/wght.css";
-import "@fontsource/dm-mono/400.css";
+import "./styles/fonts.css";
 import "./styles/academic.css";
 import App from "./App";
 

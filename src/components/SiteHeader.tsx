@@ -1,3 +1,4 @@
+import { localize, locales, translate } from "../i18n";
 import { useEffect, useRef, useState } from "react";
 import { identity } from "../data/portfolio";
 import type { Theme } from "../hooks/useTheme";
@@ -9,7 +10,7 @@ export type Page = "home" | "work" | "research" | "experience" | "cv" | "contact
 
 interface SiteHeaderProps {
   locale: Locale;
-  onToggleLocale: () => void;
+  onChangeLocale: (locale: Locale) => void;
   page: Page;
   theme: Theme;
   onToggleTheme: () => void;
@@ -25,7 +26,6 @@ const navigation = {
     experience: "Experience",
     cv: "Full CV",
     contact: "Contact",
-    languageLabel: "切换到中文",
     navigationLabel: "Primary navigation",
     openMenu: "Open navigation",
     closeMenu: "Close navigation",
@@ -39,7 +39,6 @@ const navigation = {
     experience: "重点经历",
     cv: "完整 CV",
     contact: "联系我",
-    languageLabel: "Switch to English",
     navigationLabel: "主要导航",
     openMenu: "打开导航",
     closeMenu: "关闭导航",
@@ -75,13 +74,13 @@ function ThemeIcon({ theme }: { theme: Theme }) {
 
 export function SiteHeader({
   locale,
-  onToggleLocale,
+  onChangeLocale,
   page,
   theme,
   onToggleTheme,
 }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const content = navigation[locale];
+  const content = localize(navigation, locale);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const closeMenu = () => setMenuOpen(false);
 
@@ -104,7 +103,7 @@ export function SiteHeader({
       <a
         className="wordmark"
         href="#/"
-        aria-label={`${identity.name} — home`}
+        aria-label={`${identity.name} — ${content.home.toLocaleLowerCase(locale)}`}
         onClick={closeMenu}
       >
         <BrandMark className="wordmark__symbol" />
@@ -121,19 +120,17 @@ export function SiteHeader({
         >
           <ThemeIcon theme={theme} />
         </button>
-        <button
-          className="language-toggle"
-          type="button"
-          onClick={() => {
-            onToggleLocale();
+        <select
+          className="language-select"
+          value={locale}
+          onChange={(event) => {
+            onChangeLocale(event.target.value as Locale);
             closeMenu();
           }}
-          aria-label={content.languageLabel}
+          aria-label={translate(locale, "Choose language")}
         >
-          <span className={locale === "en" ? "is-active" : ""}>EN</span>
-          <span aria-hidden="true">/</span>
-          <span className={locale === "zh" ? "is-active" : ""}>中</span>
-        </button>
+          {locales.map(({ code, name, tag }) => <option key={code} value={code} lang={tag}>{name}</option>)}
+        </select>
         <button
           className="menu-button"
           ref={menuButtonRef}

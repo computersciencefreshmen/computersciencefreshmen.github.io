@@ -1,4 +1,4 @@
-export type Locale = "en" | "zh";
+export type Locale = "en" | "zh" | "de" | "fr" | "it" | "ru" | "es" | "uk";
 
 export interface LocalizedText {
   en: string;

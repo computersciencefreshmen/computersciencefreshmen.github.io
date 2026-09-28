@@ -12,13 +12,16 @@ npm run preview -- --host 127.0.0.1 --port 4173
 In a second terminal:
 
 ```bash
-python scripts/visual_qa.py
+python scripts/multilingual_qa.py
 ```
 
-`visual_qa.py` is the current multipage regression check. It checks the local portrait,
-all six routes, project search and filters, navigation and Escape behavior, both
-languages and themes, desktop/mobile overflow, browser errors, and the public PDF.
-Screenshots are saved to `artifacts/qa/`, which is intentionally ignored by Git.
+`multilingual_qa.py` checks all six routes in eight languages at 320, 390, 768,
+and 1440px, validates Inter font loading, theme and language persistence,
+navigation and Escape behavior, page overflow, browser errors, and the public PDF.
+Screenshots and JSON results are saved to ignored `artifacts/multilingual-qa/`.
+Pass `--url https://computersciencefreshmen.github.io` to check the live deployment.
+`visual_qa.py` is the older bilingual interaction check; component tests cover its
+project search and filter scenarios with the new language selector.
 
 `capture_review.py`, `debug_reveal.py`, and `cv_visual_qa.py` are historical single-page
 review helpers; use `visual_qa.py` for the current navigation and layout.

@@ -1,3 +1,4 @@
+import { localize } from "./i18n";
 import { useEffect, useRef, useState } from "react";
 import { Contact } from "./components/Contact";
 import { CvArchive } from "./components/CvArchive";
@@ -9,6 +10,7 @@ import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader, type Page } from "./components/SiteHeader";
 import { useLocale } from "./hooks/useLocale";
 import { useTheme } from "./hooks/useTheme";
+import { copy } from "./data/portfolio";
 
 function readPage(): Page {
   const path = window.location.hash.replace(/^#\/?/, "");
@@ -21,7 +23,7 @@ const titles = {
   zh: { home: "软件、数据与人工智能", work: "精选项目", research: "研究", experience: "工作经历", cv: "完整简历", contact: "联系我" },
 };
 function App() {
-  const { locale, toggleLocale } = useLocale();
+  const { locale, changeLocale } = useLocale();
   const { theme, toggleTheme } = useTheme();
   const [page, setPage] = useState<Page>(readPage);
   const mainRef = useRef<HTMLElement>(null);
@@ -36,7 +38,9 @@ function App() {
     return () => window.removeEventListener("hashchange", navigate);
   }, []);
   useEffect(() => {
-    document.title = `${locale === "zh" ? "杨涵宇" : "Hanyu Yang"} — ${titles[locale][page]}`;
+    document.title = `${localize({ en: "Hanyu Yang", zh: "杨涵宇" }, locale)} — ${localize(titles, locale)[page]}`;
+    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    if (description) description.content = localize(copy, locale).heroBody;
   }, [page, locale]);
   return (
     <>
@@ -49,9 +53,9 @@ function App() {
           mainRef.current?.scrollIntoView?.({ block: "start" });
         }}
       >
-        {locale === "zh" ? "跳到主要内容" : "Skip to content"}
+        {localize({ en: "Skip to content", zh: "跳到主要内容" }, locale)}
       </a>
-      <SiteHeader locale={locale} onToggleLocale={toggleLocale} page={page} theme={theme} onToggleTheme={toggleTheme} />
+      <SiteHeader locale={locale} onChangeLocale={changeLocale} page={page} theme={theme} onToggleTheme={toggleTheme} />
       <main id="main-content" ref={mainRef} tabIndex={-1}>
         {page === "home" && <Hero locale={locale} />}
         {page === "work" && <ProjectGrid locale={locale} />}

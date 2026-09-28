@@ -1,3 +1,4 @@
+import { localize, formatPeriod, translate } from "../i18n";
 import {
   achievements,
   cvProjects,
@@ -80,21 +81,21 @@ function EntryCard({
   return (
     <article className={`archive-entry ${compact ? "archive-entry--compact" : ""}`}>
       <div className="archive-entry__topline">
-        <p>{entry.period}</p>
-        <span>{entry.location[locale]}</span>
+        <p>{formatPeriod(entry.period, locale)}</p>
+        <span>{localize(entry.location, locale)}</span>
       </div>
-      <h4>{entry.title[locale]}</h4>
-      <p className="archive-entry__organization">{entry.organization[locale]}</p>
+      <h4>{localize(entry.title, locale)}</h4>
+      <p className="archive-entry__organization">{localize(entry.organization, locale)}</p>
       <p className="archive-entry__label">{label}</p>
       <ul className="archive-entry__bullets">
         {entry.bullets.map((bullet) => (
-          <li key={bullet.en}>{bullet[locale]}</li>
+          <li key={bullet.en}>{localize(bullet, locale)}</li>
         ))}
       </ul>
       {entry.technologies && (
-        <ul className="archive-entry__tags" aria-label="Technologies">
+        <ul className="archive-entry__tags" aria-label={translate(locale, "Technologies")}>
           {entry.technologies.map((technology) => (
-            <li key={technology}>{technology}</li>
+            <li key={translate(locale, technology)}>{translate(locale, technology)}</li>
           ))}
         </ul>
       )}
@@ -103,7 +104,7 @@ function EntryCard({
 }
 
 export function CvArchive({ locale }: CvArchiveProps) {
-  const content = archiveCopy[locale];
+  const content = localize(archiveCopy, locale);
 
   return (
     <section
@@ -121,7 +122,7 @@ export function CvArchive({ locale }: CvArchiveProps) {
           <a href={publicCvUrl} download>
             <span>
               <strong>{content.download}</strong>
-              <small>{content.privacy}</small>
+              <small>{content.privacy} · {translate(locale, "PDF · English")}</small>
             </span>
             <ArrowUpRight />
           </a>
@@ -138,16 +139,16 @@ export function CvArchive({ locale }: CvArchiveProps) {
             <Reveal key={item.id} delay={index * 80}>
               <article className="education-card">
                 <div className="education-card__meta">
-                  <p>{item.period}</p>
-                  <span>{item.location[locale]}</span>
+                  <p>{formatPeriod(item.period, locale)}</p>
+                  <span>{localize(item.location, locale)}</span>
                 </div>
                 <p className="education-card__institution">
-                  {item.institution[locale]}
+                  {localize(item.institution, locale)}
                 </p>
-                <h4>{item.degree[locale]}</h4>
+                <h4>{localize(item.degree, locale)}</h4>
                 <ul>
                   {item.details.map((detail) => (
-                    <li key={detail.en}>{detail[locale]}</li>
+                    <li key={detail.en}>{localize(detail, locale)}</li>
                   ))}
                 </ul>
               </article>
@@ -217,10 +218,10 @@ export function CvArchive({ locale }: CvArchiveProps) {
             <Reveal key={group.label.en} delay={index * 70}>
               <article className="skill-card">
                 <p>{String(index + 1).padStart(2, "0")}</p>
-                <h4>{group.label[locale]}</h4>
+                <h4>{localize(group.label, locale)}</h4>
                 <ul>
                   {group.values.map((skill) => (
-                    <li key={skill}>{skill}</li>
+                    <li key={translate(locale, skill)}>{translate(locale, skill)}</li>
                   ))}
                 </ul>
               </article>
@@ -238,7 +239,7 @@ export function CvArchive({ locale }: CvArchiveProps) {
           {achievements.map((achievement, index) => (
             <li key={achievement.en}>
               <span>{String(index + 1).padStart(2, "0")}</span>
-              <p>{achievement[locale]}</p>
+              <p>{localize(achievement, locale)}</p>
             </li>
           ))}
         </ol>
@@ -249,7 +250,7 @@ export function CvArchive({ locale }: CvArchiveProps) {
           <p>{content.publicationIndex}</p>
           <h3 id="publication-title">{content.publication}</h3>
         </div>
-        <blockquote>{publication[locale]}</blockquote>
+        <blockquote>{localize(publication, locale)}</blockquote>
       </section>
     </section>
   );

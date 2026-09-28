@@ -1,3 +1,4 @@
+import { localize } from "../i18n";
 import { copy } from "../data/portfolio";
 import type { Locale } from "../types";
 import { Reveal } from "./Reveal";
@@ -7,7 +8,7 @@ interface AboutProps {
 }
 
 export function About({ locale }: AboutProps) {
-  const content = copy[locale];
+  const content = localize(copy, locale);
 
   return (
     <section id="about" className="section section--about" aria-labelledby="about-title">

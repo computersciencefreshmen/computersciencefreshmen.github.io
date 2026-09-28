@@ -1,3 +1,4 @@
+import { localize, translate } from "../i18n";
 import { hsbcExperience, publicCvUrl } from "../data/cv";
 import type { Locale, LocalizedText } from "../types";
 import { ArrowUpRight } from "./Icons";
@@ -89,7 +90,7 @@ const flow: Array<{
 ];
 
 export function Experience({ locale }: ExperienceProps) {
-  const content = experienceCopy[locale];
+  const content = localize(experienceCopy, locale);
 
   return (
     <section
@@ -116,7 +117,7 @@ export function Experience({ locale }: ExperienceProps) {
             <img
               className="hsbc-wordmark__logo"
               src="/hsbc-logo.png"
-              alt={locale === "zh" ? "汇丰银行 HSBC" : "HSBC"}
+              alt={localize({ en: "HSBC", zh: "汇丰银行 HSBC" }, locale)}
               width="500"
               height="500"
             />
@@ -125,11 +126,11 @@ export function Experience({ locale }: ExperienceProps) {
           <dl className="hsbc-casefile__metadata">
             <div>
               <dt>{content.roleLabel}</dt>
-              <dd>{hsbcExperience.title[locale]}</dd>
+              <dd>{localize(hsbcExperience.title, locale)}</dd>
             </div>
             <div>
               <dt>{content.locationLabel}</dt>
-              <dd>{hsbcExperience.location[locale]}</dd>
+              <dd>{localize(hsbcExperience.location, locale)}</dd>
             </div>
             <div>
               <dt>{content.systemLabel}</dt>
@@ -145,10 +146,10 @@ export function Experience({ locale }: ExperienceProps) {
               <li key={step.number}>
                 <div className="hsbc-flow__index">
                   <span>{step.number}</span>
-                  <small>{step.signal}</small>
+                  <small>{translate(locale, step.signal)}</small>
                 </div>
-                <h3>{step.title[locale]}</h3>
-                <p>{step.body[locale]}</p>
+                <h3>{localize(step.title, locale)}</h3>
+                <p>{localize(step.body, locale)}</p>
               </li>
             ))}
           </ol>
@@ -163,7 +164,7 @@ export function Experience({ locale }: ExperienceProps) {
             {hsbcExperience.bullets.map((bullet, index) => (
               <li key={bullet.en}>
                 <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-                <p>{bullet[locale]}</p>
+                <p>{localize(bullet, locale)}</p>
               </li>
             ))}
           </ol>
@@ -174,14 +175,14 @@ export function Experience({ locale }: ExperienceProps) {
             <p>{content.toolkitLabel}</p>
             <ul aria-label={content.toolkitLabel}>
               {hsbcExperience.technologies?.map((technology) => (
-                <li key={technology}>{technology}</li>
+                <li key={translate(locale, technology)}>{translate(locale, technology)}</li>
               ))}
             </ul>
           </div>
           <a href={publicCvUrl} target="_blank" rel="noreferrer">
             <span>
               <strong>{content.cvCta}</strong>
-              <small>{content.cvNote}</small>
+              <small>{content.cvNote} · {translate(locale, "PDF · English")}</small>
             </span>
             <ArrowUpRight />
           </a>

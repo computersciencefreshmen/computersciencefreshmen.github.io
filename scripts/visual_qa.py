@@ -115,7 +115,7 @@ def run() -> None:
         snapshot(desktop, "03-home-dark.png")
         assert_no_overflow(desktop, "desktop dark")
         desktop.get_by_role("button", name="Switch to light theme", exact=True).click()
-        desktop.get_by_role("button", name="切换到中文", exact=True).click()
+        desktop.get_by_role("combobox").select_option("zh")
         expect(desktop.locator("html")).to_have_attribute("lang", "zh-CN")
         snapshot(desktop, "05-home-desktop-zh.png")
         # The context init script deliberately resets language on full navigation;
