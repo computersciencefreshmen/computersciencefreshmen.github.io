@@ -38,15 +38,17 @@ GitHub Actions checks → GitHub Pages
   `src/i18n/locales/` contains complete German, French, Italian, Russian, Spanish,
   and Ukrainian translations. Brand names, technologies, and the original
   publication citation keep their established spelling.
-- Locale and theme are stored in the browser. No backend, analytics, or contact
+- Language selection is kept in the URL; the theme is stored in the browser. No backend, analytics, or contact
   database is required.
 
 The homepage is a short introduction. Detail pages retain the complete research
 record, HSBC case study, engineering projects, awards, and downloadable public CV.
 Projects can be searched in all eight languages and filtered by product or research.
 Search ignores diacritics. Native language names make the selector usable regardless
-of the current language. Precedence is `?lang=` → saved preference → first supported
-browser language → English. A language change preserves the current hash route.
+of the current language. The ordinary entry point always opens in English,
+regardless of saved preferences or browser language. Explicit `?lang=` links
+retain their requested language, including on refresh and history navigation.
+A language change preserves the current hash route.
 Ukrainian uses the standard `uk` code, with `ua` accepted as an input alias.
 For example, `/?lang=de#/research` opens German research content.
 Dates use `Intl.DateTimeFormat`; PDF links explicitly identify the English download.

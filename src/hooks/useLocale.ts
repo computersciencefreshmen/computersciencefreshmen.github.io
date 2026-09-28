@@ -2,20 +2,10 @@ import { useEffect, useState } from "react";
 import type { Locale } from "../types";
 import { locales, normalizeLocale } from "../i18n";
 
-const STORAGE_KEY = "hanyu-portfolio-locale";
-
 function getInitialLocale(): Locale {
-  const requested = normalizeLocale(new URLSearchParams(window.location.search).get("lang"));
-  if (requested) return requested;
-  try {
-    const storedLocale = normalizeLocale(window.localStorage.getItem(STORAGE_KEY));
-    if (storedLocale) return storedLocale;
-  } catch {
-    // A blocked storage read should still allow the browser-language fallback.
-  }
-
-  return [...(window.navigator.languages ?? []), window.navigator.language]
-    .map(normalizeLocale).find(Boolean) ?? "en";
+  // The public entry point is always English, even for returning visitors.
+  // Explicit language links still preserve the reader's chosen language.
+  return normalizeLocale(new URLSearchParams(window.location.search).get("lang")) ?? "en";
 }
 
 export function useLocale() {
@@ -23,8 +13,7 @@ export function useLocale() {
 
   useEffect(() => {
     const restoreLanguage = () => {
-      const requested = normalizeLocale(new URLSearchParams(window.location.search).get("lang"));
-      if (requested) setLocale(requested);
+      setLocale(getInitialLocale());
     };
     window.addEventListener("popstate", restoreLanguage);
     return () => window.removeEventListener("popstate", restoreLanguage);
@@ -32,11 +21,6 @@ export function useLocale() {
 
   useEffect(() => {
     document.documentElement.lang = locales.find(item => item.code === locale)!.tag;
-    try {
-      window.localStorage.setItem(STORAGE_KEY, locale);
-    } catch {
-      // Switching language remains usable when preferences cannot be persisted.
-    }
   }, [locale]);
 
   const changeLocale = (next: Locale) => {

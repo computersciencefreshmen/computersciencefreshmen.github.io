@@ -1,3 +1,4 @@
+import { chooseLanguage } from "./test/language";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import App from "./App";
@@ -89,7 +90,7 @@ describe("portfolio navigation", () => {
     expect(menuButton).toHaveAttribute("aria-expanded", "false");
 
     fireEvent.click(menuButton);
-    fireEvent.change(screen.getByRole("combobox"), { target: { value: "zh" } });
+    chooseLanguage("zh");
     expect(screen.getByRole("button", { name: "打开导航" })).toHaveAttribute("aria-expanded", "false");
     expect(screen.getByRole("heading", { level: 1, name: "精选项目" })).toBeInTheDocument();
   });
@@ -106,7 +107,7 @@ describe("display preferences", () => {
     render(<App />);
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Hanyu Yang");
     fireEvent.click(screen.getByRole("button", { name: "Switch to dark theme" }));
-    fireEvent.change(screen.getByRole("combobox"), { target: { value: "zh" } });
+    chooseLanguage("zh");
     expect(document.documentElement.dataset.theme).toBe("dark");
     expect(document.documentElement.lang).toBe("zh-CN");
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("杨涵宇");
@@ -115,13 +116,13 @@ describe("display preferences", () => {
   it("switches language and theme and restores both after revisiting", () => {
     const firstVisit = render(<App />);
     fireEvent.click(screen.getByRole("button", { name: "Switch to dark theme" }));
-    fireEvent.change(screen.getByRole("combobox"), { target: { value: "zh" } });
+    chooseLanguage("zh");
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("杨涵宇");
     expect(document.documentElement.lang).toBe("zh-CN");
     expect(document.documentElement.dataset.theme).toBe("dark");
     expect(window.localStorage.getItem("hanyu-portfolio-theme")).toBe("dark");
-    expect(window.localStorage.getItem("hanyu-portfolio-locale")).toBe("zh");
+    expect(new URLSearchParams(window.location.search).get("lang")).toBe("zh");
 
     firstVisit.unmount();
     render(<App />);
@@ -129,7 +130,7 @@ describe("display preferences", () => {
     fireEvent.click(screen.getByRole("button", { name: "切换到浅色主题" }));
     expect(document.documentElement.dataset.theme).toBe("light");
     expect(window.localStorage.getItem("hanyu-portfolio-theme")).toBe("light");
-    fireEvent.change(screen.getByRole("combobox"), { target: { value: "en" } });
+    chooseLanguage("en");
     expect(document.documentElement.lang).toBe("en");
     expect(document.title).toBe("Hanyu Yang — Software, Data & AI");
   });
@@ -171,7 +172,7 @@ describe("project discovery", () => {
 
   it("finds Chinese descriptions and keeps discovery controls localized", () => {
     openPage("#/work");
-    fireEvent.change(screen.getByRole("combobox"), { target: { value: "zh" } });
+    chooseLanguage("zh");
     fireEvent.change(screen.getByRole("searchbox", { name: "搜索项目" }), { target: { value: "小票" } });
     expect(screen.getByRole("status")).toHaveTextContent("1 个项目");
     expect(screen.getByRole("heading", { name: "Japan Receipt Journal" })).toBeInTheDocument();
@@ -195,7 +196,7 @@ describe("public links", () => {
   it("keeps project link accessible names consistent with visible text in either language", () => {
     openPage("#/work");
     for (const language of ["en", "zh"]) {
-      if (language === "zh") fireEvent.change(screen.getByRole("combobox"), { target: { value: "zh" } });
+      if (language === "zh") chooseLanguage("zh");
       for (const project of projects) {
         const sourceLabel = language === "zh" ? "查看源码" : "Source code";
         expect(screen.getByRole("link", { name: `${sourceLabel}: ${project.title}` })).toHaveTextContent(sourceLabel);

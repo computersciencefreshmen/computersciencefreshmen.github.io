@@ -24,7 +24,8 @@ def snapshot(page, name: str) -> None:
 
 
 def visit(page, route: str) -> str:
-    page.goto(f"{BASE_URL}/#/{route}", wait_until="networkidle")
+    locale = page.evaluate("localStorage.getItem('hanyu-portfolio-locale')") or "en"
+    page.goto(f"{BASE_URL}/?lang={locale}#/{route}", wait_until="networkidle")
     heading = page.get_by_role("heading", level=1)
     expect(heading).to_have_count(1)
     expect(heading).to_be_visible()
@@ -115,7 +116,8 @@ def run() -> None:
         snapshot(desktop, "03-home-dark.png")
         assert_no_overflow(desktop, "desktop dark")
         desktop.get_by_role("button", name="Switch to light theme", exact=True).click()
-        desktop.get_by_role("combobox").select_option("zh")
+        desktop.get_by_role("combobox").click()
+        desktop.get_by_role("option", name="简体中文").click()
         expect(desktop.locator("html")).to_have_attribute("lang", "zh-CN")
         snapshot(desktop, "05-home-desktop-zh.png")
         # The context init script deliberately resets language on full navigation;

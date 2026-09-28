@@ -30,14 +30,15 @@ def run(base_url: str, output: Path) -> None:
                     assert metrics['width'] <= metrics['viewport'] + 1, (locale, route, width, metrics)
                     assert metrics['font'].startswith('"Inter Variable"'), metrics
                     assert metrics['fontReady'], metrics
-                    assert page.locator('select option').count() == 8
+                    assert page.locator('.language-picker [role="option"]').count() == 8
                     checks.append({'locale': locale, 'route': route or 'home', 'width': width, 'heading': heading.inner_text(), **metrics})
                     if route == '' and (width == 1440 and locale in ('en', 'de', 'uk') or width == 390 and locale in ('en', 'fr', 'ru', 'zh')):
                         page.screenshot(path=str(output / f'home-{locale}-{width}.png'), full_page=True, animations='disabled')
                 # Switching keeps the route and the preference survives a refresh.
-                page.get_by_role('combobox').select_option(locale)
+                page.get_by_role('combobox').click()
+                page.locator(f'[role="option"][data-value="{locale}"]').click()
                 page.reload(wait_until='domcontentloaded')
-                expect(page.get_by_role('combobox')).to_have_value(locale)
+                expect(page.get_by_role('combobox')).to_have_attribute('data-value', locale)
                 assert page.url.endswith('#/contact')
                 page.locator('.theme-toggle').click()
                 expect(page.locator('html')).to_have_attribute('data-theme', 'dark')

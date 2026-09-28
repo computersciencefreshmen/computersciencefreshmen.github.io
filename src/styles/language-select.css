@@ -1,0 +1,27 @@
+/* The popup is rendered by the site so its shape and motion are consistent across browsers. */
+.language-picker { position: relative; flex: 0 0 auto; }
+.language-picker .language-select { display: inline-flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 14px; border-radius: 999px; line-height: 20px; text-align: left; background: var(--paper); transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease; }
+.language-picker .language-select:hover { background: var(--surface); }
+.language-picker.is-open .language-select { border-color: var(--muted); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ink) 5%, transparent); }
+.language-select__label { white-space: nowrap; }
+.language-select__chevron { color: var(--muted); transition: transform 180ms ease; }
+.language-picker.is-open .language-select__chevron { transform: rotate(180deg); }
+.language-picker__options { position: absolute; z-index: 30; right: 0; bottom: calc(100% + 12px); width: 200px; max-width: calc(100vw - 24px); max-height: min(360px, calc(100dvh - 100px)); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; padding: 6px; border: 1px solid var(--line); border-radius: 18px; background: var(--paper); box-shadow: 0 12px 36px #00000012, 0 2px 8px #00000006; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(6px) scale(.98); transform-origin: bottom right; transition: opacity 180ms ease, transform 180ms cubic-bezier(.2,.7,.2,1), visibility 0s 180ms; }
+.language-picker.is-open .language-picker__options { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0) scale(1); transition-delay: 0s; }
+.language-picker__option { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 40px; padding: 9px 12px; border-radius: 12px; font-size: 14px; line-height: 22px; white-space: nowrap; cursor: pointer; user-select: none; transition: background-color 140ms ease; }
+.language-picker__option.is-active { background: var(--surface); }
+.language-picker__option[aria-selected="true"] { font-weight: 500; }
+:root[data-theme="dark"] .language-picker__options { box-shadow: 0 12px 36px #00000050, 0 2px 8px #00000030; }
+@media (max-width: 1100px) {
+  .language-picker__options { top: calc(100% + 10px); bottom: auto; transform: translateY(-6px) scale(.98); transform-origin: top right; }
+}
+@media (max-width: 760px) {
+  .language-picker .language-select { padding-inline: 10px; gap: 6px; font-size: 13px; }
+}
+@media (max-width: 380px) {
+  .language-picker .language-select { padding-inline: 6px; gap: 4px; font-size: 12px; }
+  .language-select__chevron { width: 12px; height: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .language-picker *, .language-picker *::before, .language-picker *::after { transition: none; }
+}

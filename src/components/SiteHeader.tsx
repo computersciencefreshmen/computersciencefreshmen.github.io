@@ -1,10 +1,11 @@
-import { localize, locales, translate } from "../i18n";
+import { localize } from "../i18n";
 import { useEffect, useRef, useState } from "react";
 import { identity } from "../data/portfolio";
 import type { Theme } from "../hooks/useTheme";
 import type { Locale } from "../types";
 import { BrandMark } from "./BrandMark";
 import { CloseIcon, MenuIcon } from "./Icons";
+import { LanguageSelect } from "./LanguageSelect";
 
 export type Page = "home" | "work" | "research" | "experience" | "cv" | "contact";
 
@@ -120,17 +121,13 @@ export function SiteHeader({
         >
           <ThemeIcon theme={theme} />
         </button>
-        <select
-          className="language-select"
-          value={locale}
-          onChange={(event) => {
-            onChangeLocale(event.target.value as Locale);
+        <LanguageSelect
+          locale={locale}
+          onChange={(next) => {
+            onChangeLocale(next);
             closeMenu();
           }}
-          aria-label={translate(locale, "Choose language")}
-        >
-          {locales.map(({ code, name, tag }) => <option key={code} value={code} lang={tag}>{name}</option>)}
-        </select>
+        />
         <button
           className="menu-button"
           ref={menuButtonRef}

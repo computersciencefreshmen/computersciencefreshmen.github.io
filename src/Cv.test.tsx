@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { chooseLanguage } from "./test/language";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import App from "./App";
 import {
@@ -59,7 +60,7 @@ describe("complete CV experience", () => {
 
   it("renders the complete HSBC experience in Chinese", () => {
     openPage("#/experience");
-    fireEvent.change(screen.getByRole("combobox"), { target: { value: "zh" } });
+    chooseLanguage("zh");
     expect(screen.getByRole("heading", { name: /让客户数据.*转化为行动/ })).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "汇丰银行 HSBC" })).toHaveAttribute("src", "/hsbc-logo.png");
     for (const contribution of hsbcExperience.bullets) expect(screen.getByText(contribution.zh)).toBeInTheDocument();
@@ -67,7 +68,7 @@ describe("complete CV experience", () => {
 
   it("renders the full archive and publication in Chinese", () => {
     openPage("#/cv");
-    fireEvent.change(screen.getByRole("combobox"), { target: { value: "zh" } });
+    chooseLanguage("zh");
     expect(screen.getByRole("heading", { name: /个人主页背后的完整经历/ })).toBeInTheDocument();
     expect(screen.getByText(publication.zh)).toBeInTheDocument();
     for (const entry of [xinAnExperience, ...research, ...cvProjects]) {
@@ -78,7 +79,7 @@ describe("complete CV experience", () => {
   it.each(["#/", "#/work", "#/research", "#/experience", "#/cv", "#/contact"])("does not expose private contact details on %s in either language", (hash) => {
     openPage(hash);
     for (const locale of ["en", "zh"]) {
-      if (locale === "zh") fireEvent.change(screen.getByRole("combobox"), { target: { value: "zh" } });
+      if (locale === "zh") chooseLanguage("zh");
       expect(document.querySelector('a[href^="mailto:"]')).toBeNull();
       expect(document.querySelector('a[href^="tel:"]')).toBeNull();
       expect(document.body.textContent).not.toMatch(/\b1[3-9]\d{9}\b/);

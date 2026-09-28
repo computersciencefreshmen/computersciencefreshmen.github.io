@@ -1,3 +1,4 @@
+import { chooseLanguage } from "../test/language";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import App from "../App";
@@ -28,9 +29,8 @@ describe("translation completeness", () => {
 describe("multilingual navigation", () => {
   it.each(locales)("changes all pages and restores $name", ({ code, tag }) => {
     const view = render(<App />);
-    fireEvent.change(screen.getByRole("combobox"), { target: { value: code } });
+    chooseLanguage(code);
     expect(document.documentElement.lang).toBe(tag);
-    expect(window.localStorage.getItem("hanyu-portfolio-locale")).toBe(code);
     expect(new URLSearchParams(window.location.search).get("lang")).toBe(code);
     expect(screen.getByRole("combobox")).toHaveAccessibleName(translate(code, "Choose language"));
     view.unmount();
@@ -51,16 +51,24 @@ describe("multilingual navigation", () => {
     window.history.replaceState(null, "", "?lang=ua#/contact");
     render(<App />);
     expect(document.documentElement.lang).toBe("uk");
-    expect(screen.getByRole("combobox")).toHaveValue("uk");
+    expect(screen.getByRole("combobox")).toHaveAttribute("data-value", "uk");
     expect(window.location.hash).toBe("#/contact");
   });
 
-  it("negotiates the first supported browser language when storage is blocked", () => {
+  it("starts in English even with a non-English browser and an old saved preference", () => {
+    window.localStorage.setItem("hanyu-portfolio-locale", "zh");
+    vi.spyOn(window.navigator, "languages", "get").mockReturnValue(["zh-CN", "fr-CA"]);
+    render(<App />);
+    expect(document.documentElement.lang).toBe("en");
+    expect(screen.getByRole("combobox")).toHaveAttribute("data-value", "en");
+  });
+
+  it("starts in English when storage is blocked and still allows language changes", () => {
     vi.spyOn(Storage.prototype, "getItem").mockImplementation(() => { throw new Error("blocked"); });
     vi.spyOn(window.navigator, "languages", "get").mockReturnValue(["ja-JP", "fr-CA", "de-DE"]);
     render(<App />);
-    expect(document.documentElement.lang).toBe("fr");
-    fireEvent.change(screen.getByRole("combobox"), { target: { value: "ru" } });
+    expect(document.documentElement.lang).toBe("en");
+    chooseLanguage("ru");
     expect(document.documentElement.lang).toBe("ru");
   });
 
@@ -78,12 +86,36 @@ describe("multilingual navigation", () => {
   it("restores the URL language on browser history navigation", () => {
     window.history.replaceState(null, "", "?lang=en#/work");
     render(<App />);
-    fireEvent.change(screen.getByRole("combobox"), { target: { value: "fr" } });
-    window.history.replaceState(null, "", "?lang=en#/work");
+    chooseLanguage("fr");
+    window.history.replaceState(null, "", "/#/work");
     fireEvent.popState(window);
-    expect(screen.getByRole("combobox")).toHaveValue("en");
+    expect(screen.getByRole("combobox")).toHaveAttribute("data-value", "en");
     expect(document.documentElement.lang).toBe("en");
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Projects");
+  });
+
+  it("supports keyboard selection and restores focus after Escape", () => {
+    render(<App />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.click(trigger);
+    expect(trigger).toHaveAttribute("aria-expanded", "true");
+    fireEvent.keyDown(trigger, { key: "End" });
+    fireEvent.keyDown(trigger, { key: "Enter" });
+    expect(document.documentElement.lang).toBe("uk");
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+    fireEvent.click(trigger);
+    fireEvent.keyDown(trigger, { key: "Escape" });
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+    expect(trigger).toHaveFocus();
+  });
+
+  it("closes the language menu on outside interaction", () => {
+    render(<App />);
+    const trigger = screen.getByRole("combobox");
+    fireEvent.click(trigger);
+    fireEvent.pointerDown(document.body);
+    expect(trigger).toHaveAttribute("aria-expanded", "false");
+    expect(document.documentElement.lang).toBe("en");
   });
 
   it("normalizes regional tags and formats localized CV dates", () => {
