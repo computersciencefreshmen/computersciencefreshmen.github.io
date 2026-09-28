@@ -1,11 +1,11 @@
 {
-  "name": "Hanyu Yang — Product Builder",
+  "name": "Hanyu Yang — Software, Data & AI",
   "short_name": "Hanyu Yang",
   "description": "Portfolio of Hanyu (Henry) Yang.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f5f4f0",
-  "theme_color": "#f5f4f0",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "icons": [
     {
       "src": "/hy-mark-v2.svg",

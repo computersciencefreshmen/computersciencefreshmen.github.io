@@ -114,7 +114,7 @@ export function CvArchive({ locale }: CvArchiveProps) {
       <Reveal className="cv-heading">
         <div>
           <p className="section-kicker">{content.kicker}</p>
-          <h2 id="cv-title">{content.title}</h2>
+          <h1 id="cv-title">{content.title}</h1>
         </div>
         <div className="cv-heading__aside">
           <p>{content.intro}</p>

@@ -3,8 +3,16 @@ import { cleanup } from "@testing-library/react";
 import { afterEach, beforeEach, vi } from "vitest";
 
 beforeEach(() => {
+  window.history.replaceState(null, "", "/");
   window.localStorage.clear();
+  document.documentElement.lang = "en";
+  delete document.documentElement.dataset.theme;
+  document.documentElement.style.colorScheme = "";
 
+  Object.defineProperty(window, "scrollTo", {
+    configurable: true,
+    value: vi.fn(),
+  });
   Object.defineProperty(window, "matchMedia", {
     configurable: true,
     value: vi.fn().mockImplementation((query: string) => ({
@@ -22,4 +30,5 @@ beforeEach(() => {
 
 afterEach(() => {
   cleanup();
+  vi.restoreAllMocks();
 });

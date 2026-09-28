@@ -1,72 +1,72 @@
-# Hanyu Yang — Personal Portfolio
+# Hanyu Yang — Personal Website
 
-A bilingual, editorial personal portfolio for Hanyu “Henry” Yang, published at
+A bilingual personal website for Hanyu “Henry” Yang, published at
 [computersciencefreshmen.github.io](https://computersciencefreshmen.github.io/).
 
-## Why this site exists
+## Purpose and design
 
-This project replaces a hosted Wix presence with a portfolio whose design, source,
-deployment, and domain are controlled by its owner. Its central story is:
-**building trustworthy, deployable systems from messy real-world information**.
+The site connects software engineering, applied research, data, and international
+experience. Its academic profile structure takes inspiration from
+[yhposolihp.com](https://www.yhposolihp.com/): a circular portrait, generous white
+space, quiet typography, floating desktop navigation, and light/dark themes.
+All profile text, projects, research, and assets belong to this portfolio's existing
+public record; the reference site's personal content is not reused.
 
 ## Architecture
 
 ```text
-Typed portfolio data
+Typed bilingual portfolio and CV data
         ↓
-React sections + locale state
+React pages + hash navigation + locale/theme preferences
         ↓
 Vite static production build
         ↓
-Tested Pages artifact
-        ↓
-GitHub Pages over HTTPS
+GitHub Actions checks → GitHub Pages
 ```
 
-- **React** keeps sections reusable and interaction state explicit.
-- **TypeScript** makes content structure and project links verifiable at build time.
-- **Vite** produces a fast static bundle suitable for GitHub Pages.
-- **GitHub Actions** separates untrusted dependency/build work from the privileged
-  deployment job.
-- **No backend** is required; contact calls to action use established social channels.
+- `src/data/portfolio.ts` and `src/data/cv.ts` contain public profile content.
+- `src/App.tsx` selects Home, Projects, Research, Experience, CV, or Contact.
+- Hash routes (`#/work`, `#/research`, `#/experience`, `#/cv`, `#/contact`)
+  work on GitHub Pages without a server rewrite. Older section links still resolve.
+- `src/styles/academic.css` is the single active stylesheet, including responsive
+  layouts, shared light/dark colors, focus indicators, and reduced-motion rules.
+- Locale and theme are stored in the browser. No backend, analytics, or contact
+  database is required.
 
-## Local development
+The homepage is a short introduction. Detail pages retain the complete research
+record, HSBC case study, engineering projects, awards, and downloadable public CV.
+Projects can be searched in either language and filtered by product or research.
 
-Requirements: Node.js 24 and npm 11.
+## Development and verification
+
+Requires Node.js 24 and npm 11.
 
 ```bash
 npm ci
 npm run dev
-```
-
-Quality gate:
-
-```bash
 npm run check
 ```
 
-Production preview:
+`npm run check` runs ESLint, component tests, and the TypeScript/Vite production
+build. Tests cover route/history behavior, filters, language and theme persistence,
+mobile navigation, complete CV data, and public-contact privacy.
 
 ```bash
-npm run build
-npm run preview
+npm run preview -- --host 127.0.0.1 --port 4173
+python scripts/visual_qa.py
 ```
 
-## Editing content
-
-Most copy, project metadata, journey entries, and external links live in
-`src/data/portfolio.ts`. Visual tokens and responsive behavior live in
-`src/styles/global.css`.
+See `scripts/README.md` for optional browser QA prerequisites. Screenshots and QA
+reports are saved to ignored `artifacts/` directories.
 
 ## Deployment
 
-Every push to `main` runs linting, component tests, a strict TypeScript/Vite build,
-artifact validation, and deployment through the official GitHub Pages workflow.
-The Vite base path is `/` because this repository is the account-level user site.
+Every push to `main` runs the quality gate, validates public assets, and deploys the
+built artifact through the official GitHub Pages workflow. The site is served at
+the account root, so the Vite base path is `/`.
 
 ## Privacy and licensing
 
-The site contains only public professional information and does not use analytics,
-cookies, trackers, or a contact-form database. Unless a file states otherwise, the
-site’s content and visual design remain © Hanyu Yang; no general reuse license is
-granted.
+Only public professional information is included. The downloadable CV excludes
+private contact details. Contact links use established social profiles. Unless a
+file says otherwise, content and visual assets remain © Hanyu Yang.

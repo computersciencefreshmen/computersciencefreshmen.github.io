@@ -100,9 +100,9 @@ export function Experience({ locale }: ExperienceProps) {
       <Reveal className="experience-heading">
         <div>
           <p className="section-kicker">{content.kicker}</p>
-          <h2 id="experience-title">
+          <h1 id="experience-title">
             {content.titleLead} <em>{content.titleAccent}</em>
-          </h2>
+          </h1>
         </div>
         <div className="experience-heading__aside">
           <p>{content.intro}</p>
