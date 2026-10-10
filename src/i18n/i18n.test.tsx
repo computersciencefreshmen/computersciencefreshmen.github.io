@@ -2,7 +2,7 @@ import { chooseLanguage } from "../test/language";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import App from "../App";
-import { education, hsbcExperience, research, cvProjects, xinAnExperience, achievements } from "../data/cv";
+import { education, hsbcExperience, research, cvProjects, xinAnExperience, achievements, getPublicCvUrl } from "../data/cv";
 import { projects } from "../data/portfolio";
 import { dictionaries, formatPeriod, locales, normalizeLocale, translate } from ".";
 import source from "./source.json";
@@ -43,7 +43,7 @@ describe("multilingual navigation", () => {
     window.history.replaceState(null, "", `?lang=${code}#/cv`);
     render(<App />);
     expect(screen.getByText(translate(code, cvProjects[0].bullets[0].en))).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: new RegExp(translate(code, "Download public CV")) })).toHaveAttribute("href", "/Hanyu_Yang_CV_Public.pdf");
+    expect(screen.getByRole("link", { name: new RegExp(translate(code, "Download public CV")) })).toHaveAttribute("href", getPublicCvUrl(code));
   });
 
   it("accepts UA aliases and gives explicit URL language precedence over saved preference", () => {

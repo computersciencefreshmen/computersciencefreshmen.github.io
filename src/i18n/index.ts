@@ -20,6 +20,10 @@ export const locales = [
 
 export const dictionaries: Record<Exclude<Locale, "en">, Record<string, string>> = { zh: source, de, fr, it, ru, es, uk };
 
+export function localeName(locale: Locale): string {
+  return locales.find(({ code }) => code === locale)!.name;
+}
+
 export function normalizeLocale(value: string | null | undefined): Locale | undefined {
   const base = value?.trim().toLowerCase().replaceAll("_", "-").split("-")[0];
   if (base === "ua") return "uk";

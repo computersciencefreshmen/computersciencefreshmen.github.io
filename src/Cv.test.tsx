@@ -2,6 +2,7 @@ import { chooseLanguage } from "./test/language";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import App from "./App";
+import type { Locale } from "./types";
 import {
   achievements,
   cvProjects,
@@ -17,6 +18,48 @@ function openPage(hash: string) {
   window.history.replaceState(null, "", hash);
   return render(<App />);
 }
+
+const cvDownloads: Array<[Locale, string, string]> = [
+  ["en", "/Hanyu_Yang_CV_Public.pdf", "English"],
+  ["zh", "/cv/Hanyu_Yang_CV_Public_zh.pdf", "简体中文"],
+  ["de", "/cv/Hanyu_Yang_CV_Public_de.pdf", "Deutsch"],
+  ["fr", "/cv/Hanyu_Yang_CV_Public_fr.pdf", "Français"],
+  ["it", "/cv/Hanyu_Yang_CV_Public_it.pdf", "Italiano"],
+  ["ru", "/cv/Hanyu_Yang_CV_Public_ru.pdf", "Русский"],
+  ["es", "/cv/Hanyu_Yang_CV_Public_es.pdf", "Español"],
+  ["uk", "/cv/Hanyu_Yang_CV_Public_uk.pdf", "Українська"],
+];
+
+describe("localized CV downloads", () => {
+  it.each(cvDownloads)("matches %s direct URLs on every CV download surface", (locale, url, language) => {
+    for (const route of ["#/", "#/cv", "#/experience"]) {
+      const view = openPage(`?lang=${locale}${route}`);
+      const link = document.querySelector<HTMLAnchorElement>('main a[href$=".pdf"]');
+      expect(link).toHaveAttribute("href", url);
+      expect(link).toHaveTextContent(`PDF · ${language}`);
+      view.unmount();
+    }
+  });
+
+  it.each(["#/", "#/cv", "#/experience"])("changes the PDF immediately with the language selector on %s", (route) => {
+    openPage(route);
+    expect(document.querySelector('main a[href$=".pdf"]')).toHaveAttribute("href", "/Hanyu_Yang_CV_Public.pdf");
+    for (const [locale, url, language] of [...cvDownloads.slice(1), cvDownloads[0]]) {
+      chooseLanguage(locale);
+      const link = document.querySelector<HTMLAnchorElement>('main a[href$=".pdf"]');
+      expect(link).toHaveAttribute("href", url);
+      expect(link).toHaveTextContent(`PDF · ${language}`);
+      expect(window.location.hash).toBe(route);
+    }
+  });
+
+  it("keeps ordinary visits in English even after a previous download language", () => {
+    window.localStorage.setItem("hanyu-portfolio-locale", "uk");
+    openPage("#/cv");
+    expect(document.querySelector('main a[href$=".pdf"]')).toHaveAttribute("href", "/Hanyu_Yang_CV_Public.pdf");
+    expect(screen.getByRole("combobox")).toHaveAttribute("data-value", "en");
+  });
+});
 
 describe("complete CV experience", () => {
   it("reflects the current CV rank and ongoing postgraduate study", () => {

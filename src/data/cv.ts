@@ -1,4 +1,4 @@
-import type { LocalizedText } from "../types";
+import type { Locale, LocalizedText } from "../types";
 
 export interface CvEntry {
   id: string;
@@ -19,7 +19,20 @@ export interface EducationEntry {
   details: LocalizedText[];
 }
 
-export const publicCvUrl = "/Hanyu_Yang_CV_Public.pdf";
+export const publicCvUrls: Record<Locale, string> = {
+  en: "/Hanyu_Yang_CV_Public.pdf",
+  zh: "/cv/Hanyu_Yang_CV_Public_zh.pdf",
+  de: "/cv/Hanyu_Yang_CV_Public_de.pdf",
+  fr: "/cv/Hanyu_Yang_CV_Public_fr.pdf",
+  it: "/cv/Hanyu_Yang_CV_Public_it.pdf",
+  ru: "/cv/Hanyu_Yang_CV_Public_ru.pdf",
+  es: "/cv/Hanyu_Yang_CV_Public_es.pdf",
+  uk: "/cv/Hanyu_Yang_CV_Public_uk.pdf",
+};
+
+export function getPublicCvUrl(locale: Locale = "en"): string {
+  return publicCvUrls[locale];
+}
 
 export const hsbcExperience: CvEntry = {
   id: "hsbc-crm-data-analyst",

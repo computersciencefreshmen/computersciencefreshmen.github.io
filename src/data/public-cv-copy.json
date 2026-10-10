@@ -1,0 +1,152 @@
+{
+  "en": {
+    "profile": "Software engineering graduate and postgraduate student in AI, Ethics and Society at the University of Hong Kong. Experience spans CRM data analytics, AI workflow development, full-stack software, multimodal research, and distributed data systems.",
+    "tagline": "CRM data analytics / Software systems / Applied AI",
+    "labels": {
+      "profile": "Profile",
+      "experience": "Professional experience",
+      "education": "Education",
+      "research": "Research experience",
+      "projects": "Engineering projects",
+      "skills": "Technical toolkit",
+      "awards": "Awards & recognition",
+      "publication": "Publication",
+      "tools": "Tools",
+      "publicCv": "Public CV",
+      "publicSharingNote": "Public sharing note"
+    },
+    "sharingNote": "This document presents my public professional record and omits private phone, email, and address details. For the accessible version in eight languages, visit computersciencefreshmen.github.io."
+  },
+  "zh": {
+    "profile": "软件工程毕业生，现于香港大学攻读人工智能、伦理与社会文学硕士。经历涵盖 CRM 数据分析、AI 工作流开发、全栈软件、多模态研究与分布式数据系统。",
+    "tagline": "CRM 数据分析 / 软件系统 / AI 应用",
+    "labels": {
+      "profile": "个人简介",
+      "experience": "实习经历",
+      "education": "教育背景",
+      "research": "科研经历",
+      "projects": "工程项目",
+      "skills": "技术能力",
+      "awards": "奖项与荣誉",
+      "publication": "论文发表",
+      "tools": "工具",
+      "publicCv": "公开版简历",
+      "publicSharingNote": "公开分享说明"
+    },
+    "sharingNote": "本文件展示公开的专业经历，已移除私人电话、电子邮箱与详细地址。可访问 computersciencefreshmen.github.io 查看支持八种语言的无障碍网页版本。"
+  },
+  "de": {
+    "profile": "Absolvent des Software-Engineering-Studiums und Masterstudent im Studiengang KI, Ethik und Gesellschaft an der University of Hong Kong. Erfahrung in CRM-Datenanalyse, der Entwicklung von KI-Arbeitsabläufen, Full-Stack-Software, multimodaler Forschung und verteilten Datensystemen.",
+    "tagline": "CRM-Datenanalyse / Softwaresysteme / Angewandte KI",
+    "labels": {
+      "profile": "Profil",
+      "experience": "Berufserfahrung",
+      "education": "Ausbildung",
+      "research": "Forschungserfahrung",
+      "projects": "Technische Projekte",
+      "skills": "Technische Fähigkeiten",
+      "awards": "Auszeichnungen & Anerkennung",
+      "publication": "Veröffentlichung",
+      "tools": "Werkzeuge",
+      "publicCv": "Öffentlicher Lebenslauf",
+      "publicSharingNote": "Hinweis zur öffentlichen Weitergabe"
+    },
+    "sharingNote": "Dieses Dokument enthält meinen öffentlich zugänglichen beruflichen Werdegang. Private Telefonnummer, E-Mail-Adresse und Anschrift sind nicht enthalten. Eine barrierefreie Webversion in acht Sprachen finden Sie auf computersciencefreshmen.github.io.",
+    "publication": "Yang, H., Bai, J., He, C., Wang, Y., & Liang, W. (2024). Synthese, Charakterisierung und Prüfung von mit Seltenen Erden dotierten GdBO3-Leuchtstoffen. Guangdong Chemical Industry, 51(10), 50-54."
+  },
+  "fr": {
+    "profile": "Diplômé en génie logiciel et étudiant en master en IA, éthique et société à l’Université de Hong Kong. Expérience en analyse de données CRM, développement de processus d’IA, logiciels full-stack, recherche multimodale et systèmes de données distribués.",
+    "tagline": "Analyse de données CRM / Systèmes logiciels / IA appliquée",
+    "labels": {
+      "profile": "Profil",
+      "experience": "Expérience professionnelle",
+      "education": "Formation",
+      "research": "Expérience de recherche",
+      "projects": "Projets d’ingénierie",
+      "skills": "Compétences techniques",
+      "awards": "Prix et distinctions",
+      "publication": "Publication",
+      "tools": "Outils",
+      "publicCv": "CV public",
+      "publicSharingNote": "Note de diffusion publique"
+    },
+    "sharingNote": "Ce document présente mon parcours professionnel public et ne contient ni numéro de téléphone, ni adresse e-mail, ni adresse postale privés. La version web accessible en huit langues est disponible sur computersciencefreshmen.github.io.",
+    "publication": "Yang, H., Bai, J., He, C., Wang, Y., & Liang, W. (2024). Synthèse, caractérisation et essais de matériaux luminescents GdBO3 dopés aux terres rares. Guangdong Chemical Industry, 51(10), 50-54."
+  },
+  "it": {
+    "profile": "Laureato in ingegneria del software e studente del corso di laurea magistrale in IA, etica e società presso l’Università di Hong Kong. Esperienza nell’analisi dei dati CRM, nello sviluppo di flussi di lavoro con IA, nel software full-stack, nella ricerca multimodale e nei sistemi di dati distribuiti.",
+    "tagline": "Analisi dei dati CRM / Sistemi software / IA applicata",
+    "labels": {
+      "profile": "Profilo",
+      "experience": "Esperienza professionale",
+      "education": "Formazione",
+      "research": "Esperienza di ricerca",
+      "projects": "Progetti di ingegneria",
+      "skills": "Competenze tecniche",
+      "awards": "Premi e riconoscimenti",
+      "publication": "Pubblicazione",
+      "tools": "Strumenti",
+      "publicCv": "CV pubblico",
+      "publicSharingNote": "Nota sulla condivisione pubblica"
+    },
+    "sharingNote": "Questo documento presenta il mio percorso professionale pubblico e omette numero di telefono, e-mail e indirizzo privati. La versione web accessibile in otto lingue è disponibile su computersciencefreshmen.github.io.",
+    "publication": "Yang, H., Bai, J., He, C., Wang, Y., & Liang, W. (2024). Sintesi, caratterizzazione e prove di materiali luminescenti GdBO3 drogati con terre rare. Guangdong Chemical Industry, 51(10), 50-54."
+  },
+  "ru": {
+    "profile": "Выпускник программы по программной инженерии и магистрант по направлению «ИИ, этика и общество» в Университете Гонконга. Опыт в аналитике данных CRM, разработке рабочих процессов ИИ, full-stack-разработке, мультимодальных исследованиях и распределённых системах данных.",
+    "tagline": "Аналитика данных CRM / Программные системы / Прикладной ИИ",
+    "labels": {
+      "profile": "Профиль",
+      "experience": "Профессиональный опыт",
+      "education": "Образование",
+      "research": "Исследовательский опыт",
+      "projects": "Инженерные проекты",
+      "skills": "Технические навыки",
+      "awards": "Награды и признание",
+      "publication": "Публикация",
+      "tools": "Инструменты",
+      "publicCv": "Публичное резюме",
+      "publicSharingNote": "Примечание о публичном доступе"
+    },
+    "sharingNote": "Документ содержит публичные сведения о моём профессиональном опыте без личного номера телефона, электронной почты и адреса. Доступная веб-версия на восьми языках размещена на computersciencefreshmen.github.io.",
+    "publication": "Yang, H., Bai, J., He, C., Wang, Y., & Liang, W. (2024). Синтез, характеризация и испытания люминесцентных материалов GdBO3, легированных редкоземельными элементами. Guangdong Chemical Industry, 51(10), 50-54."
+  },
+  "es": {
+    "profile": "Graduado en ingeniería de software y estudiante de máster en IA, ética y sociedad en la Universidad de Hong Kong. Experiencia en análisis de datos CRM, desarrollo de flujos de trabajo con IA, software full-stack, investigación multimodal y sistemas de datos distribuidos.",
+    "tagline": "Análisis de datos CRM / Sistemas de software / IA aplicada",
+    "labels": {
+      "profile": "Perfil",
+      "experience": "Experiencia profesional",
+      "education": "Formación",
+      "research": "Experiencia de investigación",
+      "projects": "Proyectos de ingeniería",
+      "skills": "Competencias técnicas",
+      "awards": "Premios y reconocimientos",
+      "publication": "Publicación",
+      "tools": "Herramientas",
+      "publicCv": "CV público",
+      "publicSharingNote": "Nota sobre la difusión pública"
+    },
+    "sharingNote": "Este documento presenta mi trayectoria profesional pública y omite el teléfono, el correo electrónico y la dirección privados. La versión web accesible en ocho idiomas está disponible en computersciencefreshmen.github.io.",
+    "publication": "Yang, H., Bai, J., He, C., Wang, Y., & Liang, W. (2024). Síntesis, caracterización y ensayos de materiales luminiscentes GdBO3 dopados con tierras raras. Guangdong Chemical Industry, 51(10), 50-54."
+  },
+  "uk": {
+    "profile": "Випускник програми з програмної інженерії та студент магістратури за напрямом «ШІ, етика та суспільство» в Університеті Гонконгу. Досвід в аналітиці даних CRM, розробці робочих процесів ШІ, full-stack-розробці, мультимодальних дослідженнях і розподілених системах даних.",
+    "tagline": "Аналітика даних CRM / Програмні системи / Прикладний ШІ",
+    "labels": {
+      "profile": "Профіль",
+      "experience": "Професійний досвід",
+      "education": "Освіта",
+      "research": "Дослідницький досвід",
+      "projects": "Інженерні проєкти",
+      "skills": "Технічні навички",
+      "awards": "Нагороди та визнання",
+      "publication": "Публікація",
+      "tools": "Інструменти",
+      "publicCv": "Публічне резюме",
+      "publicSharingNote": "Примітка щодо публічного доступу"
+    },
+    "sharingNote": "Документ містить публічні відомості про мій професійний досвід без особистого номера телефону, електронної пошти та адреси. Доступна вебверсія вісьмома мовами розміщена на computersciencefreshmen.github.io.",
+    "publication": "Yang, H., Bai, J., He, C., Wang, Y., & Liang, W. (2024). Синтез, характеризація та випробування люмінесцентних матеріалів GdBO3, легованих рідкісноземельними елементами. Guangdong Chemical Industry, 51(10), 50-54."
+  }
+}

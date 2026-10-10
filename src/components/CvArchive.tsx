@@ -1,10 +1,10 @@
-import { localize, formatPeriod, translate } from "../i18n";
+import { localize, formatPeriod, translate, localeName } from "../i18n";
 import {
   achievements,
   cvProjects,
   education,
   publication,
-  publicCvUrl,
+  getPublicCvUrl,
   research,
   skills,
   xinAnExperience,
@@ -119,10 +119,10 @@ export function CvArchive({ locale }: CvArchiveProps) {
         </div>
         <div className="cv-heading__aside">
           <p>{content.intro}</p>
-          <a href={publicCvUrl} download>
+          <a href={getPublicCvUrl(locale)} download>
             <span>
               <strong>{content.download}</strong>
-              <small>{content.privacy} · {translate(locale, "PDF · English")}</small>
+              <small>{content.privacy} · PDF · {localeName(locale)}</small>
             </span>
             <ArrowUpRight />
           </a>

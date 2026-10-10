@@ -1,5 +1,5 @@
-import { localize, formatPeriod, translate } from "../i18n";
-import { education, publicCvUrl } from "../data/cv";
+import { localize, formatPeriod, localeName } from "../i18n";
+import { education, getPublicCvUrl } from "../data/cv";
 import { copy, identity, projects } from "../data/portfolio";
 import type { Locale } from "../types";
 import { ArrowUpRight } from "./Icons";
@@ -48,7 +48,7 @@ export function Hero({ locale }: { locale: Locale }) {
           <p className="eyebrow">{localize({ en: "LEARNING & PRACTICE", zh: "学习与实践" }, locale)}</p>
           <h2 id="background-title">{localize({ en: "A little background.", zh: "一路走来" }, locale)}</h2>
           <p>{localize({ en: "An engineering foundation, shaped by questions that reach beyond engineering.", zh: "软件工程提供方法，跨学科学习拓宽问题的边界。" }, locale)}</p>
-          <a className="text-link" href={publicCvUrl} download>{localize({ en: "Download public CV", zh: "下载公开版 CV" }, locale)} <small>({translate(locale, "PDF · English")})</small><ArrowUpRight /></a>
+          <a className="text-link" href={getPublicCvUrl(locale)} download>{localize({ en: "Download public CV", zh: "下载公开版 CV" }, locale)} <small>(PDF · {localeName(locale)})</small><ArrowUpRight /></a>
         </div>
         <div className="background-timeline">
           {education.map((item) => (

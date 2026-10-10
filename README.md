@@ -51,7 +51,30 @@ retain their requested language, including on refresh and history navigation.
 A language change preserves the current hash route.
 Ukrainian uses the standard `uk` code, with `ua` accepted as an input alias.
 For example, `/?lang=de#/research` opens German research content.
-Dates use `Intl.DateTimeFormat`; PDF links explicitly identify the English download.
+Dates use `Intl.DateTimeFormat`; every PDF link follows the selected language and
+identifies the actual edition. The default English URL remains compatible with
+existing links.
+
+## Multilingual public CVs
+
+The eight downloadable CVs share the same education, experience, research,
+projects, skills and awards as the website. `publicCvUrls` in `src/data/cv.ts`
+selects the English PDF at its original URL and the seven localized editions under
+`public/cv/`. Homepage downloads, the CV archive and the experience page all use
+this mapping, so a language change updates every PDF destination.
+
+`scripts/export_public_cv.mjs` reads the TypeScript records and existing translation
+catalogs, enforcing complete translations and unchanged numerical facts before
+exporting JSON. `src/data/public-cv-copy.json` holds the small amount of PDF-specific
+presentation copy: profile, headings, sharing note and translated publication titles.
+Update that copy when the current profile/status changes. Technical identifiers
+and official names keep their established spelling.
+
+`scripts/generate_multilingual_cv.py` renders all eight editions with embedded
+font subsets, localized dates and PDF language metadata. English and Chinese are
+not separate hand-maintained resume sources. Generated PDFs are committed, so
+deployment needs no translation service or system fonts. See `scripts/README.md`
+for regeneration and verification commands.
 
 ## Blog publishing
 

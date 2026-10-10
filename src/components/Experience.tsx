@@ -1,5 +1,5 @@
-import { localize, translate } from "../i18n";
-import { hsbcExperience, publicCvUrl } from "../data/cv";
+import { localize, translate, localeName } from "../i18n";
+import { hsbcExperience, getPublicCvUrl } from "../data/cv";
 import type { Locale, LocalizedText } from "../types";
 import { ArrowUpRight } from "./Icons";
 import { Reveal } from "./Reveal";
@@ -179,10 +179,10 @@ export function Experience({ locale }: ExperienceProps) {
               ))}
             </ul>
           </div>
-          <a href={publicCvUrl} target="_blank" rel="noreferrer">
+          <a href={getPublicCvUrl(locale)} target="_blank" rel="noreferrer">
             <span>
               <strong>{content.cvCta}</strong>
-              <small>{content.cvNote} · {translate(locale, "PDF · English")}</small>
+              <small>{content.cvNote} · PDF · {localeName(locale)}</small>
             </span>
             <ArrowUpRight />
           </a>

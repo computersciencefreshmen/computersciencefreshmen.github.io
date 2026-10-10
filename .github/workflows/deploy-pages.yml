@@ -34,6 +34,9 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
+      - name: Validate multilingual CV source
+        run: node scripts/export_public_cv.mjs
+
       - name: Lint
         run: npm run lint
 
@@ -49,6 +52,9 @@ jobs:
           test -f dist/index.html
           test -f dist/404.html
           test -f dist/Hanyu_Yang_CV_Public.pdf
+          for locale in zh de fr it ru es uk; do
+            test -f "dist/cv/Hanyu_Yang_CV_Public_${locale}.pdf"
+          done
           test -f dist/hsbc-logo.png
           if find dist -type l -print -quit | grep -q .; then
             echo "::error::dist must not contain symbolic links"
