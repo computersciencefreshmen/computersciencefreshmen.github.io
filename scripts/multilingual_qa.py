@@ -30,7 +30,7 @@ def run(base_url: str, output: Path) -> None:
                     assert metrics['width'] <= metrics['viewport'] + 1, (locale, route, width, metrics)
                     assert metrics['font'].startswith('"Inter Variable"'), metrics
                     assert metrics['fontReady'], metrics
-                    assert page.locator('.language-picker [role="option"]').count() == 8
+                    assert page.locator('.site-header .language-picker [role="option"]').count() == 8
                     checks.append({'locale': locale, 'route': route or 'home', 'width': width, 'heading': heading.inner_text(), **metrics})
                     if route == '' and (width == 1440 and locale in ('en', 'de', 'uk') or width == 390 and locale in ('en', 'fr', 'ru', 'zh')):
                         page.screenshot(path=str(output / f'home-{locale}-{width}.png'), full_page=True, animations='disabled')

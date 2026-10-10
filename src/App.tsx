@@ -12,7 +12,7 @@ import { SiteHeader, type Page } from "./components/SiteHeader";
 import { useLocale } from "./hooks/useLocale";
 import { useTheme } from "./hooks/useTheme";
 import { copy } from "./data/portfolio";
-import { blogLanguage, getBlogPost } from "./data/blog";
+import { getBlogPost } from "./data/blog";
 
 interface Route { page: Page; postSlug?: string }
 
@@ -45,7 +45,7 @@ function App() {
     return () => window.removeEventListener("hashchange", navigate);
   }, []);
   useEffect(() => {
-    const article = page === "blog" ? getBlogPost(postSlug)?.content[blogLanguage(locale)] : undefined;
+    const article = page === "blog" ? getBlogPost(postSlug)?.content[locale] : undefined;
     document.title = `${localize({ en: "Hanyu Yang", zh: "杨涵宇" }, locale)} — ${article?.title ?? localize(titles, locale)[page]}`;
     const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
     if (description) description.content = article?.excerpt ?? (page === "blog" ? localize({ en: "Personal reflections on music, culture, and the moments in between.", zh: "记录音乐、文化，以及生活中的片刻感受。" }, locale) : localize(copy, locale).heroBody);

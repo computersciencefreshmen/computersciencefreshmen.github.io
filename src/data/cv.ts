@@ -100,7 +100,7 @@ export const xinAnExperience: CvEntry = {
 export const education: EducationEntry[] = [
   {
     id: "hku-ma",
-    period: "Sept. 2026 - Aug. 2027 (Expected)",
+    period: "Sept. 2026 - Aug. 2027",
     degree: {
       en: "Master of Arts in AI, Ethics and Society",
       zh: "人工智能、伦理与社会文学硕士",
@@ -115,8 +115,8 @@ export const education: EducationEntry[] = [
     },
     details: [
       {
-        en: "Incoming postgraduate study connecting AI systems with their ethical and societal contexts.",
-        zh: "即将开始的研究生阶段，聚焦人工智能系统与伦理、社会语境的交叉问题。",
+        en: "Postgraduate study connecting AI systems with their ethical and societal contexts.",
+        zh: "研究生阶段聚焦人工智能系统与伦理、社会语境的交叉问题。",
       },
     ],
   },
@@ -137,8 +137,8 @@ export const education: EducationEntry[] = [
     },
     details: [
       {
-        en: "GPA: 88/100 · Top 20%.",
-        zh: "平均成绩：88/100 · 专业前 20%。",
+        en: "GPA: 88/100 · Top 10%.",
+        zh: "平均成绩：88/100 · 专业前 10%。",
       },
       {
         en: "Selected modules: Text Information Processing (99), Network Programming (96), Natural Language Processing (96), Software Architecture (96), Big Data Processing Technology (94), Further Mathematics (91), and Web Design (90).",

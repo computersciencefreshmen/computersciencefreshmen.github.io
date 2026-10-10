@@ -5,9 +5,10 @@ import type { Locale } from "../types";
 interface LanguageSelectProps {
   locale: Locale;
   onChange: (locale: Locale) => void;
+  label?: string;
 }
 
-export function LanguageSelect({ locale, onChange }: LanguageSelectProps) {
+export function LanguageSelect({ locale, onChange, label: providedLabel }: LanguageSelectProps) {
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(() => locales.findIndex(({ code }) => code === locale));
   const pickerRef = useRef<HTMLDivElement>(null);
@@ -16,7 +17,7 @@ export function LanguageSelect({ locale, onChange }: LanguageSelectProps) {
   const listId = useId();
   const selectedIndex = locales.findIndex(({ code }) => code === locale);
   const selected = locales[selectedIndex];
-  const label = translate(locale, "Choose language");
+  const label = providedLabel ?? translate(locale, "Choose language");
 
   useEffect(() => {
     if (!open) return;

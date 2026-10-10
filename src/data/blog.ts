@@ -1,4 +1,10 @@
 import type { Locale } from "../types";
+import de from "./blog-locales/de.json";
+import fr from "./blog-locales/fr.json";
+import it from "./blog-locales/it.json";
+import ru from "./blog-locales/ru.json";
+import es from "./blog-locales/es.json";
+import uk from "./blog-locales/uk.json";
 
 export interface BlogContent {
   title: string;
@@ -21,15 +27,11 @@ export interface BlogPost {
   cover: string;
   programmeImage: string;
   programmeUrl: string;
-  content: { en: BlogContent; zh: BlogContent };
+  content: Record<Locale, BlogContent>;
 }
 
-// Essays retain their authored Chinese and reviewed English translation.
-// Other interface languages use English, with an explicit article lang attribute.
-export function blogLanguage(locale: Locale): "en" | "zh" {
-  return locale === "zh" ? "zh" : "en";
-}
-
+// Every published essay must include every site locale. Type checking prevents
+// silently showing English prose when a reader explicitly chooses another language.
 export const blogPosts: BlogPost[] = [
   {
     slug: "death-and-the-maiden",
@@ -40,6 +42,7 @@ export const blogPosts: BlogPost[] = [
     programmeImage: "/blog/cuarteto-casals-programme.jpg",
     programmeUrl: "https://muse.hku.hk/highlights/hku-muse-2026-27-season-preview/",
     content: {
+      de, fr, it, ru, es, uk,
       en: {
         title: "Death & the Maiden: Beyond the Strings",
         excerpt: "An evening with Cuarteto Casals at HKU: from Schubert’s dark intensity to the quiet consolation of birdsong.",

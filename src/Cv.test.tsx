@@ -19,6 +19,14 @@ function openPage(hash: string) {
 }
 
 describe("complete CV experience", () => {
+  it("reflects the current CV rank and ongoing postgraduate study", () => {
+    openPage("#/cv");
+    expect(screen.getByText("GPA: 88/100 · Top 10%.")).toBeInTheDocument();
+    expect(screen.getByText("Postgraduate study connecting AI systems with their ethical and societal contexts.")).toBeInTheDocument();
+    expect(screen.getByRole("main")).not.toHaveTextContent("Top 20%");
+    expect(screen.getByRole("main")).not.toHaveTextContent("Incoming postgraduate");
+  });
+
   it("gives HSBC a complete, prominent experience page", () => {
     openPage("#/experience");
     expect(screen.getByRole("heading", { name: /customer data, made actionable/i })).toBeInTheDocument();

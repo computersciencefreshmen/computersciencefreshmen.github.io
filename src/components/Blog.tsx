@@ -1,7 +1,8 @@
-import { blogLanguage, blogPosts, formatBlogDate, getBlogPost, type BlogPost } from "../data/blog";
+import { blogPosts, formatBlogDate, getBlogPost, type BlogPost } from "../data/blog";
 import { translate } from "../i18n";
 import type { Locale } from "../types";
 import { ArrowUpRight } from "./Icons";
+import { LanguageSelect } from "./LanguageSelect";
 
 interface BlogProps {
   locale: Locale;
@@ -10,16 +11,16 @@ interface BlogProps {
 }
 
 export function BlogCard({ post, locale }: { post: BlogPost; locale: Locale }) {
-  const language = blogLanguage(locale);
-  const content = post.content[language];
+  const content = post.content[locale];
+  const articleLocale = locale === "zh" ? "zh-CN" : locale;
   return (
     <article className="blog-card">
-      <a className="blog-card__image" href={`#/blog/${post.slug}`} aria-label={content.title} lang={language === "zh" ? "zh-CN" : "en"}>
+      <a className="blog-card__image" href={`#/blog/${post.slug}`} aria-label={content.title} lang={articleLocale}>
         <img src={post.cover} alt="" width="1706" height="1279" loading="lazy" />
       </a>
       <div className="blog-card__copy">
         <p className="blog-meta"><span>{translate(locale, "Music & culture")}</span><span aria-hidden="true">·</span><time dateTime={post.publishedAt}>{formatBlogDate(post.publishedAt, locale)}</time></p>
-        <div lang={language === "zh" ? "zh-CN" : "en"}>
+        <div lang={articleLocale}>
           <h2><a href={`#/blog/${post.slug}`}>{content.title}</a></h2>
           <p className="blog-card__excerpt">{content.excerpt}</p>
         </div>
@@ -74,16 +75,15 @@ export function Blog({ locale, slug, onChangeLocale }: BlogProps) {
     );
   }
 
-  const language = blogLanguage(locale);
-  const content = post.content[language];
-  const articleLocale = language === "zh" ? "zh-CN" : "en";
+  const content = post.content[locale];
+  const articleLocale = locale === "zh" ? "zh-CN" : locale;
   return (
     <section className="page-section blog-article-page">
       <div className="blog-article-toolbar">
         <a className="text-link blog-back" href="#/blog"><span aria-hidden="true">←</span>{translate(locale, "Back to blog")}</a>
-        <div className="blog-language" role="group" aria-label={translate(locale, "Article language")}>
-          <button type="button" lang="en" aria-pressed={language === "en"} onClick={() => onChangeLocale("en")}>English</button>
-          <button type="button" lang="zh-CN" aria-pressed={language === "zh"} onClick={() => onChangeLocale("zh")}>中文</button>
+        <div className="blog-language">
+          <span>{translate(locale, "Article language")}</span>
+          <LanguageSelect locale={locale} onChange={onChangeLocale} label={translate(locale, "Article language")} />
         </div>
       </div>
       <article className="blog-article" lang={articleLocale} aria-labelledby="post-title">
@@ -96,7 +96,7 @@ export function Blog({ locale, slug, onChangeLocale }: BlogProps) {
             <span>{translate(locale, "Published")} <time dateTime={post.publishedAt}>{formatBlogDate(post.publishedAt, locale)}</time></span>
             <span aria-hidden="true">·</span><span>{translate(locale, "2 min read")}</span>
           </div>
-          <p className="blog-article__venue">{content.venue} <span aria-hidden="true">·</span> <time dateTime={post.concertDate}>{formatBlogDate(post.concertDate, language)}</time></p>
+          <p className="blog-article__venue">{content.venue} <span aria-hidden="true">·</span> <time dateTime={post.concertDate}>{formatBlogDate(post.concertDate, locale)}</time></p>
         </header>
         <figure className="blog-article__cover">
           <img src={post.cover} alt={content.coverAlt} width="1706" height="1279" fetchPriority="high" />

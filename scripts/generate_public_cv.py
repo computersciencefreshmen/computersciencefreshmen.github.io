@@ -340,7 +340,7 @@ def draw_page(canvas, doc) -> None:
 
     canvas.setFont("Helvetica", 6.4)
     canvas.setFillColor(MUTED)
-    canvas.drawString(LEFT, 7 * mm, "HANYU YANG  /  PUBLIC CV  /  JULY 2026")
+    canvas.drawString(LEFT, 7 * mm, "HANYU YANG  /  PUBLIC CV  /  OCTOBER 2026")
     page_label = f"{doc.page:02d}"
     label_width = stringWidth(page_label, "Helvetica-Bold", 7)
     canvas.setFont("Helvetica-Bold", 7)
@@ -356,7 +356,7 @@ def build_story() -> list:
         HRFlowable(width="100%", thickness=1.1, color=INK, spaceAfter=6),
         Paragraph("PROFILE", SECTION_INDEX),
         Paragraph(
-            "Software engineering graduate and incoming postgraduate student in AI, "
+            "Software engineering graduate and postgraduate student in AI, "
             "Ethics and Society at the University of Hong Kong. Experience spans CRM "
             "data analytics in financial services, AI workflow development, full-stack "
             "products, multimodal research, and distributed data systems. I work best "
@@ -403,8 +403,8 @@ def build_story() -> list:
         compact_entry(
             title="Master of Arts in AI, Ethics and Society",
             subtitle="The University of Hong Kong - Hong Kong SAR",
-            period="Sept. 2026 - Aug. 2027 (Expected)",
-            body="Incoming postgraduate study connecting AI systems with their ethical and societal contexts.",
+            period="Sept. 2026 - Aug. 2027",
+            body="Postgraduate study connecting AI systems with their ethical and societal contexts.",
         )
     )
     story.append(
@@ -413,7 +413,7 @@ def build_story() -> list:
             subtitle="Guangdong University of Foreign Studies - School of Information Science and Technology",
             period="Sept. 2022 - Jun. 2026",
             body=(
-                "GPA 88/100 - Top 20%. Selected modules: Text Information Processing (99), "
+                "GPA 88/100 - Top 10%. Selected modules: Text Information Processing (99), "
                 "Network Programming (96), Natural Language Processing (96), Software "
                 "Architecture (96), Big Data Processing Technology (94), Further "
                 "Mathematics (91), and Web Design (90)."
@@ -606,7 +606,7 @@ def build_story() -> list:
             Paragraph(
                 "PUBLIC SHARING NOTE  This document reproduces the professional content "
                 "of the current CV while omitting private phone, email, and address details. "
-                "For the bilingual, accessible version, visit computersciencefreshmen.github.io.",
+                "For the multilingual, accessible version, visit computersciencefreshmen.github.io.",
                 SMALL,
             ),
         ]

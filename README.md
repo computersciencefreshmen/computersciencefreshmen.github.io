@@ -57,15 +57,18 @@ Dates use `Intl.DateTimeFormat`; PDF links explicitly identify the English downl
 
 `#/blog` lists personal essays; `#/blog/death-and-the-maiden` opens the first
 article directly. The homepage and footer also link to the blog. Articles are
-authored in Chinese with a reviewed English translation published in the same
-static build. The usual entry opens in English; `/?lang=zh#/blog/death-and-the-maiden`
-opens Chinese. Article language controls retain the route, and other site languages
-show English article content with the correct `lang` attribute.
+authored in Chinese with reviewed translations in all eight site languages,
+published in the same static build. The usual entry opens in English;
+`/?lang=de#/blog/death-and-the-maiden` opens German. The article and site language
+selectors share the same eight-language list, stay synchronized, and retain the
+route on changes and refreshes. Titles, excerpts, prose, captions, alternative text,
+tags, and page metadata all follow the selected language.
 
 To publish another essay, add a `BlogPost` to `src/data/blog.ts`, with a unique
-slug, English/Chinese content, ISO dates, and images under `public/blog/`. Keep
+slug, content for all eight locales, ISO dates, and images under `public/blog/`. Keep
 posts newest first for the homepage preview. Add descriptive alternative text
-and captions in both languages, regenerate Chinese fonts, then run `npm run check`.
+and captions in every language, regenerate Chinese fonts, then run `npm run check`.
+`Record<Locale, BlogContent>` and tests enforce complete article translations.
 Pushing the validated changes to `main` publishes through the existing workflow.
 Articles need no runtime translation API or backend. Hash URLs provide browser
 deep links; social crawlers may still use the site's static root metadata.

@@ -19,6 +19,8 @@ REQUIRED_PHRASES = [
     "Selected Engineering Projects",
     "Awards & Recognition",
     "Publication",
+    "Top 10%",
+    "OCTOBER 2026",
 ]
 
 PRIVATE_PATTERNS = {
@@ -41,6 +43,8 @@ def verify(pdf_path: Path, render_dir: Path) -> list[Path]:
     missing = [phrase for phrase in REQUIRED_PHRASES if phrase not in text]
     if missing:
         raise AssertionError(f"Missing required CV content: {missing}")
+    if "incoming postgraduate" in text.lower() or "Top 20%" in text:
+        raise AssertionError("Public CV still contains superseded education details")
 
     leaked = [
         label for label, pattern in PRIVATE_PATTERNS.items() if pattern.search(searchable)

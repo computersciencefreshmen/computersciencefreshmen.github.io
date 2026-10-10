@@ -25,7 +25,7 @@ export const copy = {
     heroTitleAccent: "real-world questions",
     heroTitleTail: "into useful digital systems.",
     heroBody:
-      "I’m Hanyu (Henry) Yang, a software engineering graduate and incoming HKU postgraduate working where software, data, business, and international experiences meet.",
+      "I’m Hanyu (Henry) Yang, a software engineering graduate and HKU postgraduate student working where software, data, business, and international experiences meet.",
     exploreWork: "Explore selected work",
     connect: "Start a conversation",
     portraitAlt: "Portrait of Hanyu Yang",
@@ -109,7 +109,7 @@ export const copy = {
     heroTitleAccent: "真实世界问题",
     heroTitleTail: "转化为有用的数字系统。",
     heroBody:
-      "我是杨涵宇（Henry），一名软件工程毕业生与港大准研究生，持续探索软件、数据、商业与国际化体验的交汇处。",
+      "我是杨涵宇（Henry），一名软件工程毕业生与香港大学研究生，持续探索软件、数据、商业与国际化体验的交汇处。",
     exploreWork: "查看精选项目",
     connect: "开始交流",
     portraitAlt: "杨涵宇的个人照片",
