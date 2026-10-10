@@ -1,0 +1,57 @@
+/* Essays share the portfolio's quiet surfaces, with a narrower reading measure. */
+.home-blog { padding-block: 64px; }
+.home-blog .section-heading { margin-bottom: 32px; }
+.blog-list { border-top: 1px solid var(--line); }
+.blog-card { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; padding-block: 32px; align-items: center; border-bottom: 1px solid var(--line); }
+.blog-card__image { display: block; overflow: hidden; background: var(--surface); border-radius: 4px; }
+.blog-card__image img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .4s ease; }
+.blog-card__image:hover img { transform: scale(1.025); }
+.blog-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.blog-card h2 { font-size: clamp(26px, 3vw, 38px); letter-spacing: -.025em; margin-top: 20px; }
+.blog-card h2 a:hover { text-decoration: underline; text-underline-offset: 6px; }
+.blog-card__excerpt { margin-top: 20px; font-size: 16px; line-height: 1.85; max-width: 480px; }
+.blog-card__copy > .text-link { margin-top: 24px; }
+.blog-article-page { max-width: 1040px; }
+.blog-article-toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 52px; }
+.blog-back { font-size: 14px; color: var(--muted); }
+.blog-language { display: flex; align-items: center; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 8px; }
+.blog-language button { min-height: 40px; padding: 8px 14px; font-size: 13px; border: 0; border-radius: 4px; background: transparent; color: var(--muted); }
+.blog-language button[aria-pressed="true"] { color: var(--ink); background: var(--surface); font-weight: 600; }
+.blog-language button:hover { color: var(--ink); }
+.blog-article__heading { max-width: 800px; margin-inline: auto; }
+.blog-article h1 { font-size: clamp(36px, 5vw, 62px); letter-spacing: -.035em; line-height: 1.12; margin-block: 20px 24px; text-wrap: balance; }
+.blog-article__intro { font-size: 19px; line-height: 1.7; max-width: 680px; margin-bottom: 28px; }
+.blog-article__venue { font-size: 13px; margin-block: 8px 36px; }
+.blog-article__cover img { width: 100%; height: auto; border-radius: 4px; }
+.blog-article figcaption { color: var(--muted); font-size: 12px; line-height: 1.7; margin-top: 12px; }
+.blog-prose { max-width: 700px; margin: 52px auto 0; }
+.blog-prose > p { font-family: Georgia, "Noto Sans SC Variable", "Microsoft YaHei", serif; font-size: 19px; line-height: 1.9; color: var(--ink); margin-bottom: 28px; overflow-wrap: break-word; }
+.blog-article[lang="zh-CN"] .blog-prose > p { font-family: var(--body); font-size: 18px; line-height: 2; }
+.blog-prose > .blog-prose__closing { font-size: 24px; line-height: 1.65; padding-left: 24px; margin-block: 40px; border-left: 2px solid var(--line); }
+.blog-article[lang="zh-CN"] .blog-prose > .blog-prose__closing { font-size: 23px; }
+.blog-programme { margin-block: 44px 36px; }
+.blog-programme img { width: 100%; height: auto; border-radius: 4px; }
+.blog-tags { flex-wrap: wrap; }
+.blog-article__source { display: flex; justify-content: space-between; align-items: center; gap: 16px; border-top: 1px solid var(--line); padding-top: 20px; margin-top: 32px; }
+.blog-article__source p, .blog-article__source a { font-size: 12px; }
+@media (min-width: 1101px) and (max-width: 1399px) {
+  .site-nav { gap: 14px; }
+  .site-header { gap: 16px; padding-inline: 18px; }
+}
+@media (max-width: 760px) {
+  .home-blog { padding-block: 40px; }
+  .home-blog .section-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .blog-card { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-block: 24px; }
+  .blog-card h2 { margin-top: 12px; font-size: 28px; }
+  .blog-card__excerpt { margin-top: 14px; }
+  .blog-card__copy > .text-link { margin-top: 14px; }
+  .blog-article-toolbar { margin-bottom: 36px; }
+  .blog-article h1 { font-size: clamp(32px, 8.5vw, 46px); line-height: 1.15; }
+  .blog-article__intro { font-size: 17px; }
+  .blog-article__venue { line-height: 1.8; }
+  .blog-prose { margin-top: 32px; }
+  .blog-prose > p { font-size: 17px; line-height: 1.9; }
+  .blog-article[lang="zh-CN"] .blog-prose > p { font-size: 16px; }
+  .blog-prose > .blog-prose__closing { font-size: 21px; padding-left: 16px; }
+  .blog-article[lang="zh-CN"] .blog-prose > .blog-prose__closing { font-size: 21px; }
+}

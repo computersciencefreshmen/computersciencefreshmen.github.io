@@ -25,7 +25,7 @@ GitHub Actions checks → GitHub Pages
 ```
 
 - `src/data/portfolio.ts` and `src/data/cv.ts` contain public profile content.
-- `src/App.tsx` selects Home, Projects, Research, Experience, CV, or Contact.
+- `src/App.tsx` selects Home, Projects, Research, Experience, CV, Blog, or Contact.
 - Hash routes (`#/work`, `#/research`, `#/experience`, `#/cv`, `#/contact`)
   work on GitHub Pages without a server rewrite. Older section links still resolve.
 - `src/styles/academic.css` defines responsive
@@ -52,6 +52,23 @@ A language change preserves the current hash route.
 Ukrainian uses the standard `uk` code, with `ua` accepted as an input alias.
 For example, `/?lang=de#/research` opens German research content.
 Dates use `Intl.DateTimeFormat`; PDF links explicitly identify the English download.
+
+## Blog publishing
+
+`#/blog` lists personal essays; `#/blog/death-and-the-maiden` opens the first
+article directly. The homepage and footer also link to the blog. Articles are
+authored in Chinese with a reviewed English translation published in the same
+static build. The usual entry opens in English; `/?lang=zh#/blog/death-and-the-maiden`
+opens Chinese. Article language controls retain the route, and other site languages
+show English article content with the correct `lang` attribute.
+
+To publish another essay, add a `BlogPost` to `src/data/blog.ts`, with a unique
+slug, English/Chinese content, ISO dates, and images under `public/blog/`. Keep
+posts newest first for the homepage preview. Add descriptive alternative text
+and captions in both languages, regenerate Chinese fonts, then run `npm run check`.
+Pushing the validated changes to `main` publishes through the existing workflow.
+Articles need no runtime translation API or backend. Hash URLs provide browser
+deep links; social crawlers may still use the site's static root metadata.
 
 When changing copy, update the source catalog and all six translation catalogs.
 Tests enforce exact key coverage and coverage of all active CV/project records.

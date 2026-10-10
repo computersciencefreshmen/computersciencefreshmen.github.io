@@ -3,6 +3,7 @@ import { education, publicCvUrl } from "../data/cv";
 import { copy, identity, projects } from "../data/portfolio";
 import type { Locale } from "../types";
 import { ArrowUpRight } from "./Icons";
+import { LatestWriting } from "./Blog";
 
 export function Hero({ locale }: { locale: Locale }) {
   return (
@@ -56,6 +57,7 @@ export function Hero({ locale }: { locale: Locale }) {
           <article><span className="timeline-dot" aria-hidden="true" /><p className="item-date">{formatPeriod("Mar. 2026 - Jul. 2026", locale)}</p><h3>{localize({ en: "CRM Data Analyst Intern", zh: "CRM 数据分析实习生" }, locale)}</h3><p>{localize({ en: "HSBC · Wealth and Personal Banking", zh: "汇丰银行 · 财富管理及个人银行业务" }, locale)}</p><a className="text-link" href="#/experience">{localize({ en: "Explore my experience", zh: "查看工作经历" }, locale)}<ArrowUpRight /></a></article>
         </div>
       </section>
+      <LatestWriting locale={locale} />
       <section className="home-contact" aria-labelledby="home-contact-title">
         <p className="eyebrow">{localize({ en: "LET’S CONNECT", zh: "从一次交流开始" }, locale)}</p>
         <h2 id="home-contact-title">{localize({ en: "Good things start with a conversation.", zh: "好的想法，始于对话。" }, locale)}</h2>

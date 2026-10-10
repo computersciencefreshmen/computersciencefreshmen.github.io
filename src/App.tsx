@@ -1,6 +1,7 @@
 import { localize } from "./i18n";
 import { useEffect, useRef, useState } from "react";
 import { Contact } from "./components/Contact";
+import { Blog } from "./components/Blog";
 import { CvArchive } from "./components/CvArchive";
 import { Experience } from "./components/Experience";
 import { Hero } from "./components/Hero";
@@ -11,26 +12,32 @@ import { SiteHeader, type Page } from "./components/SiteHeader";
 import { useLocale } from "./hooks/useLocale";
 import { useTheme } from "./hooks/useTheme";
 import { copy } from "./data/portfolio";
+import { blogLanguage, getBlogPost } from "./data/blog";
 
-function readPage(): Page {
+interface Route { page: Page; postSlug?: string }
+
+function readRoute(): Route {
   const path = window.location.hash.replace(/^#\/?/, "");
-  if (["work", "research", "experience", "cv", "contact"].includes(path)) return path as Page;
-  if (["education", "journey"].includes(path)) return "cv";
-  return "home";
+  if (path === "blog" || path === "blog/") return { page: "blog" };
+  if (path.startsWith("blog/")) return { page: "blog", postSlug: path.slice(5) };
+  if (["work", "research", "experience", "cv", "contact"].includes(path)) return { page: path as Page };
+  if (["education", "journey"].includes(path)) return { page: "cv" };
+  return { page: "home" };
 }
 const titles = {
-  en: { home: "Software, Data & AI", work: "Projects", research: "Research", experience: "Experience", cv: "Curriculum Vitae", contact: "Contact" },
-  zh: { home: "软件、数据与人工智能", work: "精选项目", research: "研究", experience: "工作经历", cv: "完整简历", contact: "联系我" },
+  en: { home: "Software, Data & AI", work: "Projects", research: "Research", experience: "Experience", cv: "Curriculum Vitae", blog: "Blog", contact: "Contact" },
+  zh: { home: "软件、数据与人工智能", work: "精选项目", research: "研究", experience: "工作经历", cv: "完整简历", blog: "博客", contact: "联系我" },
 };
 function App() {
   const { locale, changeLocale } = useLocale();
   const { theme, toggleTheme } = useTheme();
-  const [page, setPage] = useState<Page>(readPage);
+  const [route, setRoute] = useState<Route>(readRoute);
+  const { page, postSlug } = route;
   const mainRef = useRef<HTMLElement>(null);
   useEffect(() => {
     const navigate = () => {
       if (window.location.hash === "#main-content") return;
-      setPage(readPage());
+      setRoute(readRoute());
       window.scrollTo({ top: 0, behavior: "instant" });
       mainRef.current?.focus({ preventScroll: true });
     };
@@ -38,10 +45,11 @@ function App() {
     return () => window.removeEventListener("hashchange", navigate);
   }, []);
   useEffect(() => {
-    document.title = `${localize({ en: "Hanyu Yang", zh: "杨涵宇" }, locale)} — ${localize(titles, locale)[page]}`;
+    const article = page === "blog" ? getBlogPost(postSlug)?.content[blogLanguage(locale)] : undefined;
+    document.title = `${localize({ en: "Hanyu Yang", zh: "杨涵宇" }, locale)} — ${article?.title ?? localize(titles, locale)[page]}`;
     const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    if (description) description.content = localize(copy, locale).heroBody;
-  }, [page, locale]);
+    if (description) description.content = article?.excerpt ?? (page === "blog" ? localize({ en: "Personal reflections on music, culture, and the moments in between.", zh: "记录音乐、文化，以及生活中的片刻感受。" }, locale) : localize(copy, locale).heroBody);
+  }, [page, postSlug, locale]);
   return (
     <>
       <a
@@ -62,6 +70,7 @@ function App() {
         {page === "research" && <Research locale={locale} />}
         {page === "experience" && <Experience locale={locale} />}
         {page === "cv" && <CvArchive locale={locale} />}
+        {page === "blog" && <Blog locale={locale} slug={postSlug} onChangeLocale={changeLocale} />}
         {page === "contact" && <Contact locale={locale} />}
       </main>
       <SiteFooter locale={locale} />

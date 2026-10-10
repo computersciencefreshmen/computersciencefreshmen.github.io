@@ -7,7 +7,7 @@ import { BrandMark } from "./BrandMark";
 import { CloseIcon, MenuIcon } from "./Icons";
 import { LanguageSelect } from "./LanguageSelect";
 
-export type Page = "home" | "work" | "research" | "experience" | "cv" | "contact";
+export type Page = "home" | "work" | "research" | "experience" | "cv" | "blog" | "contact";
 
 interface SiteHeaderProps {
   locale: Locale;
@@ -17,7 +17,7 @@ interface SiteHeaderProps {
   onToggleTheme: () => void;
 }
 
-const pages: Page[] = ["home", "work", "research", "experience", "cv", "contact"];
+const pages: Page[] = ["home", "work", "research", "experience", "cv", "blog", "contact"];
 
 const navigation = {
   en: {
@@ -26,6 +26,7 @@ const navigation = {
     research: "Research",
     experience: "Experience",
     cv: "Full CV",
+    blog: "Blog",
     contact: "Contact",
     navigationLabel: "Primary navigation",
     openMenu: "Open navigation",
@@ -39,6 +40,7 @@ const navigation = {
     research: "研究",
     experience: "重点经历",
     cv: "完整 CV",
+    blog: "博客",
     contact: "联系我",
     navigationLabel: "主要导航",
     openMenu: "打开导航",

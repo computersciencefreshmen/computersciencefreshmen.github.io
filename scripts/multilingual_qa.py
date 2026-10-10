@@ -7,7 +7,7 @@ from playwright.sync_api import expect, sync_playwright
 def run(base_url: str, output: Path) -> None:
     output.mkdir(parents=True, exist_ok=True)
     locales = ('en', 'zh', 'de', 'fr', 'it', 'ru', 'es', 'uk')
-    routes = ('', 'work', 'research', 'experience', 'cv', 'contact')
+    routes = ('', 'work', 'research', 'experience', 'cv', 'blog', 'blog/death-and-the-maiden', 'contact')
     errors, checks = [], []
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
