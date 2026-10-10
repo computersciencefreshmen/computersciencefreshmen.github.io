@@ -5,6 +5,20 @@ import it from "./blog-locales/it.json";
 import ru from "./blog-locales/ru.json";
 import es from "./blog-locales/es.json";
 import uk from "./blog-locales/uk.json";
+import twilightEn from "./blog-locales/between-tides-and-twilight/en.json";
+import twilightZh from "./blog-locales/between-tides-and-twilight/zh.json";
+import twilightDe from "./blog-locales/between-tides-and-twilight/de.json";
+import twilightFr from "./blog-locales/between-tides-and-twilight/fr.json";
+import twilightIt from "./blog-locales/between-tides-and-twilight/it.json";
+import twilightRu from "./blog-locales/between-tides-and-twilight/ru.json";
+import twilightEs from "./blog-locales/between-tides-and-twilight/es.json";
+import twilightUk from "./blog-locales/between-tides-and-twilight/uk.json";
+
+export interface BlogImage {
+  src: string;
+  width: number;
+  height: number;
+}
 
 export interface BlogContent {
   title: string;
@@ -12,10 +26,10 @@ export interface BlogContent {
   paragraphs: string[];
   closing: string;
   venue: string;
+  category: string;
   coverAlt: string;
   coverCaption: string;
-  programmeAlt: string;
-  programmeCaption: string;
+  gallery: Array<{ alt: string; caption: string }>;
   tags: string[];
 }
 
@@ -23,10 +37,12 @@ export interface BlogPost {
   slug: string;
   author: string;
   publishedAt: string;
-  concertDate: string;
+  concertDate?: string;
   cover: string;
-  programmeImage: string;
-  programmeUrl: string;
+  coverWidth: number;
+  coverHeight: number;
+  gallery: BlogImage[];
+  source?: { label: string; url: string };
   content: Record<Locale, BlogContent>;
 }
 
@@ -34,13 +50,33 @@ export interface BlogPost {
 // silently showing English prose when a reader explicitly chooses another language.
 export const blogPosts: BlogPost[] = [
   {
+    slug: "between-tides-and-twilight",
+    author: "Hanyu Yang",
+    publishedAt: "2026-10-11",
+    cover: "/blog/between-tides-and-twilight/victoria-harbour-sunset.webp",
+    coverWidth: 2200,
+    coverHeight: 1650,
+    gallery: [
+      { src: "/blog/between-tides-and-twilight/peel-street-evening.webp", width: 1200, height: 1600 },
+      { src: "/blog/between-tides-and-twilight/victoria-park-star-lanterns.webp", width: 1200, height: 1600 },
+      { src: "/blog/between-tides-and-twilight/hong-kong-island-night.webp", width: 1200, height: 1600 },
+      { src: "/blog/between-tides-and-twilight/happy-valley-racing.webp", width: 1200, height: 1600 },
+    ],
+    content: {
+      en: twilightEn, zh: twilightZh, de: twilightDe, fr: twilightFr,
+      it: twilightIt, ru: twilightRu, es: twilightEs, uk: twilightUk,
+    },
+  },
+  {
     slug: "death-and-the-maiden",
     author: "Hanyu Yang",
     publishedAt: "2026-10-10",
     concertDate: "2026-10-09",
     cover: "/blog/cuarteto-casals-stage.jpg",
-    programmeImage: "/blog/cuarteto-casals-programme.jpg",
-    programmeUrl: "https://muse.hku.hk/highlights/hku-muse-2026-27-season-preview/",
+    coverWidth: 1706,
+    coverHeight: 1279,
+    gallery: [{ src: "/blog/cuarteto-casals-programme.jpg", width: 1706, height: 1279 }],
+    source: { label: "HKU MUSE", url: "https://muse.hku.hk/highlights/hku-muse-2026-27-season-preview/" },
     content: {
       de, fr, it, ru, es, uk,
       en: {
@@ -52,10 +88,13 @@ export const blogPosts: BlogPost[] = [
         ],
         closing: "The music ended, and the audience dispersed. The strings still lingered.",
         venue: "HKU Grand Hall · Hong Kong",
+        category: "Music & culture",
         coverAlt: "The four musicians of Cuarteto Casals taking a bow with their instruments at the HKU Grand Hall.",
         coverCaption: "Cuarteto Casals at the HKU Grand Hall, 9 October 2026.",
-        programmeAlt: "The Cuarteto Casals Hong Kong debut programme held in front of the warmly lit HKU Grand Hall stage.",
-        programmeCaption: "Before the first note. The evening’s programme at the Grand Hall.",
+        gallery: [{
+          alt: "The Cuarteto Casals Hong Kong debut programme held in front of the warmly lit HKU Grand Hall stage.",
+          caption: "Before the first note. The evening’s programme at the Grand Hall.",
+        }],
         tags: ["HKU MUSE", "Cuarteto Casals", "Classical music", "Chamber music", "Hong Kong"],
       },
       zh: {
@@ -67,10 +106,13 @@ export const blogPosts: BlogPost[] = [
         ],
         closing: "曲终人散，弦音未绝。",
         venue: "香港大学 Grand Hall · 香港",
+        category: "音乐与文化",
         coverAlt: "Cuarteto Casals 四位音乐家手持弦乐器，在香港大学 Grand Hall 谢幕。",
         coverCaption: "Cuarteto Casals 于香港大学 Grand Hall，2026 年 10 月 9 日。",
-        programmeAlt: "手中的 Cuarteto Casals 香港首演节目单，背景是暖色灯光下的港大 Grand Hall 舞台。",
-        programmeCaption: "第一声弦音之前，Grand Hall 里的音乐会节目单。",
+        gallery: [{
+          alt: "手中的 Cuarteto Casals 香港首演节目单，背景是暖色灯光下的港大 Grand Hall 舞台。",
+          caption: "第一声弦音之前，Grand Hall 里的音乐会节目单。",
+        }],
         tags: ["HKU MUSE", "Cuarteto Casals", "古典音乐", "室内乐", "香港"],
       },
     },

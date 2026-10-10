@@ -1,0 +1,32 @@
+{
+  "title": "Entre mareas y crepúsculo",
+  "excerpt": "Noches de otoño en Hong Kong: reflejos dorados en el puerto, faroles estrellados y las luces de una ciudad que entra lentamente en la noche.",
+  "paragraphs": [
+    "El verano dio paso al otoño. Volví de Shenzhen a Hong Kong justo a tiempo para el atardecer sobre el puerto de Victoria. Paseaba por la Avenida de las Estrellas mientras, a lo lejos, unas velas rojas avanzaban lentamente. El cielo se teñía de naranja y rojo, y los reflejos de luz saltaban sobre el agua como destellos de oro. Las luces dispersas de la isla de Hong Kong se extendían desde los muelles de Central hasta Mid-Levels. El crepúsculo se hacía más hondo y una luna luminosa se alzaba en silencio.",
+    "Varias noches de otoño de caminar y detenerse: el bullicio de los bares de esquina de Peel Street, en Sheung Wan, y la brisa nocturna, ligeramente embriagada; los brillantes faroles estrellados de Victoria Park durante el Festival del Medio Otoño; el encanto de otros tiempos que el hotel The Peninsula ha conservado durante un siglo. Happy Valley seguía rebosando de voces: bajo las luces, los caballos galopaban y los gritos de júbilo se sucedían sin cesar."
+  ],
+  "closing": "Cuando se alce el viento, que vueles como una golondrina hacia un bosque de árboles altos; cuando baje la marea, que yo vuelva como una barca a una orilla lejana.",
+  "venue": "Hong Kong",
+  "category": "Ciudad y viajes",
+  "coverAlt": "Atardecer sobre el puerto de Victoria, con las luces de la isla de Hong Kong, barcos y velas rojas bajo un cielo naranja.",
+  "coverCaption": "La última luz sobre el puerto de Victoria, las luces de la isla y destellos dorados sobre el agua.",
+  "gallery": [
+    {
+      "alt": "Personas sentadas y de pie junto a un bar iluminado en una esquina de Peel Street por la noche.",
+      "caption": "Una noche en Peel Street: la luz del bar de esquina y el murmullo de las conversaciones."
+    },
+    {
+      "alt": "Faroles blancos en forma de estrella colgados entre faroles de colores en Victoria Park por la noche.",
+      "caption": "Faroles estrellados en Victoria Park durante el Festival del Medio Otoño."
+    },
+    {
+      "alt": "Edificios altos iluminados de la isla de Hong Kong, incluidos Conrad y Shangri-La, junto al paseo marítimo de noche.",
+      "caption": "Las luces nocturnas de la isla de Hong Kong se reflejan junto al paseo marítimo."
+    },
+    {
+      "alt": "Un caballo de carreras con su jinete galopa por el césped de Happy Valley, ante edificios residenciales iluminados.",
+      "caption": "Happy Valley bajo las luces: un caballo pasa veloz en medio de una noche animada."
+    }
+  ],
+  "tags": ["Hong Kong", "Puerto de Victoria", "Otoño", "Paseos urbanos"]
+}

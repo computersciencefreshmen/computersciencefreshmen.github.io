@@ -47,6 +47,7 @@ def main() -> None:
     if not PACKAGE.is_dir():
         raise SystemExit("Run npm ci first: the original Fontsource package is required.")
     sources = sorted([*ROOT.glob("src/**/*.ts"), *ROOT.glob("src/**/*.tsx"), ROOT / "src/i18n/source.json"])
+    sources += sorted(ROOT.glob("src/data/blog-locales/**/*.json"))
     sources += [ROOT / "index.html", ROOT / "public/site.webmanifest"]
     text = "".join(path.read_text(encoding="utf-8") for path in sources if path.exists())
     wanted = {ord(character) for character in text if ord(character) > 127}

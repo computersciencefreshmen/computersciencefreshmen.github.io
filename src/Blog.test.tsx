@@ -2,12 +2,15 @@ import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import App from "./App";
 import { chooseLanguage } from "./test/language";
-import { blogPosts } from "./data/blog";
+import { blogPosts, getBlogPost } from "./data/blog";
 import { locales } from "./i18n";
 
 const articleHash = "#/blog/death-and-the-maiden";
+const travelHash = "#/blog/between-tides-and-twilight";
 const englishTitle = "Death & the Maiden: Beyond the Strings";
 const chineseTitle = "Death & the Maiden｜弦外之音";
+const concertPost = getBlogPost("death-and-the-maiden")!;
+const travelPost = getBlogPost("between-tides-and-twilight")!;
 
 function openBlog(url = articleHash) {
   window.history.replaceState(null, "", url);
@@ -116,7 +119,7 @@ describe("multilingual blog", () => {
 
   it.each(locales)("opens complete $name prose and synchronizes both language selectors", ({ code, tag }) => {
     const view = openBlog(`?lang=${code}${articleHash}`);
-    const content = blogPosts[0].content[code];
+    const content = concertPost.content[code];
     expect(document.documentElement.lang).toBe(tag);
     expect(new URLSearchParams(window.location.search).get("lang")).toBe(code);
     expect(window.location.hash).toBe(articleHash);
@@ -125,7 +128,7 @@ describe("multilingual blog", () => {
     for (const paragraph of content.paragraphs) expect(screen.getByText(paragraph)).toBeInTheDocument();
     expect(screen.getByText(content.closing)).toBeInTheDocument();
     expect(screen.getByText(content.coverCaption)).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: content.programmeAlt })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: content.gallery[0].alt })).toBeInTheDocument();
     expect(document.title).toContain(content.title);
     for (const selector of screen.getAllByRole("combobox")) expect(selector).toHaveAttribute("data-value", code);
     const articlePicker = within(document.querySelector<HTMLElement>(".blog-language")!);
@@ -144,9 +147,99 @@ describe("multilingual blog", () => {
 
   it.each(locales)("shows translated $name titles and excerpts in the blog list", ({ code }) => {
     openBlog(`?lang=${code}#/blog`);
-    const content = blogPosts[0].content[code];
-    expect(screen.getByRole("heading", { level: 2, name: content.title })).toBeInTheDocument();
-    expect(screen.getByText(content.excerpt)).toBeInTheDocument();
+    const list = within(document.querySelector<HTMLElement>(".blog-list")!);
+    expect(list.getAllByRole("article")).toHaveLength(2);
+    expect(list.getAllByRole("heading", { level: 2 }).map((heading) => heading.textContent))
+      .toEqual([travelPost.content[code].title, concertPost.content[code].title]);
+    for (const post of [travelPost, concertPost]) {
+      expect(list.getByRole("heading", { level: 2, name: post.content[code].title })).toBeInTheDocument();
+      expect(list.getByText(post.content[code].excerpt)).toBeInTheDocument();
+    }
+  });
+
+  it.each(locales)("opens the full $name October 11 travel story with all five photographs", ({ code, tag }) => {
+    const description = document.createElement("meta");
+    description.name = "description";
+    document.head.append(description);
+    try {
+      openBlog(`?lang=${code}${travelHash}`);
+      const content = travelPost.content[code];
+      const article = screen.getByRole("article");
+      expect(article).toHaveAttribute("lang", tag);
+      expect(document.documentElement.lang).toBe(tag);
+      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(content.title);
+      expect(document.title).toContain(content.title);
+      expect(description.content).toBe(content.excerpt);
+      for (const paragraph of content.paragraphs) expect(screen.getByText(paragraph)).toBeInTheDocument();
+      expect(screen.getByText(content.closing)).toBeInTheDocument();
+      expect(within(article).getAllByRole("img").map((photo) => photo.getAttribute("src")))
+        .toEqual([
+          "/blog/between-tides-and-twilight/victoria-harbour-sunset.webp",
+          "/blog/between-tides-and-twilight/peel-street-evening.webp",
+          "/blog/between-tides-and-twilight/victoria-park-star-lanterns.webp",
+          "/blog/between-tides-and-twilight/hong-kong-island-night.webp",
+          "/blog/between-tides-and-twilight/happy-valley-racing.webp",
+        ]);
+      expect(screen.getByRole("img", { name: content.coverAlt })).toHaveAccessibleName();
+      expect(screen.getByText(content.coverCaption)).toBeInTheDocument();
+      for (const photo of content.gallery) {
+        expect(screen.getByRole("img", { name: photo.alt })).toHaveAccessibleName();
+        expect(screen.getByText(photo.caption)).toBeInTheDocument();
+      }
+      expect(article.querySelector('time[datetime="2026-10-11"]')).toBeInTheDocument();
+      expect(article.querySelector('time[datetime="2026-10-09"]')).not.toBeInTheDocument();
+      expect(within(article).queryByRole("link", { name: "HKU MUSE" })).not.toBeInTheDocument();
+      for (const selector of screen.getAllByRole("combobox")) expect(selector).toHaveAttribute("data-value", code);
+      chooseArticleLanguage(code === "en" ? "zh" : "en");
+      expect(window.location.hash).toBe(travelHash);
+      chooseLanguage(code);
+      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(content.title);
+    } finally {
+      description.remove();
+    }
+  });
+
+  it("keeps the supplied Chinese travel prose and publication date", () => {
+    openBlog(`?lang=zh${travelHash}`);
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("浮光入夜");
+    expect(screen.getByText("夏去秋来，从深圳回港恰好赶上维港的日落，在星光大道上漫步，远处红帆缓缓驶过，晚霞将天际染成橘红，海面浮光跃金，港岛星星点点的灯火，从中环码头向半山蔓延，暮色渐沉，一轮明月悄然升起。")).toBeInTheDocument();
+    expect(screen.getByText("风起时，愿君如燕入高林；潮落后，望我似舟归远岸。")).toBeInTheDocument();
+    expect(travelPost.publishedAt).toBe("2026-10-11");
+  });
+
+  it("defaults a shared travel link to English and retains its language after refreshing", () => {
+    window.localStorage.setItem("hanyu-portfolio-locale", "uk");
+    vi.spyOn(window.navigator, "languages", "get").mockReturnValue(["uk"]);
+    const view = openBlog(travelHash);
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Between Tides and Twilight");
+    expect(screen.getByRole("article")).toHaveAttribute("lang", "en");
+    chooseArticleLanguage("de");
+    expect(window.location.hash).toBe(travelHash);
+    view.unmount();
+    render(<App />);
+    expect(screen.getByRole("article")).toHaveAttribute("lang", "de");
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(travelPost.content.de.title);
+    for (const selector of screen.getAllByRole("combobox")) expect(selector).toHaveAttribute("data-value", "de");
+  });
+
+  it("promotes the October 11 story as the latest writing on the homepage", () => {
+    openBlog("#/");
+    const latest = within(document.querySelector<HTMLElement>(".home-blog")!);
+    expect(latest.getAllByRole("article")).toHaveLength(1);
+    expect(latest.getByRole("heading", { level: 2, name: "Between Tides and Twilight" })).toBeInTheDocument();
+    expect(document.querySelector(".home-blog .blog-card__image img")).toHaveAttribute("src", travelPost.cover);
+    expect(latest.queryByRole("heading", { name: englishTitle })).not.toBeInTheDocument();
+    const link = latest.getByRole("link", { name: "Read story" });
+    expect(link).toHaveAttribute("href", travelHash);
+  });
+
+  it("preserves the concert source and event date after generalizing the gallery", () => {
+    openBlog();
+    const article = screen.getByRole("article");
+    expect(within(article).getAllByRole("img")).toHaveLength(2);
+    expect(article.querySelector('time[datetime="2026-10-09"]')).toBeInTheDocument();
+    expect(within(article).getByRole("link", { name: "HKU MUSE" }))
+      .toHaveAttribute("href", "https://muse.hku.hk/highlights/hku-muse-2026-27-season-preview/");
   });
 
   it("requires complete, nonempty article content in every supported language", () => {
@@ -155,10 +248,17 @@ describe("multilingual blog", () => {
       for (const { code } of locales) {
         const content = post.content[code];
         expect(Object.keys(content).sort()).toEqual(Object.keys(post.content.en).sort());
-        for (const value of Object.values(content)) {
+        for (const [key, value] of Object.entries(content)) {
+          if (key === "gallery") continue;
           const strings = Array.isArray(value) ? value : [value];
           expect(strings.length).toBeGreaterThan(0);
           expect(strings.every((text) => typeof text === "string" && text.trim().length > 0)).toBe(true);
+        }
+        expect(content.gallery).toHaveLength(post.gallery.length);
+        for (const photo of content.gallery) {
+          expect(Object.keys(photo).sort()).toEqual(["alt", "caption"]);
+          expect(photo.alt.trim()).not.toHaveLength(0);
+          expect(photo.caption.trim()).not.toHaveLength(0);
         }
         expect(content.paragraphs).toHaveLength(post.content.en.paragraphs.length);
         if (code !== "en") expect(content.paragraphs[0]).not.toBe(post.content.en.paragraphs[0]);

@@ -1,0 +1,32 @@
+{
+  "title": "Entre marées et crépuscule",
+  "excerpt": "Des soirées d’automne à Hong Kong : des reflets d’or sur le port, des lanternes étoilées et la ville qui s’anime à la nuit tombée.",
+  "paragraphs": [
+    "L’été s’en va, l’automne arrive. De retour de Shenzhen à Hong Kong, j’arrive juste à temps pour le coucher du soleil sur le port Victoria. Je flâne sur l’Avenue des Stars ; au loin, des voiles rouges passent lentement. Le ciel se teinte de rouge orangé, des éclats d’or dansent sur l’eau. Les lumières éparses de l’île de Hong Kong s’étendent des embarcadères de Central jusqu’aux Mid-Levels. Le crépuscule s’épaissit, et une lune lumineuse se lève sans bruit.",
+    "Quelques nuits d’automne, à marcher puis à s’arrêter : le brouhaha des bars aux coins de Peel Street, à Sheung Wan, et la brise du soir, légèrement grisée ; les lanternes étoilées qui brillent au parc Victoria pour la fête de la Mi-Automne ; le charme d’autrefois du Peninsula, qui traverse un siècle. Happy Valley résonne toujours des voix de la foule. Sous les lumières, les chevaux filent au galop, et les clameurs se succèdent."
+  ],
+  "closing": "Quand le vent se lève, puisses-tu, telle une hirondelle, rejoindre les grands arbres ; quand la marée se retire, j’espère, telle une barque, regagner une rive lointaine.",
+  "venue": "Hong Kong",
+  "category": "Ville & voyages",
+  "coverAlt": "Le port Victoria au crépuscule, avec des reflets dorés sur l’eau, des bateaux et les immeubles éclairés de l’île de Hong Kong.",
+  "coverCaption": "Le port Victoria, entre les dernières lueurs du couchant et les premières lumières de la nuit.",
+  "gallery": [
+    {
+      "alt": "Des personnes discutent devant un bar éclairé à un coin de Peel Street.",
+      "caption": "À un coin de Peel Street : le brouhaha des voix et une brise du soir légèrement grisée."
+    },
+    {
+      "alt": "Des lanternes blanches en forme d’étoiles et des lampions colorés illuminent le parc Victoria de nuit.",
+      "caption": "Les lanternes étoilées de la fête de la Mi-Automne au parc Victoria."
+    },
+    {
+      "alt": "Les tours éclairées de l’île de Hong Kong la nuit, dont le Conrad et le Shangri-La, avec des reflets sur l’eau.",
+      "caption": "L’île de Hong Kong la nuit, fenêtre après fenêtre dans la lumière."
+    },
+    {
+      "alt": "Un cheval monté par un jockey galope sur la piste verte éclairée de Happy Valley, devant de hauts immeubles résidentiels.",
+      "caption": "Happy Valley : les chevaux au galop et les clameurs sous les lumières."
+    }
+  ],
+  "tags": ["Hong Kong", "Port Victoria", "Automne", "Balades urbaines"]
+}

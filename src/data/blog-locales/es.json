@@ -9,7 +9,18 @@
   "venue": "Grand Hall de HKU · Hong Kong",
   "coverAlt": "Los cuatro músicos de Cuarteto Casals saludan con sus instrumentos en el Grand Hall de la Universidad de Hong Kong.",
   "coverCaption": "Cuarteto Casals en el Grand Hall de la Universidad de Hong Kong, 9 de octubre de 2026.",
-  "programmeAlt": "El programa del debut de Cuarteto Casals en Hong Kong, sostenido frente al escenario del Grand Hall de HKU, iluminado con una luz cálida.",
-  "programmeCaption": "Antes de la primera nota. El programa de la velada en el Grand Hall.",
-  "tags": ["HKU MUSE", "Cuarteto Casals", "Música clásica", "Música de cámara", "Hong Kong"]
+  "tags": [
+    "HKU MUSE",
+    "Cuarteto Casals",
+    "Música clásica",
+    "Música de cámara",
+    "Hong Kong"
+  ],
+  "category": "Música y cultura",
+  "gallery": [
+    {
+      "alt": "El programa del debut de Cuarteto Casals en Hong Kong, sostenido frente al escenario del Grand Hall de HKU, iluminado con una luz cálida.",
+      "caption": "Antes de la primera nota. El programa de la velada en el Grand Hall."
+    }
+  ]
 }

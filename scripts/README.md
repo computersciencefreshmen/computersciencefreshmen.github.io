@@ -21,10 +21,15 @@ python scripts/cv_download_qa.py
 and 1440px, validates Inter font loading, theme and language persistence,
 navigation and Escape behavior, page overflow, browser errors, and the public PDF.
 Screenshots and JSON results are saved to ignored `artifacts/multilingual-qa/`.
-`blog_qa.py` verifies all eight full article translations, captions, metadata,
-synchronized site/article language selectors, reloads, keyboard and theme behavior,
-and checks that the downloadable CV matches the verified local PDF byte for byte.
+`blog_qa.py` verifies both essays in all eight languages, including full prose,
+photo order, accessible descriptions, captions, metadata, publication dates,
+synchronized site/article language selectors, reloads, keyboard and theme behavior.
+It also checks blog ordering and the latest homepage story in each language, and
+confirms the downloadable English CV matches the verified local PDF byte for byte.
+The harness uses Node 24 and `export_blog_qa.mjs` to read the same typed records
+through Vite's TypeScript/JSON loader, keeping expected prose in one place.
 Use `--widths 390 1440` for a smaller targeted pass.
+Use `--slugs between-tides-and-twilight` to check only the new essay's article pages.
 Pass `--url https://computersciencefreshmen.github.io` to check the live deployment.
 `cv_download_qa.py` exercises all eight PDF editions on the homepage, CV page and
 experience page at 390/1440px. It performs real downloads, compares their bytes

@@ -78,8 +78,9 @@ for regeneration and verification commands.
 
 ## Blog publishing
 
-`#/blog` lists personal essays; `#/blog/death-and-the-maiden` opens the first
-article directly. The homepage and footer also link to the blog. Articles are
+`#/blog` lists personal essays, newest first. `#/blog/between-tides-and-twilight`
+opens the October 11 city essay; `#/blog/death-and-the-maiden` opens the concert
+essay. The homepage promotes the latest article, and the footer links to the blog. Articles are
 authored in Chinese with reviewed translations in all eight site languages,
 published in the same static build. The usual entry opens in English;
 `/?lang=de#/blog/death-and-the-maiden` opens German. The article and site language
@@ -91,6 +92,13 @@ To publish another essay, add a `BlogPost` to `src/data/blog.ts`, with a unique
 slug, content for all eight locales, ISO dates, and images under `public/blog/`. Keep
 posts newest first for the homepage preview. Add descriptive alternative text
 and captions in every language, regenerate Chinese fonts, then run `npm run check`.
+The shared image records contain paths and dimensions; each locale supplies the
+matching gallery captions and alternative text. A single gallery renderer supports
+concert programmes and city photographs. Multiple photographs use two columns on
+desktop and one on mobile, preserving their complete composition. Event dates and
+external sources are optional and belong only to the relevant essay.
+Long-form translations can live under `src/data/blog-locales/<slug>/`; the font
+subset generator reads those JSON files as well as inline source copy.
 `Record<Locale, BlogContent>` and tests enforce complete article translations.
 Pushing the validated changes to `main` publishes through the existing workflow.
 Articles need no runtime translation API or backend. Hash URLs provide browser
