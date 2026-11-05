@@ -1,7 +1,10 @@
 # Hanyu Yang — Personal Website
 
 A multilingual personal website for Hanyu “Henry” Yang, published at
-[computersciencefreshmen.github.io](https://computersciencefreshmen.github.io/).
+[henryyang.blog](https://henryyang.blog/).
+
+Hosting remains on GitHub Pages. See [the custom-domain checklist](docs/custom-domain.md)
+for DNS, ownership verification, HTTPS and rollback; source changes alone do not bind a domain.
 
 ## Purpose and design
 

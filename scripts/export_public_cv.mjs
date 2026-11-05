@@ -154,7 +154,7 @@ function checkRecords(source, localized, locale, section) {
 }
 
 const websiteLinks = [
-  { label: "computersciencefreshmen.github.io", url: "https://computersciencefreshmen.github.io/" },
+  { label: "henryyang.blog", url: "https://henryyang.blog/" },
   { label: links.github.replace(/^https?:\/\//, ""), url: links.github },
   { label: links.linkedin.replace(/^https?:\/\/(?:www\.)?/, ""), url: links.linkedin },
 ];

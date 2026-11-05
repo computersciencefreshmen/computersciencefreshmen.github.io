@@ -15,7 +15,7 @@
       "publicCv": "Public CV",
       "publicSharingNote": "Public sharing note"
     },
-    "sharingNote": "This document presents my public professional record and omits private phone, email, and address details. For the accessible version in eight languages, visit computersciencefreshmen.github.io."
+    "sharingNote": "This document presents my public professional record and omits private phone, email, and address details. For the accessible version in eight languages, visit henryyang.blog."
   },
   "zh": {
     "profile": "软件工程毕业生，现于香港大学攻读人工智能、伦理与社会文学硕士。经历涵盖 CRM 数据分析、AI 工作流开发、全栈软件、多模态研究与分布式数据系统。",
@@ -33,7 +33,7 @@
       "publicCv": "公开版简历",
       "publicSharingNote": "公开分享说明"
     },
-    "sharingNote": "本文件展示公开的专业经历，已移除私人电话、电子邮箱与详细地址。可访问 computersciencefreshmen.github.io 查看支持八种语言的无障碍网页版本。"
+    "sharingNote": "本文件展示公开的专业经历，已移除私人电话、电子邮箱与详细地址。可访问 henryyang.blog 查看支持八种语言的无障碍网页版本。"
   },
   "de": {
     "profile": "Absolvent des Software-Engineering-Studiums und Masterstudent im Studiengang KI, Ethik und Gesellschaft an der University of Hong Kong. Erfahrung in CRM-Datenanalyse, der Entwicklung von KI-Arbeitsabläufen, Full-Stack-Software, multimodaler Forschung und verteilten Datensystemen.",
@@ -51,7 +51,7 @@
       "publicCv": "Öffentlicher Lebenslauf",
       "publicSharingNote": "Hinweis zur öffentlichen Weitergabe"
     },
-    "sharingNote": "Dieses Dokument enthält meinen öffentlich zugänglichen beruflichen Werdegang. Private Telefonnummer, E-Mail-Adresse und Anschrift sind nicht enthalten. Eine barrierefreie Webversion in acht Sprachen finden Sie auf computersciencefreshmen.github.io.",
+    "sharingNote": "Dieses Dokument enthält meinen öffentlich zugänglichen beruflichen Werdegang. Private Telefonnummer, E-Mail-Adresse und Anschrift sind nicht enthalten. Eine barrierefreie Webversion in acht Sprachen finden Sie auf henryyang.blog.",
     "publication": "Yang, H., Bai, J., He, C., Wang, Y., & Liang, W. (2024). Synthese, Charakterisierung und Prüfung von mit Seltenen Erden dotierten GdBO3-Leuchtstoffen. Guangdong Chemical Industry, 51(10), 50-54."
   },
   "fr": {
@@ -70,7 +70,7 @@
       "publicCv": "CV public",
       "publicSharingNote": "Note de diffusion publique"
     },
-    "sharingNote": "Ce document présente mon parcours professionnel public et ne contient ni numéro de téléphone, ni adresse e-mail, ni adresse postale privés. La version web accessible en huit langues est disponible sur computersciencefreshmen.github.io.",
+    "sharingNote": "Ce document présente mon parcours professionnel public et ne contient ni numéro de téléphone, ni adresse e-mail, ni adresse postale privés. La version web accessible en huit langues est disponible sur henryyang.blog.",
     "publication": "Yang, H., Bai, J., He, C., Wang, Y., & Liang, W. (2024). Synthèse, caractérisation et essais de matériaux luminescents GdBO3 dopés aux terres rares. Guangdong Chemical Industry, 51(10), 50-54."
   },
   "it": {
@@ -89,7 +89,7 @@
       "publicCv": "CV pubblico",
       "publicSharingNote": "Nota sulla condivisione pubblica"
     },
-    "sharingNote": "Questo documento presenta il mio percorso professionale pubblico e omette numero di telefono, e-mail e indirizzo privati. La versione web accessibile in otto lingue è disponibile su computersciencefreshmen.github.io.",
+    "sharingNote": "Questo documento presenta il mio percorso professionale pubblico e omette numero di telefono, e-mail e indirizzo privati. La versione web accessibile in otto lingue è disponibile su henryyang.blog.",
     "publication": "Yang, H., Bai, J., He, C., Wang, Y., & Liang, W. (2024). Sintesi, caratterizzazione e prove di materiali luminescenti GdBO3 drogati con terre rare. Guangdong Chemical Industry, 51(10), 50-54."
   },
   "ru": {
@@ -108,7 +108,7 @@
       "publicCv": "Публичное резюме",
       "publicSharingNote": "Примечание о публичном доступе"
     },
-    "sharingNote": "Документ содержит публичные сведения о моём профессиональном опыте без личного номера телефона, электронной почты и адреса. Доступная веб-версия на восьми языках размещена на computersciencefreshmen.github.io.",
+    "sharingNote": "Документ содержит публичные сведения о моём профессиональном опыте без личного номера телефона, электронной почты и адреса. Доступная веб-версия на восьми языках размещена на henryyang.blog.",
     "publication": "Yang, H., Bai, J., He, C., Wang, Y., & Liang, W. (2024). Синтез, характеризация и испытания люминесцентных материалов GdBO3, легированных редкоземельными элементами. Guangdong Chemical Industry, 51(10), 50-54."
   },
   "es": {
@@ -127,7 +127,7 @@
       "publicCv": "CV público",
       "publicSharingNote": "Nota sobre la difusión pública"
     },
-    "sharingNote": "Este documento presenta mi trayectoria profesional pública y omite el teléfono, el correo electrónico y la dirección privados. La versión web accesible en ocho idiomas está disponible en computersciencefreshmen.github.io.",
+    "sharingNote": "Este documento presenta mi trayectoria profesional pública y omite el teléfono, el correo electrónico y la dirección privados. La versión web accesible en ocho idiomas está disponible en henryyang.blog.",
     "publication": "Yang, H., Bai, J., He, C., Wang, Y., & Liang, W. (2024). Síntesis, caracterización y ensayos de materiales luminiscentes GdBO3 dopados con tierras raras. Guangdong Chemical Industry, 51(10), 50-54."
   },
   "uk": {
@@ -146,7 +146,7 @@
       "publicCv": "Публічне резюме",
       "publicSharingNote": "Примітка щодо публічного доступу"
     },
-    "sharingNote": "Документ містить публічні відомості про мій професійний досвід без особистого номера телефону, електронної пошти та адреси. Доступна вебверсія вісьмома мовами розміщена на computersciencefreshmen.github.io.",
+    "sharingNote": "Документ містить публічні відомості про мій професійний досвід без особистого номера телефону, електронної пошти та адреси. Доступна вебверсія вісьмома мовами розміщена на henryyang.blog.",
     "publication": "Yang, H., Bai, J., He, C., Wang, Y., & Liang, W. (2024). Синтез, характеризація та випробування люмінесцентних матеріалів GdBO3, легованих рідкісноземельними елементами. Guangdong Chemical Industry, 51(10), 50-54."
   }
 }

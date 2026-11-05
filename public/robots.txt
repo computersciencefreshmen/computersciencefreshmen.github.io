@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://computersciencefreshmen.github.io/sitemap.xml
+Sitemap: https://henryyang.blog/sitemap.xml
