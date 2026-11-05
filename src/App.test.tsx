@@ -20,7 +20,7 @@ function expectProjectTitles(expected: typeof projects) {
 describe("portfolio navigation", () => {
   it("introduces the owner and three featured projects on the homepage", () => {
     render(<App />);
-    const homeLink = screen.getByRole("link", { name: "Hanyu Yang — home" });
+    const homeLink = screen.getByRole("link", { name: "Henry Yang — home" });
     const brandMark = homeLink.querySelector("img.brand-mark");
 
     expect(homeLink).toHaveAttribute("href", "#/");
@@ -28,8 +28,8 @@ describe("portfolio navigation", () => {
     expect(brandMark).toHaveAttribute("alt", "");
     expect(brandMark).toHaveAttribute("aria-hidden", "true");
     expect(document.querySelectorAll('img[src="/hy-mark-v2.svg"]')).toHaveLength(2);
-    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Hanyu Yang");
-    expect(screen.getByRole("img", { name: "Portrait of Hanyu Yang" })).toHaveAttribute("src", "/profile.png");
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Henry Yang");
+    expect(screen.getByRole("img", { name: "Portrait of Henry Yang" })).toHaveAttribute("src", "/profile.png");
     expectProjectTitles(projects.slice(0, 3));
     expect(within(screen.getByRole("navigation")).getByRole("link", { name: "Home" })).toHaveAttribute("aria-current", "page");
   });
@@ -52,7 +52,7 @@ describe("portfolio navigation", () => {
 
     fireEvent.click(navigation.getByRole("link", { name: "Research" }));
     await screen.findByRole("heading", { level: 1, name: "Research" });
-    expect(document.title).toBe("Hanyu Yang — Research");
+    expect(document.title).toBe("Henry Yang — Research");
 
     window.history.back();
     await screen.findByRole("heading", { level: 1, name: "Projects" });
@@ -105,12 +105,12 @@ describe("display preferences", () => {
       throw new DOMException("Storage denied", "SecurityError");
     });
     render(<App />);
-    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Hanyu Yang");
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Henry Yang");
     fireEvent.click(screen.getByRole("button", { name: "Switch to dark theme" }));
     chooseLanguage("zh");
     expect(document.documentElement.dataset.theme).toBe("dark");
     expect(document.documentElement.lang).toBe("zh-CN");
-    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("杨涵宇");
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Henry Yang");
   });
 
   it("switches language and theme and restores both after revisiting", () => {
@@ -118,7 +118,7 @@ describe("display preferences", () => {
     fireEvent.click(screen.getByRole("button", { name: "Switch to dark theme" }));
     chooseLanguage("zh");
 
-    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("杨涵宇");
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Henry Yang");
     expect(document.documentElement.lang).toBe("zh-CN");
     expect(document.documentElement.dataset.theme).toBe("dark");
     expect(window.localStorage.getItem("hanyu-portfolio-theme")).toBe("dark");
@@ -126,13 +126,13 @@ describe("display preferences", () => {
 
     firstVisit.unmount();
     render(<App />);
-    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("杨涵宇");
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Henry Yang");
     fireEvent.click(screen.getByRole("button", { name: "切换到浅色主题" }));
     expect(document.documentElement.dataset.theme).toBe("light");
     expect(window.localStorage.getItem("hanyu-portfolio-theme")).toBe("light");
     chooseLanguage("en");
     expect(document.documentElement.lang).toBe("en");
-    expect(document.title).toBe("Hanyu Yang — Software, Data & AI");
+    expect(document.title).toBe("Henry Yang — Software, Data & AI");
   });
 
   it("starts with the system theme until an explicit preference is saved", () => {
@@ -189,7 +189,7 @@ describe("public links", () => {
     for (const link of externalLinks) {
       expect(link).toHaveAccessibleName();
       expect(link).toHaveAttribute("rel", "noreferrer");
-      expect(link).toHaveAttribute("href", expect.stringMatching(/^(https:\/\/|\/Hanyu_Yang_CV_Public\.pdf$)/));
+      expect(link).toHaveAttribute("href", expect.stringMatching(/^(https:\/\/|\/Henry_Yang_CV_Public\.pdf$)/));
     }
   });
 

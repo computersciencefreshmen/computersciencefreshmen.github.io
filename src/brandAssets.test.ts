@@ -19,6 +19,7 @@ describe("personal brand assets", () => {
     const mark = readFileSync(publicAsset("hy-mark-v2.svg"), "utf8");
 
     expect(mark).toContain('viewBox="0 0 64 64"');
+    expect(mark).toContain("<title id=\"hy-mark-title\">Henry Yang</title>");
     expect(mark).toContain("<path");
     expect(mark).not.toMatch(/<text\b/i);
     expect(mark).not.toContain("#db0011");
@@ -39,9 +40,13 @@ describe("personal brand assets", () => {
     const manifest = JSON.parse(
       readFileSync(publicAsset("site.webmanifest"), "utf8"),
     ) as {
+      name: string;
+      short_name: string;
       icons: Array<{ src: string; purpose: string }>;
     };
 
+    expect(manifest.name).toMatch(/^Henry Yang — /);
+    expect(manifest.short_name).toBe("Henry Yang");
     expect(manifest.icons.some(({ purpose }) => purpose === "any")).toBe(true);
     expect(manifest.icons.some(({ purpose }) => purpose === "maskable")).toBe(
       true,

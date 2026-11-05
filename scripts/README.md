@@ -35,6 +35,7 @@ Pass `--url https://henryyang.blog` to check the live deployment.
 experience page at 390/1440px. It performs real downloads, compares their bytes
 with the verified public PDFs, checks immediate language changes, and confirms
 default English even with an old saved preference.
+It also reads every legacy PDF URL and verifies its bytes match the primary download.
 `visual_qa.py` is the older bilingual interaction check; component tests cover its
 project search and filter scenarios with the new language selector.
 
@@ -61,7 +62,10 @@ Its output is ignored under `artifacts/public-cv-data/`.
 PDF-only profile, headings, sharing note and publication-title translations live
 in `src/data/public-cv-copy.json`; update the profile when status changes.
 
-The renderer generates the original English URL plus seven files under `public/cv/`.
+The renderer generates `public/Henry_Yang_CV_Public.pdf` plus seven localized files
+at `public/cv/Henry_Yang_CV_Public_{locale}.pdf`. Each edition is rendered once,
+then copied byte for byte to the corresponding old `Hanyu_Yang_CV_Public*.pdf`
+path. Keep those generated compatibility copies so previously shared links work.
 It embeds Latin/Cyrillic and Chinese font subsets; never commit system font files.
 On Windows it uses Arial and Microsoft YaHei by default. On other systems, provide
 TrueType fonts with the needed Unicode coverage using `--font-regular`,
@@ -69,11 +73,15 @@ TrueType fonts with the needed Unicode coverage using `--font-regular`,
 The renderer checks glyph coverage before authoring each document.
 
 The verifier checks every exported sentence, metric, section, public hyperlink,
-language tag and embedded font; renders every page to
+language tag and embedded font, and requires all eight legacy copies to match;
+it renders every primary PDF page to
 `artifacts/multilingual-cv-render/` for visual review. Review all final rendered
 pages before committing generated PDFs. Generation is local; Pages deploys the
-verified files and checks all eight destinations exist.
+verified files and checks that all eight primary destinations and eight legacy
+destinations exist, with each pair byte-identical.
 
 For a single edition, use `generate_multilingual_cv.py --locale de`.
+That refreshes both public paths for the selected edition. An explicit
+`--output PATH` writes only that file and does not update compatibility copies.
 `generate_public_cv.py` and `verify_public_cv.py` remain compatible entry points
 for the English edition, backed by the same localized implementation.

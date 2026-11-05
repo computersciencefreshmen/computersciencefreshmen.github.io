@@ -1,4 +1,5 @@
 import type { Locale } from "../types";
+import { identity } from "./portfolio";
 import de from "./blog-locales/de.json";
 import fr from "./blog-locales/fr.json";
 import it from "./blog-locales/it.json";
@@ -51,7 +52,7 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     slug: "between-tides-and-twilight",
-    author: "Hanyu Yang",
+    author: identity.name,
     publishedAt: "2026-10-11",
     cover: "/blog/between-tides-and-twilight/victoria-harbour-sunset.webp",
     coverWidth: 2200,
@@ -69,7 +70,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "death-and-the-maiden",
-    author: "Hanyu Yang",
+    author: identity.name,
     publishedAt: "2026-10-10",
     concertDate: "2026-10-09",
     cover: "/blog/cuarteto-casals-stage.jpg",

@@ -1,6 +1,6 @@
-# Hanyu Yang — Personal Website
+# Henry Yang — Personal Website
 
-A multilingual personal website for Hanyu “Henry” Yang, published at
+A multilingual personal website for Henry Yang, published at
 [henryyang.blog](https://henryyang.blog/).
 
 Hosting remains on GitHub Pages. See [the custom-domain checklist](docs/custom-domain.md)
@@ -62,9 +62,11 @@ existing links.
 
 The eight downloadable CVs share the same education, experience, research,
 projects, skills and awards as the website. `publicCvUrls` in `src/data/cv.ts`
-selects the English PDF at its original URL and the seven localized editions under
-`public/cv/`. Homepage downloads, the CV archive and the experience page all use
-this mapping, so a language change updates every PDF destination.
+selects `/Henry_Yang_CV_Public.pdf` and the seven localized editions at
+`/cv/Henry_Yang_CV_Public_{locale}.pdf`. Homepage downloads, the CV archive and the
+experience page all use this mapping, so a language change updates every PDF destination.
+Previously shared `Hanyu_Yang_CV_Public*.pdf` URLs remain available as byte-identical
+compatibility copies, regenerated together with the primary downloads.
 
 `scripts/export_public_cv.mjs` reads the TypeScript records and existing translation
 catalogs, enforcing complete translations and unchanged numerical facts before
@@ -74,8 +76,10 @@ Update that copy when the current profile/status changes. Technical identifiers
 and official names keep their established spelling.
 
 `scripts/generate_multilingual_cv.py` renders all eight editions with embedded
-font subsets, localized dates and PDF language metadata. English and Chinese are
-not separate hand-maintained resume sources. Generated PDFs are committed, so
+font subsets, localized dates and PDF language metadata. Each edition is rendered
+once, then copied to its legacy URL; verification and CI reject differing copies.
+English and Chinese are not separate hand-maintained resume sources.
+Generated PDFs are committed, so
 deployment needs no translation service or system fonts. See `scripts/README.md`
 for regeneration and verification commands.
 
@@ -144,4 +148,4 @@ the account root, so the Vite base path is `/`.
 
 Only public professional information is included. The downloadable CV excludes
 private contact details. Contact links use established social profiles. Unless a
-file says otherwise, content and visual assets remain © Hanyu Yang.
+file says otherwise, content and visual assets remain © Henry Yang.

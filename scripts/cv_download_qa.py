@@ -12,12 +12,12 @@ LOCALES = ("en", "zh", "de", "fr", "it", "ru", "es", "uk")
 
 
 def pdf_url(code: str) -> str:
-    return "/Hanyu_Yang_CV_Public.pdf" if code == "en" else f"/cv/Hanyu_Yang_CV_Public_{code}.pdf"
+    return "/Henry_Yang_CV_Public.pdf" if code == "en" else f"/cv/Henry_Yang_CV_Public_{code}.pdf"
 
 
 def run(base_url: str, output: Path, widths: list[int]) -> None:
     output.mkdir(parents=True, exist_ok=True)
-    checks, errors = [], []
+    checks, legacy_checks, errors = [], [], []
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         for width in widths:
@@ -28,6 +28,11 @@ def run(base_url: str, output: Path, widths: list[int]) -> None:
             for code in LOCALES:
                 expected = pdf_url(code)
                 local_bytes = (ROOT / "public" / expected.lstrip("/")).read_bytes()
+                legacy_url = expected.replace("Henry_Yang_CV_Public", "Hanyu_Yang_CV_Public")
+                legacy_response = context.request.get(f"{base_url}{legacy_url}")
+                assert legacy_response.status == 200, (code, "legacy URL unavailable")
+                assert hashlib.sha256(legacy_response.body()).digest() == hashlib.sha256(local_bytes).digest(), (code, "stale legacy PDF")
+                legacy_checks.append({"locale": code, "width": width, "url": legacy_url, "matches_primary": True})
                 for route in ("", "cv", "experience"):
                     page.goto(f"{base_url}/?lang={code}#/{route}", wait_until="networkidle")
                     link = page.locator(f'a[href="{expected}"]')
@@ -60,13 +65,13 @@ def run(base_url: str, output: Path, widths: list[int]) -> None:
             page.evaluate('localStorage.setItem("hanyu-portfolio-locale", "uk")')
             page.goto(f"{base_url}/#/cv", wait_until="networkidle")
             expect(page.locator(".site-header .language-select")).to_have_attribute("data-value", "en")
-            expect(page.locator('a[href="/Hanyu_Yang_CV_Public.pdf"]')).to_have_count(1)
+            expect(page.locator('a[href="/Henry_Yang_CV_Public.pdf"]')).to_have_count(1)
             context.close()
         browser.close()
     assert not errors, errors
-    result = {"download_checks": len(checks), "languages": list(LOCALES), "default": "en", "errors": errors, "checks": checks}
+    result = {"download_checks": len(checks), "legacy_checks": len(legacy_checks), "languages": list(LOCALES), "default": "en", "errors": errors, "checks": checks, "legacy": legacy_checks}
     (output / "results.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
-    print(json.dumps({key: value for key, value in result.items() if key != "checks"}))
+    print(json.dumps({key: value for key, value in result.items() if key not in ("checks", "legacy")}))
 
 
 if __name__ == "__main__":

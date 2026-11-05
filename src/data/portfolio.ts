@@ -1,7 +1,7 @@
 import type { JourneyItem, LocalizedText, Project } from "../types";
 
 export const identity = {
-  name: "Hanyu Yang",
+  name: "Henry Yang",
   preferredName: "Henry",
   location: {
     en: "Guangzhou, China · UTC+8",
@@ -25,11 +25,11 @@ export const copy = {
     heroTitleAccent: "real-world questions",
     heroTitleTail: "into useful digital systems.",
     heroBody:
-      "I’m Hanyu (Henry) Yang, a software engineering graduate and HKU postgraduate student working where software, data, business, and international experiences meet.",
+      "I’m Henry Yang, a software engineering graduate and HKU postgraduate student working where software, data, business, and international experiences meet.",
     exploreWork: "Explore selected work",
     connect: "Start a conversation",
-    portraitAlt: "Portrait of Hanyu Yang",
-    portraitCaption: "Hanyu “Henry” Yang",
+    portraitAlt: "Portrait of Henry Yang",
+    portraitCaption: "Henry Yang",
     plateLabel: "Personal field notes · 2026",
     signalOne: "Ship",
     signalTwo: "Learn",
@@ -93,7 +93,7 @@ export const copy = {
     contactCta: "Connect on LinkedIn",
     githubCta: "Follow the build trail",
     footerNote: "Designed and built with intention.",
-    copyright: "Hanyu Yang. All rights reserved.",
+    copyright: "Henry Yang. All rights reserved.",
   },
   zh: {
     nav: {
@@ -109,11 +109,11 @@ export const copy = {
     heroTitleAccent: "真实世界问题",
     heroTitleTail: "转化为有用的数字系统。",
     heroBody:
-      "我是杨涵宇（Henry），一名软件工程毕业生与香港大学研究生，持续探索软件、数据、商业与国际化体验的交汇处。",
+      "我是 Henry Yang，一名软件工程毕业生与香港大学研究生，持续探索软件、数据、商业与国际化体验的交汇处。",
     exploreWork: "查看精选项目",
     connect: "开始交流",
-    portraitAlt: "杨涵宇的个人照片",
-    portraitCaption: "杨涵宇 “Henry”",
+    portraitAlt: "Henry Yang 的个人照片",
+    portraitCaption: "Henry Yang",
     plateLabel: "个人研究手记 · 2026",
     signalOne: "交付",
     signalTwo: "学习",
@@ -177,7 +177,7 @@ export const copy = {
     contactCta: "在 LinkedIn 联系",
     githubCta: "查看我的构建轨迹",
     footerNote: "以思考与用心完成设计和开发。",
-    copyright: "杨涵宇。保留所有权利。",
+    copyright: "Henry Yang。保留所有权利。",
   },
 } as const;
 

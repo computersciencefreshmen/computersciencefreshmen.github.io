@@ -110,7 +110,7 @@ export function SiteHeader({
         onClick={closeMenu}
       >
         <BrandMark className="wordmark__symbol" />
-        <span className="wordmark__name">Hanyu Yang</span>
+        <span className="wordmark__name">{identity.name}</span>
       </a>
 
       <div className="header-controls">

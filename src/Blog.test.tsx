@@ -125,11 +125,13 @@ describe("multilingual blog", () => {
     expect(window.location.hash).toBe(articleHash);
     expect(screen.getByRole("article")).toHaveAttribute("lang", tag);
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(content.title);
+    expect(within(screen.getByRole("article")).getByText("Henry Yang")).toBeInTheDocument();
     for (const paragraph of content.paragraphs) expect(screen.getByText(paragraph)).toBeInTheDocument();
     expect(screen.getByText(content.closing)).toBeInTheDocument();
     expect(screen.getByText(content.coverCaption)).toBeInTheDocument();
     expect(screen.getByRole("img", { name: content.gallery[0].alt })).toBeInTheDocument();
     expect(document.title).toContain(content.title);
+    expect(document.title).toMatch(/^Henry Yang — /);
     for (const selector of screen.getAllByRole("combobox")) expect(selector).toHaveAttribute("data-value", code);
     const articlePicker = within(document.querySelector<HTMLElement>(".blog-language")!);
     fireEvent.click(articlePicker.getByRole("combobox"));

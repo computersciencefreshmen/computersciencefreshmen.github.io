@@ -149,9 +149,9 @@ def run(base_url: str, output: Path, widths: tuple[int, ...], slugs: tuple[str, 
             expect(page.get_by_role('heading', level=1)).to_have_text(posts[slugs[0]]['content']['en']['title'])
             expect(page.locator('article.blog-article')).to_have_attribute('lang', 'en')
             check_listing(page, base_url, posts)
-            response = context.request.get(f'{base_url}/Hanyu_Yang_CV_Public.pdf')
+            response = context.request.get(f'{base_url}/Henry_Yang_CV_Public.pdf')
             assert response.status == 200
-            assert hashlib.sha256(response.body()).digest() == hashlib.sha256((ROOT / 'public/Hanyu_Yang_CV_Public.pdf').read_bytes()).digest(), 'Published CV differs from verified local PDF'
+            assert hashlib.sha256(response.body()).digest() == hashlib.sha256((ROOT / 'public/Henry_Yang_CV_Public.pdf').read_bytes()).digest(), 'Published CV differs from verified local PDF'
             context.close()
         browser.close()
     assert not errors, errors

@@ -132,7 +132,7 @@ def run() -> None:
             chinese_headings.append(heading)
             route_checks.append({"width": 1440, "locale": "zh", "route": route or "home", "h1": heading})
         assert len(set(chinese_headings)) == len(ROUTES)
-        pdf_response = desktop_context.request.get(f"{BASE_URL}/Hanyu_Yang_CV_Public.pdf")
+        pdf_response = desktop_context.request.get(f"{BASE_URL}/Henry_Yang_CV_Public.pdf")
         assert pdf_response.status == 200, f"CV response: {pdf_response.status}"
         assert pdf_response.body().startswith(b"%PDF"), "CV response was not a PDF"
         desktop_context.close()
