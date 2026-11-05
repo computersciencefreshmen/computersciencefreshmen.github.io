@@ -2,6 +2,7 @@ import type { JourneyItem, LocalizedText, Project } from "../types";
 
 export const identity = {
   name: "Henry Yang",
+  tagline: "Always Exploring",
   preferredName: "Henry",
   location: {
     en: "Guangzhou, China · UTC+8",

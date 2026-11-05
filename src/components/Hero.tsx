@@ -12,7 +12,7 @@ export function Hero({ locale }: { locale: Locale }) {
         <div className="hero__copy">
           <p className="eyebrow">{localize({ en: "SOFTWARE · DATA · AI & SOCIETY", zh: "软件 · 数据 · 人工智能与社会" }, locale)}</p>
           <h1 id="hero-title">{identity.name}</h1>
-          <p className="hero__role">{localize({ en: "Building thoughtfully. Learning across disciplines.", zh: "以工程实践，探索技术与人的关系。" }, locale)}</p>
+          <p className="hero__role">{identity.tagline}</p>
           <p className="hero__location"><span aria-hidden="true" />{localize(identity.location, locale)}</p>
         </div>
         <figure className="hero__portrait">
