@@ -30,7 +30,7 @@ The harness uses Node 24 and `export_blog_qa.mjs` to read the same typed records
 through Vite's TypeScript/JSON loader, keeping expected prose in one place.
 Use `--widths 390 1440` for a smaller targeted pass.
 Use `--slugs between-tides-and-twilight` to check only the new essay's article pages.
-Pass `--url https://computersciencefreshmen.github.io` to check the live deployment.
+Pass `--url https://henryyang.blog` to check the live deployment.
 `cv_download_qa.py` exercises all eight PDF editions on the homepage, CV page and
 experience page at 390/1440px. It performs real downloads, compares their bytes
 with the verified public PDFs, checks immediate language changes, and confirms
