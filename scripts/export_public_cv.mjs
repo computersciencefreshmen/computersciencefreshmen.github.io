@@ -175,7 +175,7 @@ function documentData({ code, name, tag }) {
     locale: code,
     languageName: name,
     tag,
-    name: code === "zh" ? "杨涵宇" : identity.name,
+    name: identity.name,
     profile: copy.profile,
     tagline: copy.tagline,
     labels: copy.labels,

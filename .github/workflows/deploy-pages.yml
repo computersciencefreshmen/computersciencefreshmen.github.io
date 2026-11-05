@@ -51,9 +51,13 @@ jobs:
         run: |
           test -f dist/index.html
           test -f dist/404.html
+          test -f dist/Henry_Yang_CV_Public.pdf
           test -f dist/Hanyu_Yang_CV_Public.pdf
+          cmp -s dist/Henry_Yang_CV_Public.pdf dist/Hanyu_Yang_CV_Public.pdf
           for locale in zh de fr it ru es uk; do
+            test -f "dist/cv/Henry_Yang_CV_Public_${locale}.pdf"
             test -f "dist/cv/Hanyu_Yang_CV_Public_${locale}.pdf"
+            cmp -s "dist/cv/Henry_Yang_CV_Public_${locale}.pdf" "dist/cv/Hanyu_Yang_CV_Public_${locale}.pdf"
           done
           test -f dist/hsbc-logo.png
           if find dist -type l -print -quit | grep -q .; then

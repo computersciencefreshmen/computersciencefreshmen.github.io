@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import App from "../App";
 import { education, hsbcExperience, research, cvProjects, xinAnExperience, achievements, getPublicCvUrl } from "../data/cv";
-import { projects } from "../data/portfolio";
+import { copy, projects } from "../data/portfolio";
 import { dictionaries, formatPeriod, locales, normalizeLocale, translate } from ".";
 import source from "./source.json";
 
@@ -23,6 +23,9 @@ describe("translation completeness", () => {
       } else Object.values(value).forEach(check);
     }
     [education, hsbcExperience, research, cvProjects, xinAnExperience, achievements, projects].forEach(check);
+    for (const message of [copy.en.heroBody, copy.en.portraitAlt]) {
+      expect(Object.hasOwn(source, message), message).toBe(true);
+    }
   });
 });
 
@@ -31,6 +34,13 @@ describe("multilingual navigation", () => {
     const view = render(<App />);
     chooseLanguage(code);
     expect(document.documentElement.lang).toBe(tag);
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Henry Yang");
+    expect(document.querySelector(".site-header .wordmark")).toHaveAccessibleName(/^Henry Yang — /);
+    expect(document.querySelector(".footer-wordmark")).toHaveTextContent("Henry Yang");
+    expect(document.querySelector(".footer-bottom p")).toHaveTextContent("Henry Yang");
+    expect(document.querySelector(".hero__portrait img")).toHaveAccessibleName(/Henry Yang/);
+    expect(document.querySelector(".home-about")).toHaveTextContent("Henry Yang");
+    expect(document.title).toMatch(/^Henry Yang — /);
     expect(new URLSearchParams(window.location.search).get("lang")).toBe(code);
     expect(screen.getByRole("combobox")).toHaveAccessibleName(translate(code, "Choose language"));
     view.unmount();

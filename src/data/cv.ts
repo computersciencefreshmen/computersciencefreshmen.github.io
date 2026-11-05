@@ -20,14 +20,14 @@ export interface EducationEntry {
 }
 
 export const publicCvUrls: Record<Locale, string> = {
-  en: "/Hanyu_Yang_CV_Public.pdf",
-  zh: "/cv/Hanyu_Yang_CV_Public_zh.pdf",
-  de: "/cv/Hanyu_Yang_CV_Public_de.pdf",
-  fr: "/cv/Hanyu_Yang_CV_Public_fr.pdf",
-  it: "/cv/Hanyu_Yang_CV_Public_it.pdf",
-  ru: "/cv/Hanyu_Yang_CV_Public_ru.pdf",
-  es: "/cv/Hanyu_Yang_CV_Public_es.pdf",
-  uk: "/cv/Hanyu_Yang_CV_Public_uk.pdf",
+  en: "/Henry_Yang_CV_Public.pdf",
+  zh: "/cv/Henry_Yang_CV_Public_zh.pdf",
+  de: "/cv/Henry_Yang_CV_Public_de.pdf",
+  fr: "/cv/Henry_Yang_CV_Public_fr.pdf",
+  it: "/cv/Henry_Yang_CV_Public_it.pdf",
+  ru: "/cv/Henry_Yang_CV_Public_ru.pdf",
+  es: "/cv/Henry_Yang_CV_Public_es.pdf",
+  uk: "/cv/Henry_Yang_CV_Public_uk.pdf",
 };
 
 export function getPublicCvUrl(locale: Locale = "en"): string {

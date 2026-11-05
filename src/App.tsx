@@ -11,7 +11,7 @@ import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader, type Page } from "./components/SiteHeader";
 import { useLocale } from "./hooks/useLocale";
 import { useTheme } from "./hooks/useTheme";
-import { copy } from "./data/portfolio";
+import { copy, identity } from "./data/portfolio";
 import { getBlogPost } from "./data/blog";
 
 interface Route { page: Page; postSlug?: string }
@@ -46,7 +46,7 @@ function App() {
   }, []);
   useEffect(() => {
     const article = page === "blog" ? getBlogPost(postSlug)?.content[locale] : undefined;
-    document.title = `${localize({ en: "Hanyu Yang", zh: "杨涵宇" }, locale)} — ${article?.title ?? localize(titles, locale)[page]}`;
+    document.title = `${identity.name} — ${article?.title ?? localize(titles, locale)[page]}`;
     const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
     if (description) description.content = article?.excerpt ?? (page === "blog" ? localize({ en: "Personal reflections on music, culture, and the moments in between.", zh: "记录音乐、文化，以及生活中的片刻感受。" }, locale) : localize(copy, locale).heroBody);
   }, [page, postSlug, locale]);

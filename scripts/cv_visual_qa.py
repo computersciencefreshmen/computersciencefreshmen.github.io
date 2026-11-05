@@ -152,7 +152,7 @@ def run() -> None:
             page.close()
 
         pdf_response = playwright.request.new_context().get(
-            f"{BASE_URL}Hanyu_Yang_CV_Public.pdf"
+            f"{BASE_URL}Henry_Yang_CV_Public.pdf"
         )
         if not pdf_response.ok:
             raise AssertionError(

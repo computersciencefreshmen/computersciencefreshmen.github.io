@@ -20,14 +20,14 @@ function openPage(hash: string) {
 }
 
 const cvDownloads: Array<[Locale, string, string]> = [
-  ["en", "/Hanyu_Yang_CV_Public.pdf", "English"],
-  ["zh", "/cv/Hanyu_Yang_CV_Public_zh.pdf", "简体中文"],
-  ["de", "/cv/Hanyu_Yang_CV_Public_de.pdf", "Deutsch"],
-  ["fr", "/cv/Hanyu_Yang_CV_Public_fr.pdf", "Français"],
-  ["it", "/cv/Hanyu_Yang_CV_Public_it.pdf", "Italiano"],
-  ["ru", "/cv/Hanyu_Yang_CV_Public_ru.pdf", "Русский"],
-  ["es", "/cv/Hanyu_Yang_CV_Public_es.pdf", "Español"],
-  ["uk", "/cv/Hanyu_Yang_CV_Public_uk.pdf", "Українська"],
+  ["en", "/Henry_Yang_CV_Public.pdf", "English"],
+  ["zh", "/cv/Henry_Yang_CV_Public_zh.pdf", "简体中文"],
+  ["de", "/cv/Henry_Yang_CV_Public_de.pdf", "Deutsch"],
+  ["fr", "/cv/Henry_Yang_CV_Public_fr.pdf", "Français"],
+  ["it", "/cv/Henry_Yang_CV_Public_it.pdf", "Italiano"],
+  ["ru", "/cv/Henry_Yang_CV_Public_ru.pdf", "Русский"],
+  ["es", "/cv/Henry_Yang_CV_Public_es.pdf", "Español"],
+  ["uk", "/cv/Henry_Yang_CV_Public_uk.pdf", "Українська"],
 ];
 
 describe("localized CV downloads", () => {
@@ -43,7 +43,7 @@ describe("localized CV downloads", () => {
 
   it.each(["#/", "#/cv", "#/experience"])("changes the PDF immediately with the language selector on %s", (route) => {
     openPage(route);
-    expect(document.querySelector('main a[href$=".pdf"]')).toHaveAttribute("href", "/Hanyu_Yang_CV_Public.pdf");
+    expect(document.querySelector('main a[href$=".pdf"]')).toHaveAttribute("href", "/Henry_Yang_CV_Public.pdf");
     for (const [locale, url, language] of [...cvDownloads.slice(1), cvDownloads[0]]) {
       chooseLanguage(locale);
       const link = document.querySelector<HTMLAnchorElement>('main a[href$=".pdf"]');
@@ -56,7 +56,7 @@ describe("localized CV downloads", () => {
   it("keeps ordinary visits in English even after a previous download language", () => {
     window.localStorage.setItem("hanyu-portfolio-locale", "uk");
     openPage("#/cv");
-    expect(document.querySelector('main a[href$=".pdf"]')).toHaveAttribute("href", "/Hanyu_Yang_CV_Public.pdf");
+    expect(document.querySelector('main a[href$=".pdf"]')).toHaveAttribute("href", "/Henry_Yang_CV_Public.pdf");
     expect(screen.getByRole("combobox")).toHaveAttribute("data-value", "en");
   });
 });
@@ -79,7 +79,7 @@ describe("complete CV experience", () => {
     for (const contribution of hsbcExperience.bullets) {
       expect(screen.getByText(contribution.en)).toBeInTheDocument();
     }
-    expect(screen.getByRole("link", { name: /open public cv/i })).toHaveAttribute("href", "/Hanyu_Yang_CV_Public.pdf");
+    expect(screen.getByRole("link", { name: /open public cv/i })).toHaveAttribute("href", "/Henry_Yang_CV_Public.pdf");
   });
 
   it("preserves every original CV category on the dedicated CV page", () => {
@@ -96,7 +96,7 @@ describe("complete CV experience", () => {
     for (const achievement of achievements) expect(screen.getByText(achievement.en)).toBeInTheDocument();
     for (const group of skills) expect(screen.getByRole("heading", { name: group.label.en })).toBeInTheDocument();
     expect(screen.getByText(publication.en)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /download public cv/i })).toHaveAttribute("href", "/Hanyu_Yang_CV_Public.pdf");
+    expect(screen.getByRole("link", { name: /download public cv/i })).toHaveAttribute("href", "/Henry_Yang_CV_Public.pdf");
   });
 
   it("shows the original research and publication on the research page", () => {

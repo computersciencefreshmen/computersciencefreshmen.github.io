@@ -59,7 +59,7 @@ def run(base_url: str, output: Path) -> None:
         page = context.new_page()
         page.goto(f'{base_url}/?lang=ua#/research')
         expect(page.locator('html')).to_have_attribute('lang', 'uk')
-        pdf = context.request.get(f'{base_url}/Hanyu_Yang_CV_Public.pdf')
+        pdf = context.request.get(f'{base_url}/Henry_Yang_CV_Public.pdf')
         assert pdf.status == 200 and pdf.body().startswith(b'%PDF')
         context.close()
         browser.close()

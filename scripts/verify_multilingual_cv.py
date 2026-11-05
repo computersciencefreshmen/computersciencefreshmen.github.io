@@ -10,7 +10,7 @@ import re
 import pdfplumber
 from pypdf import PdfReader
 
-from generate_multilingual_cv import LOCALES, MARGIN, ROOT, plain
+from generate_multilingual_cv import LOCALES, MARGIN, ROOT, plain, public_cv_relative_path
 
 
 def compact(text: str) -> str:
@@ -63,6 +63,8 @@ def verify(code: str, data: dict, pdf_path: Path, output_dir: Path) -> dict:
         raise AssertionError(f"{code}: unexpected page count {len(reader.pages)}")
     if reader.trailer["/Root"].get("/Lang") != data["tag"]:
         raise AssertionError(f"{code}: PDF language tag differs from website")
+    if reader.metadata.author != data["name"] or reader.metadata.title != f"{data['name']} - {data['labels']['publicCv']}":
+        raise AssertionError(f"{code}: PDF display name differs in document metadata")
     page_texts = [page.extract_text() or "" for page in reader.pages]
     text = "\n".join(page_texts)
     searchable = compact(text)
@@ -133,8 +135,12 @@ def main() -> None:
     results = []
     for code in LOCALES:
         data = json.loads((args.data_dir / f"{code}.json").read_text(encoding="utf-8"))
-        pdf = args.public_dir / ("Hanyu_Yang_CV_Public.pdf" if code == "en" else f"cv/Hanyu_Yang_CV_Public_{code}.pdf")
+        pdf = args.public_dir / public_cv_relative_path(code)
+        legacy_pdf = args.public_dir / public_cv_relative_path(code, legacy=True)
+        if legacy_pdf.read_bytes() != pdf.read_bytes():
+            raise AssertionError(f"{code}: legacy PDF differs from the primary download")
         result = verify(code, data, pdf, args.render_dir / code)
+        result["legacy_copy_matches"] = True
         results.append(result)
         print(json.dumps(result, ensure_ascii=True))
     (args.render_dir / "results.json").write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding="utf-8")

@@ -38,6 +38,11 @@ MARGIN = 17 * mm
 WIDTH = PAGE_WIDTH - 2 * MARGIN
 
 
+def public_cv_relative_path(locale: str, *, legacy: bool = False) -> Path:
+    basename = "Hanyu_Yang_CV_Public" if legacy else "Henry_Yang_CV_Public"
+    return Path(f"{basename}.pdf") if locale == "en" else Path("cv") / f"{basename}_{locale}.pdf"
+
+
 def plain(text: str) -> str:
     for dash in ("\u2010", "\u2011", "\u2012", "\u2013", "\u2014", "\u2212"):
         text = text.replace(dash, "-")
@@ -211,7 +216,7 @@ def check_glyphs(data: dict, family: tuple[str, str, str]) -> None:
 def generate(data: dict, output: Path, family: tuple[str, str, str]) -> None:
     check_glyphs(data, family)
     output.parent.mkdir(parents=True, exist_ok=True)
-    document = SimpleDocTemplate(str(output), pagesize=A4, leftMargin=MARGIN, rightMargin=MARGIN, topMargin=17 * mm, bottomMargin=17 * mm, title=f"{data['name']} - {data['labels']['publicCv']}", author="Hanyu Yang", subject=data["tagline"])
+    document = SimpleDocTemplate(str(output), pagesize=A4, leftMargin=MARGIN, rightMargin=MARGIN, topMargin=17 * mm, bottomMargin=17 * mm, title=f"{data['name']} - {data['labels']['publicCv']}", author=data["name"], subject=data["tagline"])
     draw = draw_page(data, family)
     document.build(build_story(data, styles_for(data, family)), onFirstPage=draw, onLaterPages=draw)
     reader = PdfReader(output)
@@ -227,7 +232,7 @@ def main() -> None:
     parser.add_argument("--locale", choices=("all", *LOCALES), default="all")
     parser.add_argument("--data-dir", type=Path, default=ROOT / "artifacts/public-cv-data")
     parser.add_argument("--skip-export", action="store_true", help="Use a previously exported dataset.")
-    parser.add_argument("--output", type=Path, help="Override output for a single locale.")
+    parser.add_argument("--output", type=Path, help="Write only this single-locale file; skip automatic compatibility copies.")
     for name in ("regular", "bold", "italic", "cjk", "cjk-bold"):
         parser.add_argument(f"--font-{name}", type=Path)
     args = parser.parse_args()
@@ -238,9 +243,15 @@ def main() -> None:
     families = register_fonts(args)
     for code in LOCALES if args.locale == "all" else (args.locale,):
         data = json.loads((args.data_dir / f"{code}.json").read_text(encoding="utf-8"))
-        output = args.output or (ROOT / "public/Hanyu_Yang_CV_Public.pdf" if code == "en" else ROOT / f"public/cv/Hanyu_Yang_CV_Public_{code}.pdf")
+        output = args.output or ROOT / "public" / public_cv_relative_path(code)
         generate(data, output, families[code])
         print(f"Generated {code}: {output} ({len(PdfReader(output).pages)} pages)")
+        if args.output is None:
+            # Keep previously shared URLs current without a second PDF render.
+            legacy_output = ROOT / "public" / public_cv_relative_path(code, legacy=True)
+            legacy_output.parent.mkdir(parents=True, exist_ok=True)
+            legacy_output.write_bytes(output.read_bytes())
+            print(f"Compatibility copy {code}: {legacy_output}")
 
 
 if __name__ == "__main__":
